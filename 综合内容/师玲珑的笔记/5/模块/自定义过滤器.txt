@@ -1,0 +1,54 @@
+py文件：
+
+from flask import Flask,render_template
+
+app=Flask(__name__)
+
+@app.template_filter('lireverse')
+def do_listreverse(li):
+    #通过原列表创建一个新列表
+    temp_li=list(li)
+    #将新列表进行反转
+    temp_li=sorted(temp_li,key=lambda x:len(x),reverse=False)
+    return temp_li
+@app.template_filter('s')
+def a(li):
+    new=list(li)
+    new=sorted(new,key=lambda x:x['age'],reverse=True)
+    return new
+
+name='<b>哈哈</b>'
+dict2=[{'name':'小明','age':10},{'name':'小红','age':20},{'name':'校长','age':15}]
+list2=['asd','q','as','zxas']
+@app.route('/')
+def a():
+    return render_template('4.html',name=name,list=list2,dict=dict2)
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+
+html文件：
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {{ name | safe }}<br>
+    {{ name }} <br>
+    {{ name | striptags }}<br>
+    {{ list[0] }} <br>
+    {{ list | last }}<br>
+    {% filter upper %}
+        adsAS                  #是整个文本的小写字母都变为大写
+    {% endfilter %} <br>
+    {{ list | sort }} <br>
+    {{ list | lireverse }}<br>
+    {{ dict | s }} <br>
+    {{ dict }}
+</body>
+</html>

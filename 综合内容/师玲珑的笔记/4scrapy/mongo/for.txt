@@ -1,0 +1,4 @@
+for(var i=1;i<=5;i++){
+db.stu.insert({'title':'我的第'+i+'篇博客'})
+}
+循环插入五条文档

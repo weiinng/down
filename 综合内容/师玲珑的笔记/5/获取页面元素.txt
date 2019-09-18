@@ -1,0 +1,3 @@
+var html='<b>插入一段html</b>';//声明js变量
+document.getElementById('myId').innerHTML = html;//找到id为'myId'的标签内插入html变量的值
+document.getElementById('myId').innerText = html;//找到id为'myId'的标签替换它的内容为html的值

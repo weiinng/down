@@ -1,0 +1,203 @@
+pandas->numpy->list
+import pandas as pd
+import numpy as np
+data=pd.DataFrame([[1,2],[3,4]])
+data=np.array(data)
+data.tolist()
+
+
+
+1、绘制一个柱状图：
+from matplotlib import pyplot as plt
+import matplotlib
+matplotlib.rcParams['font.sans-serif']=['SimHei']  #使图中 的描述汉字可以显示
+%matplotlib inline  #有了这个就不用plt.show()也能展示出图，仅限用于jupyter
+
+#柱状图：第一个参数是横轴的坐标值 第二个参数是纵轴的坐标值
+
+plt.bar(range(5),[100,500,300,230,500],color='pink')
+
+plt.xticks(range(5),['张三','李四','王五','小红','小明'])  #给横轴坐标值变为张三、李四、...
+
+plt.xlabel('姓名')  #给横坐标起名字
+
+plt.ylabel('得分')  给纵坐标起名字
+
+plt.title('学生分数')  给该图起个标题
+
+plt.ylim([80,550])   #刻度范围
+
+plt.show()  展示柱状图
+
+
+plt.plot([100,500,300,230,500],linewidth=3)  linewidth设置线宽
+plt.savefig('a.jpg')  #保存图片
+
+plt.show()
+
+这样的展示效果是两个图
+
+如果上面的plt.show()注释掉 两个图就合成一个图了
+
+
+——————————————————————————————————————————
+
+2、饼图
+beijing=[17,18,40,60]
+#定义标签
+labels=['2-3年','3-4年','4-5年','5年以上']
+#颜色
+colors=['red','green','blue','purple']
+#做好容器
+indic=[]
+for index,item in enumerate(beijing):
+        #判断优先级
+         if item == max(beijing):
+              indic.append(0.1)  #向外突出
+         else:
+              indic.append(0)
+        #填充数据
+plt.title('3d饼图突出展示工龄占比')
+plt.pie(beijing,labels=labels,colors=colors,autopct='%1.1f%%',startangle=90,shadow=True,explode=tuple(indic))
+        plt.show()
+#第一个参数是每个的面积，第二个参数是每个的名字，第三个参数可以展示出每个所占比例
+plt.title('人口比例')
+
+——————————————————————————————————————————
+
+3、直方图
+heights=[180,160,177,177]
+plt.hist(heights,color='red',alpha=0.5)
+#第一个参数是数据、第二个参数是图的颜色，第三个参数是颜色的透明度
+plt.xlabel('身高')
+plt.ylabel('体重')
+plt.title('身高统计')
+
+这个直方图横轴表示数，纵轴表示该数的个数
+
+
+——————————————————————————————————————————
+
+4、散点图
+import numpy as np
+np.random.seed(10)  #随机种子，就是把随机值固定成一组数据，每次运行得到的随机值都一样
+heights=[]
+weights=[]
+heights.append(np.random.randint(150,185,size=50))
+weights.append(np.random.randint(50,100,size=50))  #两个列表的值要一样
+plt.scatter(heights,weights,marker='^')   #marker可以给散点图里的点改变形状
+
+
+
+——————————————————————————————————————————
+
+5、折线图
+x=[4,65,71,5,3]
+y=[3,12,5,2,3]
+plt.plot(x,y)
+由（4，3）-》（65，12）-》（71，5）。。。。这些点依次相连
+
+
+————————————————————————————————————————————
+sklearn
+
+import pandas as pd
+from sklearn.datasets import load_iris #鸢尾花数据集
+data=load_iris().data
+# print(type(data))
+# print(data)
+# data=data.tolist()
+#花萼的长、花萼_的宽
+#取出前两列并绘制散点图，用三角表示
+#花瓣的长，花瓣的宽，绘制散点图，用*表示
+#不同颜色区分
+data1=pd.DataFrame(data)
+heights=data1[0]
+weights=data1[1]
+heights2=data1[2]
+weights2=data1[3]
+plt.scatter(heights,weights,marker='^',color='red')
+plt.scatter(heights2,weights2,marker='*',color='blue')
+plt.show()
+
+
+————————————————————————————————————————————
+趋势图：
+from matplotlib import pyplot as plt
+import numpy as np
+
+x = ['2019-05-01','2019-05-02','2019-05-03','2019-05-04']
+#定义y轴数据
+y1 = [0,5,6,10]  #代表温度
+y2 = [10,15,16,9]   #代表湿度
+# 填充数据
+plt.plot(x,y1,label='temperature')
+plt.plot(x,y2,label='water')
+#设置图例
+plt.legend()    
+#绘制
+plt.show()
+
+
+————————————————————————————————————————————
+
+3D散点图：
+from mpl_toolkits.mplot3d.axes3d import Axes3D
+
+
+x = np.random.randint(0,10,size=100)
+y = np.random.randint(0,10,size=100)
+z = np.random.randint(0,10,size=100)
+#创建二维对象
+fig = plt.figure()
+#强转
+axes3d = Axes3D(fig)
+plt.xlabel('投球次数')
+plt.ylabel('投球得分')
+#填充数据
+axes3d.scatter(x,y,z)
+plt.show()
+
+
+
+————————————————————————————————————————————
+条形图：
+
+price = [40,32.8,20,19.6]
+#填充数据
+plt.barh(range(4),price,align='center',color='red',alpha=0.5)
+#设置标签
+plt.xlabel('价格')
+plt.ylabel('商品')
+#编辑数据
+plt.yticks(range(4),['西游记','红楼梦','水浒传','三国演义'])
+#设置标题
+plt.title('四大名著')
+plt.show()
+
+——————————————————————————————————————————
+
+#定义面积图
+    def test_stackplot(self):
+        plt=self.plt
+        #定义数据
+        data = ['2019-05-01','2019-05-02','2019-05-03','2019-05-04']
+        #收入
+        earn=[156,356,156,30]
+        #支出
+        pay=[[10,30,10,10],[12,50,5,20],[5,15,12,30],[8,13,14,50]]
+        #填充数据
+        plt.stackplot(data,earn,pay,colors=['green','yellow','orange','red'])
+        #生成图例
+        plt.plot([],[],color='green',label='收入')
+        plt.plot([],[],color='yellow',label='早饭')
+        plt.plot([],[],color='orange',label='中饭')
+        plt.plot([],[],color='red',label='晚饭')
+        plt.legend()
+        plt.show()
+
+
+
+
+
+

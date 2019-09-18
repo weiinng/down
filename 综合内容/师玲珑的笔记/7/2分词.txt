@@ -1,0 +1,18 @@
+分词：全模式，精确模式，搜索引擎模式
+import jieba
+import jieba.analyse as anls
+全模式：True分的会更细一些 精确模式：False会自动断句cut_all=True
+result = jieba.lcut('我可真是个小天才啊',cut_all=True)
+搜索引擎模式：在精确模式的基础上，对长词再次划分
+result = jieba.lcut_for_search('我可真是个小天才啊')
+自定义词典
+jieba.load_userdict('路径')自定义词典的路径import jieba
+jieba.load_userdict('file.txt')
+ret = jieba.lcut('你吃饭啦吗吃的什么',cut_all=True)
+print(ret)
+result = jieba.lcut('你吃饭啦吗吃的什么',cut_all=False)
+print(result)
+res = jieba.lcut_for_search('你可真是个小天才啊小马')
+print(res)
+re = jieba.lcut('无妻徒形今天',cut_all=False)
+print(re)

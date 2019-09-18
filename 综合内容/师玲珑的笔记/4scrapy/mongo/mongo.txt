@@ -1,0 +1,121 @@
+默认监听端口号 27017/28017
+进程名 mongod mongo
+数据传输协议 TCP
+数据库目录 /data/db
+服务名 mongodb
+
+
+查询数据库信息的基本命令
+1、显示当前数据库服务上的数据库
+show dbs;
+
+2、切换到指定的数据库进行操作
+use mydb
+
+3、显示当前数据库的所有集合（collections）
+show collections;
+
+4、查看数据库服务的状态
+db.serverStatus();
+
+5、查询指定数据库的统计信息
+use admin
+db.stat()
+
+6、查询指定数据库包含的集合名称列表
+use test1
+db.getCollectionNames()
+
+7、统计集合记录数
+db.test1.count()
+
+8、统计指定条件的记录数
+db.test1.find({"name":"yunweicai"}).count()
+
+9、查询指定数据库的集合当前可用的存储空间
+db.test1.storageSize()
+
+10、查询指定数据库的集合分配的存储空间
+db.test1.totalSize()
+
+
+
+数据库操作
+1、创建数据库
+不需要什么create database的命令，只要使用use命令就可以创建数据库
+use test1
+
+2、删除数据库
+use test1
+
+db.dropDatabase()
+
+3、创建集合
+可以使用命令db.createCollection(name, { size : ..., capped : ..., max : ... } )创建集合
+也可以直接插入一个数据库就直接创建了
+db.test1.insert({"name":"mongodb","user":"opcai"})
+
+4、删除集合
+db.集合名称.drop()
+
+5、插入记录
+db.test1.save({"name":"yunweicai"})
+或者
+db.test1.insert({"name":"mongodb","user":"opcai"})
+
+6、查询记录
+db.集合记录.find()
+find()里面可以指定多个条件进行查询，如果为空，就查询所有的数据
+
+7、删除记录
+db.test1.remove({"name":"yunweicai"})
+需要指定一个条件，没有条件是不允许删除操作的。
+
+
+索引操作
+1、创建索引
+use testdb
+db.test1.ensureIndex({"name":1,"age":-1})
+ensureIndex方法参数中，数字1表示升序，-1表示降序。
+
+2、查询索引
+db.test1.getIndexes()
+
+3、删除索引
+删除所有的索引：
+db.test1.dropIndexes()
+
+根据索引名称进行删除
+db.test1.dropIndex("name_1")
+
+4、重建索引
+db.test1.reIndex()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

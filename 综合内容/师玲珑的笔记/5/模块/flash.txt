@@ -1,0 +1,5 @@
+flash 闪现消息
+要加密钥  app.secret_key=''
+
+
+

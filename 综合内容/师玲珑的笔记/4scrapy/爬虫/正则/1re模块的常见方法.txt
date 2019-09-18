@@ -1,0 +1,35 @@
+re.match()  从头找一个
+re.search()   找一个
+re.findall()  找所有
+返回一个列表，没有就是空列表
+re.findall('\d','chuan1zhi2')    结果为['1','2']
+
+re.sub()  替换
+
+re.sub('\d','_','chuan1zhi2')   结果为['chuan_zhi_']
+
+re.compile(编译)
+返回一个模型p,具有和re一样的方法，但是传递的参数不同
+匹配模式需要传到compile中
+如果不使用re.S参数，则只在每一行内进行匹配，如果一行没有，就换下一行重新开始，不会跨行。而使用re.S参数以后，正则表达式会将这个字符串作为一个整体，将'\n'当作一个普通的字符加入到这个字符串中，在整体中进行匹配。
+p=re.compile('\d',re.S)
+p.findall('chuan1zhi2')
+
+匹配中文
+在某些情况下，我们想匹配文本中的汉字，有一点需要注意的是，中文的unicode编码范围主要在[u4e99-u9fa5],这里说主要是因为这个范围并不完整，比如没有包括全角（中文）标点，不过，在大部分情况下，应该是够用的。
+假设现在想把字符串 title=u'你好,hello,世界'  中的中文提取出来，可以这么做：
+import re
+title=u'你好，hello，世界'
+pattern=re.compile('[\u4e99-\u9fa5]+')
+result=pattern.findall(title)
+print(result)
+
+注意：
+
+
+
+
+
+
+
+

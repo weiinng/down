@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="../static/js/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <input id="name" type="text">
+    <button id="button1">按钮</button>
+    <p>
+        哈哈哈
+    </p>
+    <input type="text" id="account">
+    <button id="button2">验证</button>
+    <button id="button3">点击变哈哈哈为嘿嘿嘿</button>
+</body>
+<script>
+    $(document).ready(function(){    //等待网页加载玩所有标签执行的函数
+        var content = $('p').html()   //获取p标签里的所有内容 .text()是获取所有的文本
+        console.log(content)
+        $('#button1').click(function(){   //当点击按钮的时候 执行的函数
+            var name = $('#name').val()   //获取id为name 里的内容  表单是用val()
+            console.log(name.length)   
+        })
+        $('#button2').click(function(){
+            var account=$('#account').val()
+            var regex=/^[a-z0-9]+$/    #定义正则规则
+            var res = regex.test(account)   #验证是否符合规则  符合是True 否则是False
+            if(res){
+                alert('你的账号可以通过')
+            }else{
+                alert('账号不行')
+                $('#account').val('')   //将id=account标签里的内容变为空
+            }
+        })
+        $('#button3').click(function(){
+            $('p').html('<strong>嘿嘿嘿</strong>')
+        })
+    })
+    //$('#p') 定位到DOM元素（就是标签)
+</script>
+
+</html>

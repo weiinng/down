@@ -1,0 +1,24 @@
+
+第一步：注册 app
+在settings.py 中注册
+INSTALLED_APPS = [
+    ...
+    "stark.apps.StarkConfig",
+]
+
+第二步： urls.py 创建一个 stark 接口
+from stark.service.stark import site
+url(r'^stark/', site.urls),
+
+第三步：在要使用的 app 中 创建 stark.py
+自定义类继承此类 ModelStark
+
+from stark.service.stark import site,ModelStark
+
+class BookModel(ModelStark):
+       pass
+site.register(models.Book,BookModel)
+
+
+
+即可使用

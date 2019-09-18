@@ -1,0 +1,25 @@
+基本格式：
+from flask import Flask
+app=Flask(__name__)
+@app.route('/')
+def a():
+	return 'aa'
+app.run()
+
+打开谷歌 网址为你的ip地址后加上:再加上默认的端口号5000 页面展示为aa
+
+app.run(host='0.0.0.0',port=80,debug=True)
+host:设置为'0.0.0.0'时在同一个局域网别的电脑ip都能访问,不设置这个参数时只有自己的ip能访问
+port:是默认端口号，为80时，网址后面不用加:你设置的端口号，
+debug:在代码中修改return的值后debug的值为True时，不用重新执行程序，刷新网页即可刷新内容
+
+拓展：
+from flask import Flask
+app=Flask(__name__)
+@app.route('/<orders_id>')    #加个<>  <>里写的内容为参数
+def a(orders_id):
+	return '%s'%orders_id
+app.run()
+在谷歌里输入你的ip后加上/你要写的内容  网页展示内容即为你要写的内容 
+如果限制只能是数字的话  <int:orders_id>  <float:orders_id>  
+

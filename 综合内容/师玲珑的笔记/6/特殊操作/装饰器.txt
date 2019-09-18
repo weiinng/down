@@ -1,0 +1,32 @@
+def is_login(func):
+    def inner(request):
+        session_data=request.session.get('id')
+        if session_data!=None:
+            return redirect(reverse('goods',args=('1',)))
+        else:
+            return func(request)
+    return inner
+
+#login() # is_login(login) -> inner(request) -> return  is_login(login)(request)
+@is_login
+def login(request):
+    if request.method=='POST':
+        username=request.POST.get('username')
+        password=request.POST.get('password')
+        u=models.User.objects.filter(username=username).first()
+        if u:
+            p=models.User.objects.filter(password=password).filter(username=username).first()
+            if p:
+                request.session['id']=username
+                request.session['password']=password
+                request.session.set_expiry(0)
+                return redirect(reverse('goods',args=('1',)))
+            else:
+                n='鞠遜払移��畜鷹危列'
+                return render(request,'login.html',locals())
+        else:
+            n='鞠村払移,嬲催危列'
+            return render(request,'login.html',locals())
+    return render(request,'login.html')
+
+！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！

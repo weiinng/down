@@ -1,0 +1,9 @@
+def change2(value):
+    sig=['KB','MB','GB','TB']
+    dict={value:1024**(index+1) for index,value in enumerate(sig)}
+    for x in reversed(sig):
+        if value>=dict[x]:
+            return '%.2f %s'%(value/int(dict[x]),x)
+    return '%s bytes' % value
+
+print(change2(10243223))

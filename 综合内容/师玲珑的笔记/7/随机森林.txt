@@ -1,0 +1,39 @@
+import pandas as pd
+import numpy as np
+#首先分析数据集
+dataset_path='day.csv'
+#加载数据集
+raw_df=pd.read_csv(dataset_path,index_col=0)  #index_col 以第一列为行标签
+# raw_df.shape
+# raw_df.head().loc[:2,:]
+# print(type(raw_df))
+# print(raw_df.columns)
+#删除不需要的列
+raw_df.drop(['dteday','casual','registered'],axis=1,inplace=True)
+# print(raw_df.iloc[:,-1])
+
+#分割数据集
+dataset=raw_df.values
+from sklearn.model_selection import train_test_split
+
+train_set,test_set=train_test_split(dataset,test_size=0.2,random_state=37)
+train_set.shape
+#构建随机森林回归器模型
+from sklearn.ensemble import RandomForestRegressor
+rf_regressor=RandomForestRegressor(n_estimators=1000,max_depth=10,min_samples_split=10)
+
+rf_regressor.fit(train_set[:,:-1],train_set[:,-1])
+
+pre_y=rf_regressor.predict(test_set[:,:-1])
+
+pre_y
+
+import sklearn.metrics as metrics
+print('均方误差MSE:{}'.format(round(metrics.mean_squared_error(pre_y,test_set[:,-1]))))
+print('解释方差分：{}'.format(round(metrics.explained_variance_score(pre_y,test_set[:,-1]),2))) 
+
+#n_estimators:决策树的个数，越大越好，但是会达到一定边界
+#决策树的最大深度，默认可以不输入，如果不输入的话，决策树在建立子树的时候不会限制子树的深度，
+#当数据特征多的时候，推荐限制这个最大深度，常用的在10到100之间
+#min_samples_split限制了子树继续划分的条件，如果某节点的样本数少于min_samples_split，则不会
+#继续在尝试选择最优特征来进行划分 

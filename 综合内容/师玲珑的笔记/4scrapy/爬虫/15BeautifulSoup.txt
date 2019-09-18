@@ -1,0 +1,37 @@
+Beautiful Soup和lxml一样，也是一个HTML/XML的解析器，主要的功能也是如何解析和提取HTML/XML数据
+lxml只会局部遍历，而Beautiful Soup是基于HTML DOM的，会载入整个文档，解析整个DOM树，因此时间和内存开销都会大很多，所以性能要低于lxml/
+Beautiful Soup 用来解析HTML比较简单，API非常人性化，支持CSS选择器，Python标准库中的HTML解析器，也支持lxml的解析器
+
+bs4的基本使用实：
+首先必须要导入bs4库
+from bs4 import BeautifulSoup
+html=网页响应内容
+#创建BeautifulSoup对象,第一个参数：要解析的内容，第二个参数：解析器
+soup=BeautifulSoup(html,'lxml')
+#name:要查找的标签名称,attrs是td里的属性  爬取data-title为IP的td里的值
+listId=soup.find_all(name='td',attrs={'data-title':'IP'})
+for x in listId:
+	print(x.get_text())  #获取标签里面的内容
+	print(x.get('class'))  #获取标签里面的class属性
+
+代理：
+import request
+from lxml import BeautifulSoup
+proxies={'http':'163.125.28.243:8118'}
+response=requests.get(url='https://www.baidu.com',proxies=proxies}
+print(response.text)
+
+def getIp():
+	response=requests.get(url='https://www.kuaidaili.com/free/')
+	soup=BeautifulSoup(response.text,'lxml')
+	listIP=soup.find_all(name='td',attrs={'data-title':'IP'})
+	listPort=soup.find_all(name='td',attrs={'data-title':'PORT'})
+	listTag=soup.select('div.post>h2>a')    #找在class=post的div里的h2里的a标签元素  id的话是div#post
+	list=[]
+	for x in range(len(listPort)):
+		list.append('%s:%s'%(listIp[x].get_text(),listPort[x].get_text()))
+	return list
+
+
+
+

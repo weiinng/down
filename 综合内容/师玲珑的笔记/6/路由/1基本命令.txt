@@ -1,0 +1,46 @@
+先cd 到python里  script里  D:\programe\Scripts 
+然后执行创建项目命令   django-admin startproject helloworld_project    #helloworld_project是项目名
+然后再切换进项目文件夹  执行python manage.py runserver 启动服务
+
+
+diango起步
+django安装
+pip install django==2.0.4
+
+创建项目：
+要先切换到你的python里的script里  里面有django-admin.exe  
+执行django-admin startproject myproject  就创建了一个项目 myproject是项目名
+会在当前路径创建一个myproject文件夹 就是你的项目
+
+开启开发服务器
+cd myproject  #进入项目目录
+python manage.py runserver #开启服务
+python manage.py runserver 7000 #改变服务监听端口  默认为8000
+python manage.py runserver 0:8000 #改变服务监听IP:端口
+
+终止服务 ： ctrl+c
+
+项目文件夹
+manage.py :用来管理当前项目的一个命令工具
+myproject/:项目主文件夹
+myproject/__init__.py :空文件，用来指明当前的myproject为一个可导入的模块包
+myproject/urls.py:项目主要路由配置文件
+myproject/wsgi.py:项目部署WSGI并发服务器时所需要的配置文件
+
+Settings.py
+该文件是整个项目的主控文件，其中相关配置选项如下
+https://docs.djangoproject.com/zh-hans/2.0/ref/settings/
+
+-BASE_DIR: 当前项目工作目录，用来在每一次开启项目时动态找到相关资源路径 
+- SECRET_KEY: 加密的hash值以及保护某些签名数据的关键密钥 
+- DEBUG: 调试模式 
+- ALLOWED_HOSTS: 有哪些主机或域名可以访问当前django站点，如设置为*代表全部可访问。 
+- INSTALL_APPS: django项目中所有使用的应用名称，自创建子应用也要加到这里，不然ORM数据库无法被识别到！ 
+- MIDDLEWARE: django中间件，用来在request或reponse过程中添加功能，比如确保安全性，传输保存Session等    - SecurityMiddleware: xss脚本过滤，一些安全设置    
+- SessionMiddleware: session支持中间件，在每次用户访问django项目时，添加session对每一个浏览器    
+- CommonMiddleware: 通用组件，比如为路由添加末尾斜杠    
+- CsrfViewMiddleware: 防跨站请求伪造令牌，为客户端添加csrf_token密钥，在表单提交时需提交该值   
+- AuthenticationMiddleware: admin用户组件，每个request对象都会被添加admin下的user属性    
+- MessageMiddleware: 消息中间件 展示一些后台消息给前端    
+- XFrameOptionsMiddleware: 防止欺骗点击攻击出现；自身页面被嵌入到他人页面中，点击欺骗
+

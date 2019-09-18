@@ -1,0 +1,9 @@
+from flask import Blueprint
+
+#创建蓝图
+user_blue=Blueprint('user',__name__)   #user是文件名
+
+#用创建的蓝图装饰路由
+@user_blue.route('/user')
+def t():
+	return 'ok'

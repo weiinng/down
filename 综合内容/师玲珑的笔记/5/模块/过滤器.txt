@@ -1,0 +1,46 @@
+过滤器的本质就是函数。有时候我们不仅仅只是需要输出变量的值，我们还需要修改变量的显示，甚至格式化、运算等等，而在模板中是不能直接调用Python中的某些方法，那么这就用到了过滤器
+
+使用方式：
+过滤器的使用方式为： 变量名| 过滤器
+
+链式调用
+过滤器是可以支持链式调用的：
+{{'hello world' | reverse |upper}}
+
+safe:禁用转义，即让内容里面的标签生效
+<p>{{'<em>hello</em>'|safe>}}</p>
+
+字符串操作
+lower:把值转成小写
+{{'HELLO' | lower}}
+
+upper ：把值转为大写
+
+capitalize 首字母大写，奇语字母转小写
+
+reverse 字符串反转
+
+format:格式化输出
+{{'%s'is'%d' | format('name',17)}}
+
+striptags:渲染之前吧值中的所有HTML标签全部删掉
+
+truncate:字符串截断
+{{'hello world' | truncate(8)}}
+
+列表操作
+first:取第一个元素
+<p>{{ [1,2,3,4] | first}}</p>
+last:取最后一个元素
+<p>{{ [1,2,3,4] | last}}</p>
+length:获取列表长度
+<p>{{ [1,2,3,4] | length}}</p>
+sum:列表求和
+<p>{{ [1,2,3,4] | sum}}</p>
+sort:列表排序
+<p>{{ [1,2,3,4] | sort}}</p>
+语句块过滤
+
+{% filter upper %}
+    #一大堆文字#
+{% endfilter %}

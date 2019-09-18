@@ -1,0 +1,10 @@
+device 装置，设备
+initial  最初的
+scale 规模
+fluid 液体，流动的
+condensed 使凝结
+striped 有条纹的
+hover 徘徊
+gutter 排水沟
+thumbnail 极小的
+margin 边缘

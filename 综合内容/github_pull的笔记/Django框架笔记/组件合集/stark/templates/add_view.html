@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block con %}
+<h3>添加页面</h3>
+
+{% include 'form.html' %}
+
+
+<script>
+   function pop_response (pk,text,id) {
+
+       console.log(pk,text,id);
+
+
+        // 选择哪一个select标签
+        // option的文本值和value值
+
+       var $option=$('<option>');  //  <option></option>
+       $option.html(text); //  <option>南京出版社</option>
+       $option.val(pk);     //  <option value=111>南京出版社</option>
+       $option.attr("selected","selected") ;   //  <option value=111>南京出版社</option>
+       $("#"+id).append($option)
+
+   }
+</script>
+{% endblock %}
+
+

@@ -1,0 +1,74 @@
+回归：
+
+print('平均绝对误差：{}'.format( round(metrics.mean_absolute_error(y_pre,trainY),2))) 
+print('均方误差MSE：{}'.format(  round(metrics.mean_squared_error(y_pre,trainY),2))) 
+print('中位数绝对误差：{}'.format(  round(metrics.median_absolute_error(y_pre,trainY),2)))
+print('解释方差分：{}'.format(  round(metrics.explained_variance_score(y_pre,trainY),2))) 
+print('R方得分：{}'.format(  round(metrics.r2_score(y_pre,trainY),2)))
+
+
+
+
+
+平均绝对误差（Mean Absolute Deviation），又叫平均绝对离差，是所有单个观测值与算术平均值的偏差的绝对值的平均。平均绝对误差可以避免误差相互抵消的问题，因而可以准确反映实际预测误差的大小
+
+均方误差（mean-square error, MSE）是反映估计量与被估计量之间差异程度的一种度量，均方误差是评价点估计的最一般的标准，自然，我们希望估计的均方误差越小越好
+
+在统计学中，绝对中位数MAD是对单变量数值型数据的样本偏差的一种鲁棒性测量。同时也可以表示由样本的MAD估计得出的总体参数。绝对中位差是一种统计离差的测量。而且，MAD是一种鲁棒统计量，比标准差更能适应数据集中的异常值。对于标准差，使用的是数据到均值的距离平方，所以大的偏差权重更大，异常值对结果也会产生重要影响。对于MAD，少量的异常值不会影响最终的结果。
+
+标准差能反映一个数据集的离散程度。平均数相同的两组数据，标准差未必相同。
+
+
+R2方法是将预测值跟只使用均值的情况下相比，看能好多少。其区间通常在（0,1）之间。0表示还不如什么都不预测，直接取均值的情况，而1表示所有预测跟真实结果完美匹配的情况。 
+””’ 与均值相比的优秀程度，介于[0~1]。0表示不如均值。1表示完美预测. ”
+
+
+解释方差分越高越好
+
+
+分类：  交叉验证
+
+#cv=5表示cross_val_score采用的是k-fold cross validation的方法，重复5次交叉验证
+
+# 建立随机森林分类器 from sklearn.ensemble import RandomForestClassifier rf_classifier=RandomForestClassifier(n_estimators=200,max_depth=8,random_state=37) rf_classifier.fit(train_X,train_y) # 用训练集进行训练
+ 
+# 用测试集评估模型的准确率，精确率，召回率，F1值： 
+
+def print_model_evaluations(classifier,test_X, test_y,cv=5):    
+	from sklearn.model_selection import cross_val_score    
+
+	accuracy=cross_val_score(classifier,test_X,test_y,                             	scoring='accuracy',cv=cv)    
+
+	print('准确率：{:.2f}%'.format(accuracy.mean()*100))   
+
+	precision=cross_val_score(classifier,test_X,test_y,                             	scoring='precision_weighted',cv=cv)    
+
+	print('精确度：{:.2f}%'.format(precision.mean()*100))    
+
+	recall=cross_val_score(classifier,test_X,test_y,                             		scoring='recall_weighted',cv=cv)    
+
+	print('召回率：{:.2f}%'.format(recall.mean()*100))    
+
+	f1=cross_val_score(classifier,test_X,test_y,                             	scoring='f1_weighted',cv=cv)    
+	print('F1  值：{:.2f}%'.format(f1.mean()*100))
+ 
+print_model_evaluations(rf_classifier,test_X,test_y)
+
+结果为：
+
+准确率：89.19% 精确度：88.49% 召回率：89.19% F1 值：88.32%
+
+
+
+
+模型得分：
+classifier.score(X=test_X,y=test_Y)
+
+模型性能报告
+
+from sklearn.metrics import classification_report 
+plot_classifier(classifier,train_X,train_Y)  # 分类器在训练集上的分类效果
+target_names = ['Class-0', 'Class-1'] 
+y_pred=classifier.predict(train_X) 
+print(classification_report(train_Y, y_pred, target_names=target_names)) 
+

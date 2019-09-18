@@ -1,0 +1,23 @@
+#读csv
+import csv
+with open('1.csv',mode='r') as f:
+	reader=csv.reader(f)
+	for i in reader:
+		print(i)
+
+#写csv
+with open('1.csv',mode='a',newline='') as f:  #newline=''   写入没有隔行
+	writer=csv.writer(f)
+	writer.writerow(['123','12'])  #单行写入，writerows多行写入
+	writer.writerows([['12','12'],['1','2']])
+
+
+声明列名
+listData=[{'title':'qwe','content':'asds'},{'title':'asdds','content':'adas'},{'title':'','content':'asddas'}]
+filednames=['title','content']   #声明列名
+with open('1.csv',mode='a',newline='') as f:
+	writer=csv.DictWriter(f,fieldnames=filednames) #初始化writer
+	writer.writerows(listData)
+
+
+

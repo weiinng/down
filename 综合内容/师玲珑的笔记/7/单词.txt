@@ -1,0 +1,9 @@
+series 系列
+tail 尾部
+state 国家
+graph 图表
+feature 特征
+ensemble 全体
+sample 样本
+mesh 网孔，吻合
+figure 数字

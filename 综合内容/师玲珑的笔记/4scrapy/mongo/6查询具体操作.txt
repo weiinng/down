@@ -1,0 +1,35 @@
+db.stu.insertMany([{},{},{}]) 插入多条数据
+db.stu.find() 查询stu集合里的所有文档
+db.stu.find({'title':'1'})  查询stu集合里title为1的文档
+db.stu.find({'title':/u/})  查询stu集合里title里含有u的文档
+db.stu.find({'title':/^u/,'rank':3})  查询stu集合里title开头为u，并且rank为3的文档
+$gte 大于等于
+$gt 大于
+$lte 小于等于
+$lt 小于
+$eq 等于   
+$ne 不等于
+例如：
+db.stu.find({'title':{$gt:4}})  查询stu集合里title 大于4 的文档
+db.stu.find({'title':{$gt:4,$lte:6}})  查询stu集合里title 大于4并且小于等于6的文档
+db.stu.find({'title':{$or:[{$gt:5,$lt:3}}]}) 查询stu集合里title 大于5或者小于3的文档
+db.posts.distinct('tag')   去重查询posts集合里tag字段名
+db.posts.find({'rank':{$gte:3}})     查询posts集合里rank大于等于3的文档
+ db.posts.find({'rank':{$eq:4}})     rank等于4的文档
+db.posts.find({'rank':{$ne:4}})     rank不等于4的文档
+db.posts.find({'title':/之/,'rank':3})   title含有之而且rank为3
+db.posts.find({$or:[{'title':/之/},{'rank':3}]})    title含有之或者rank为3
+db.posts.find({'rank':{$in:[3,4]}})     rank含有3或者4
+db.posts.insert({'title':'查询是否存在','istop':true})     
+ db.posts.find({'istop':{$exists:true}})    查询文档里字段含有istop的文档
+db.posts.find({'istop':{$exists:false}})   查询文档里字段不含有istop的文档
+db.posts.find({},{'_id':0}).sort({'rank':1})    按照rank进行升序排序  1为升序-1为降序  _id:0为不显示该字段 1显示  也可以用true和false表示
+db.posts.find({},{'_id':0}).sort({'rank':1},{'title':-1})    先按照rank升序排序如果ran'k相等再按照title降序排序
+db.posts.find().limit(3)    找前三条  只有一个参数
+ db.posts.find({'rank':{$gt:3,$lt:5}},{'_id':0})   rank大于3且小于5的文档
+db.stu.find().skip(2).limit(3)   跳过前两条后取前三条记录
+db.posts.find({$or:[{'rank':{$gt:5}},{'rank':{$lt:3}}]},{'_id':0})   查询rank大于5或者小于3的文档
+
+
+
+

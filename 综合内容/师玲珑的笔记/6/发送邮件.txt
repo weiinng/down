@@ -1,0 +1,46 @@
+views.py
+
+from django.core.mail import EmailMultiAlternatives
+from django.template import loader
+
+def send(request):
+    subject='师玲珑的邮件，给李恩泽老师的'
+    email_template_name = 'template.html'
+    context = {
+        'nickname': 'hello world',
+        'verify_url': 'http://www.baidu.com'
+        }
+    t = loader.get_template('template.html')
+    from_email='2522908520@qq.com'
+    to=['2522908520@qq.com','295878828@qq.com']
+    html_content=t.render(context)
+    msg=EmailMultiAlternatives(subject,html_content,from_email,to)
+    msg.attach_alternative(html_content,'text/html')
+    msg.send()
+    return HttpResponse('发送')
+
+
+
+template.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    {{ nickname }}
+    {{ verify_url }}
+</body>
+</html>
+
+
+settings.py
+
+EMAIL_USE_SSL = True
+EMAIL_HOST = 'smtp.qq.com'  # 如果是 163 改成 smtp.163.com
+EMAIL_PORT = 465
+EMAIL_HOST_USER = '2522908520@qq.com' # 帐号
+EMAIL_HOST_PASSWORD = 'xvbqnneikooqechi'  # 密码
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER

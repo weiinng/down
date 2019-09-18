@@ -1,0 +1,15 @@
+from flask import Flask,request,jsonify
+app=Flask(__name__)
+@app.route('/<id>')
+def a(id):
+	return '%s'%id
+
+当你输入的网址为你的ip + / + 你要展现的内容，  页面内容即为你要展现的内容
+
+@app.route('/')
+def b():
+	name=request.args.get('name')
+	id=request.args.get('id')
+	return jsonify({'name':name,'id':id})
+
+当你输入的网址为你的ip + /? +name=小明&id=7  展现的内容即为{'name':小明,'id':7}

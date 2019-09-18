@@ -1,0 +1,32 @@
+scrapy安装需要一个异步模块Twisted，这个模块得自己手动安装
+
+
+Twisted下载地址：https://blog.csdn.net/coco56/article/details/82145425
+
+
+如果自己是python 37  -64位，可以下载这个网盘的文件 按需求选取
+
+
+
+pycharm 安装：	pip install Twisted存放的路径
+
+
+
+打开cmd
+
+运行 scrapy 
+
+出数据表示安装成功
+
+不是内部命令，未安装
+
+
+然后 需要升级 运行指令：  pip install pypiwin32 
+
+
+搞定！  
+ 
+
+
+
+

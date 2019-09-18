@@ -1,0 +1,31 @@
+<template>
+	<div id="a">
+		<form v-on:submit.prevent='prevent'>
+			用户名:<input type="text" name="name" v-model='a'>
+			密码:<input type="password" name="password" v-model='b'>
+			<input type="submit" value="提交">
+		</form>
+	</div>
+</template>
+<script type="text/javascript">
+	export default{
+		name:"#a",
+		data:function(){
+			return{
+				a:'',
+				b:''
+			}
+		},
+		methods:{
+			prevent:function(){
+				this.axios.post('/api/login',{'name':this.a,'password':this.b}).then((res)=>{
+					if(res.data.code==200){
+						this.$router.push({'path':'/goods'})
+					}else{
+						alert('登录失败')
+					}
+				})
+			}
+		}
+	}
+</script>

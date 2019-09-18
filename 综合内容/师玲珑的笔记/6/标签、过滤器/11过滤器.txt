@@ -1,0 +1,433 @@
+random
+
+<class="{{ list_ | random }}">
+
+list_=['red','blue']
+
+随机从list_里取值
+
+——————————————————————————————————————————
+
+#### add
+
+> 语法：`{{ var1|add:var2 }}`
+
+> `add`过滤器可以实现`var1`与`var2`的相加，并且在遇到其他相同数据类型的，比如列表时，加号还可以重载为拼接功能
+
+> 过滤器首先会将数据转换成Int类型，进行相加，如果转换失败，则会尝试使用`Python`中的数据类型
+>
+> 列表、元祖等这样的数据类型来进行转换，并且执行对应类型的加法
+>
+> 如果都转换失败，那么结果为一个空字符串
+
+```jinja2
+<p>add :{{ value|add:10 }}</p>
+<p>add :{{ list_1|add:list_2 }}</p>  
+```
+
+#### capfirst
+
+> 语法：`{{ var|capfirst }}`
+
+> 将变量第一个字母变为大写，如果第一个字符不是字母，过滤器不生效
+
+```jinja2
+<p>capfirst:{{ "Abc"|capfirst }}</p>
+<p>capfirst:{{ "1abc"|capfirst }}</p>
+```
+
+#### center
+
+> 语法：`{{ value|center:"length" }}`
+
+> 输出指定长度的字符串，把变量居中
+
+```jinja2
+<p>center: {{ "abc"|center:"10" }}</p>
+```
+
+#### cut
+
+> 语法：`{{ value|cut:"str" }}`
+
+> 在`value`中移除所有`str`
+
+```jinja2
+<p>cut: {{ "a*b*c"|cut:"*" }}</p>
+```
+
+#### date
+
+> 语法：`{{ value|date:SHORT_DATE_FORMAT" }}`
+
+> 与`{% now %}`标签所使用格式字符一致；`value`为一个`datetime`对象
+>
+> 输出最终格式与项目时区及语言设置有关
+
+```python
+import datetime
+datetime = datetime.datetime.now()
+```
+
+```jinja2
+<p>date: {{ datetime|date:"H:i" }}</p>
+<p>date: {{ datetime|date:"Y/m/d" }}</p>
+```
+
+#### default
+
+> 语法：`{{ value|default:"默认值" }}`
+
+> 如果`value`值为假，则取"默认值"，反之返回`value`
+
+```jinja2
+<p>default: {{ 0|default:"这是展示的默认值" }}</p>
+```
+
+> 非空非0为真，0或空为假
+
+#### default_if_none
+
+> 语法：`{{ value|default_if_none:"默认值" }}`
+
+> 如果`value`值为`None`，则取"默认值"，反之返回`value`
+
+```jinja2
+<p>default_if_none: {{ None|default_if_none:"value值为None" }}</p>
+<p>default_if_none: {{ 0|default_if_none:"aaaa" }}</p>
+```
+
+#### dictsort
+
+> 语法：`{{ value|dictsort:"attr" }}`
+
+> `value`为字典列表数据，列表中数据均为类字典数据：`[ {1:'a'}, {2:'b'}, ]`
+>
+> 根据给定`attr`值进行排序，一般是**从小到大**的顺序
+
+```python
+sort_list_dict = [
+    {'name': '小绿', 'department': 'Development', 'age': 32},
+    {'name': '小红', 'department': 'Leader', 'age': 21},
+    {'name': '小飞', 'department': 'Test', 'age': 18},
+    {'name': '小落', 'department': 'Development', 'age': 15},
+    {'name': '大胖', 'department': 'Leader', 'age': 43}
+]
+```
+
+```jinja2
+<p>dictsort: </p>
+{% for var in sort_list_dict|dictsort:"age" %}
+    <p>
+        {{ var.name }} 
+    </p>
+{% endfor %}
+```
+
+#### dictsortreversed
+
+> 语法：`{{ value|dictsortreversed:"attr" }}`
+
+> 与`dictsort`功能相同，但是排序方式与`dictsort`相反，从大到小
+
+
+#### escape
+
+> 语法：`{{ value|escape }}`
+
+> 将value值转义输出；
+>
+> 可以在取消转义autoescape标签下，选择性的打开某些需要转义的数据
+
+```jinja2
+{% autoescape off %}
+    {{ str_|escape }}
+    {{ str_ }}
+{% endautoescape %}
+```
+
+#### safe
+
+> 语法：`{{ value|safe }}`
+
+> 取消转义，与`{% autoescape off %}`标签意义相同
+
+```jinja2
+<p>{{ str_|safe }}</p>
+```
+
+#### safeseq
+
+> 语法：`{{ value|safeseq }}`
+
+> 处理一个包含标签字符串的列表数据，简单的`safe`是不行的，因为`safe`过滤器会把内容先整体处理为字符串；而不是依次过滤序列中的数据，而`safeseq`过滤器则会依次处理序列中的每一个数据
+
+```python
+list_ = [
+    "<h1>第一个</h1>",
+    "<h2>第二个</h2>",
+    "<h3>第三个</h3>",
+]
+```
+
+```jinja2
+{{ list_|safe|join:"" }}
+<br>
+------------------
+<br>
+{{ list_|safeseq|join:"" }}
+```
+
+#### filesizeformat
+
+> 语法：`{{ value|filesizeformat }}`
+
+> 格式化value值为人类可读的计算机存储单位。如：1 bytes、1.2 MB；
+>
+> 如果不是一个可以处理的数值类型，返回0。
+>
+> 最小单位为byte
+
+```jinja2
+<p>filesizeformat : {{ "1"|filesizeformat }}</p>
+<p>filesizeformat : {{ "3758331"|filesizeformat }}</p>
+```
+
+#### first
+
+> 语法：`{{ value|first }}`
+
+> 返回序列数据`value`中的第一项
+
+```jinja2
+<p>first : {{ "abc"|first }}</p>
+```
+
+#### last
+
+> 语法：`{{ value|last }}`
+
+> 返回序列数据`value`中的最后一项
+
+```jinja2
+<p>last : {{ "abc"|last }}</p>
+```
+
+#### floatformat
+
+> 语法：`{{ value|floatformat:"精度" }}`
+
+> 设置浮点数`value`的精度，没有参数时，默认四舍五入**保留小数点后一位**
+
+```jinja2
+<p>floatformat : {{ "2.2332"|floatformat:"2" }}</p>
+<p>floatformat : {{ "2.2550"|floatformat:"2" }}</p>
+<p>floatformat : {{ "2.0000"|floatformat:"2" }}</p>
+```
+
+#### join
+
+> 语法：`{{ value|join:"str" }}`
+
+> 将序列数据`value`通过`str`进行拼接
+
+```jinja2
+<p>join : {{ "abc"|join:"*" }}</p>
+```
+
+#### length_is
+
+> 语法：`{{ value|length_is:"num" }}`
+
+> 判断序列`value`的长度是否为`num`，如果是，返回`True`，反之返回`False`
+
+```jinja2
+<p>length_is : {{ "abc"|length_is:4 }}</p>
+<p>length_is : {{ "abcd"|length_is:4 }}</p>
+```
+
+#### linebreaksbr
+
+> 语法：`{{ value|linebreaksbr }}`
+
+> 将字符串`value`中的所有换行符`\n`转换为`HTML`换行符`<br>`
+
+```python
+str_ = "abc\nbbb"
+```
+
+```jinja2
+<p>linebreaksbr : {{ str_|linebreaksbr }}</p>
+```
+
+#### linenumbers
+
+> 语法：`{{ value|linenumbers }}`
+
+> 显示`value`数据的行号，一般来说，是根据`value`字符串中的`\n`换行来确定每一行
+
+```python
+str_ = "abc\nbbb"
+```
+
+```jinja2
+<p>linenumbers :<br> {{ str_|linenumbers }}</p>
+<p>linenumbers :<br> {{ str_|linenumbers|linebreaksbr }}</p>
+```
+
+#### ljust
+
+> 语法：`{{ value|ljust:"num" }}`
+
+> 将字符串`value`按照给定宽度`num`左对齐
+
+```html
+<p>ljust : {{"test"|ljust:"10" }}</p>
+```
+
+> `HTML中`空格是被忽略的，所以直观的我们并看不到这个过滤器的对齐效果
+>
+> 需要使用`&nbsp`才可以在`HTML`中展示真正的空格效果，这个操作会在之后的自定义过滤器中为大家介绍
+
+#### rjust
+
+> 语法：`{{ value|rjust:"num" }}`
+
+> 将字符串`value`按照给定宽度`num`右对齐
+
+```jinja2
+<p>rjust : {{ "test"|rjust:"10" }}</p>
+```
+
+#### lower
+
+> 语法：`{{ value|lower }}`
+
+> 将字符串`value`中的全部字符串小写
+
+```jinja2
+<p>rjust : {{ "Aa123Bb"|lower }}</p>
+```
+
+#### upper
+
+> 语法：`{{ value|upper }}`
+
+> 将字符串`value`中的全部字符串大写
+
+```jinja2
+<p>upper : {{ "Aa123Bb"|upper }}</p>
+```
+
+#### title
+
+> 语法：`{{ value|title }}`
+
+> 将`value`字符串中每一个单词首字母大写，其余字符小写
+
+```jinja2
+<p>title : {{ "heLLO a12b world"|title }}</p>
+```
+
+#### make_list
+
+> 语法：`{{ value|make_list }}`
+
+> 将`value`转换为列表
+
+```jinja2
+<p>make_list : {{ "a1好a2a"|make_list }}</p>
+```
+
+```
+['a', '1', '好', 'a', '2', 'a']
+```
+
+#### random
+
+> 语法：`{{ value|random }}`
+
+> 返回`value`序列中的一个随机值
+
+```jinja2
+<p>random : {{ "12345"|random }}</p>
+```
+
+#### slice
+
+> 语法：`{{ value|slice:"start:stop:step" }}`
+
+> 与`Python`中序列切片用法类似，取出一定范围内的数据
+
+```jinja2
+<p>slice : {{ "abcdef"|slice:"0:5" }}</p>
+<p>slice : {{ "abcdef"|slice:"0:6" }}</p>
+<p>slice : {{ "abcdef"|slice:"0:6:2" }}</p>
+```
+
+#### time
+
+> 语法：`{{ value|time:"time_format" }}`
+
+> 与`date`过滤器类似，但该过滤器只处理时、分、秒；
+>
+> 根据时间格式化字符输出时间，输出最终格式与项目时区及语言设置有关
+
+```python
+import datetime
+datetime = datetime.datetime.now()
+```
+
+```jinja2
+<p>time: {{ datetime|time:"H:i" }}</p>
+<p>time: {{ datetime|time:"Y/m/d" }}</p>
+```
+
+#### timesince
+
+> 语法：`{{ start_time|timesince:end_time }}`
+
+> 计算从`start_time`一直到`end_time`的时间间隔，`end_time`为可选，没有该值，截至从当前时间开始
+>
+> 分钟为返回最小单位
+
+```python
+start_time = datetime.datetime(2019, 3, 3, 15)
+end_time = datetime.datetime(2019, 3, 5, 17)
+```
+
+```jinja2
+<p>time : {{ start_time|timesince:end_time }}</p
+<p>time : {{ start_time|timesince }}</p>
+```
+
+```
+time : 2 days, 2 hours
+time : 3 weeks, 2 days
+```
+
+#### urlencode
+
+> 语法：`{{ value|urlencode }}`
+
+> 使用连接编码格式处理`value`
+
+```jinja2
+<p>urlencode : {{ "http://example.com"|urlencode }}</p>
+```
+
+```
+urlencode : http%3A//example.com
+```
+
+#### urlize
+
+> 语法：`{{ value|urlize }}`
+
+> 使连接字符串`value`变为可点击的a标签连接
+
+```jinja2
+<p>urlize : {{ "http://example.com"|urlize }}</p>
+<p>urlize : {{ "http://example.com" }}</p>
+```
+

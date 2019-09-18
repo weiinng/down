@@ -1,0 +1,43 @@
+对宏的理解：
+把它看作Jinja2中的一个函数，它会返回一个模块或者HTML字符串
+为了避免反复地编写同样的模板代码，出现代码冗余，可以把他们写成函数以进行重用
+需要在多处重复使用的模板代码片段可以写入单独的文件，再包含在所有模板中，以避免重复
+
+定义宏
+{% macro input(type,name) %}
+    <input type="{{ type }}" name="{{ name }}">
+{% endmacro %}
+用户名：{{ input('username','text') }}
+
+页面展示：
+用户名:<input type='text' name='username'>
+
+把宏单独抽取出来，封装成html文件，其它模板中导入使用，文件名可以自定义macro.html
+
+{% macro function(type='text', name='', value='') %}
+<input type="{{type}}" name="{{name}}"
+value="{{value}}" class="form-control">
+
+{% endmacro %}
+
+在其它模板文件中先导入，再调用
+
+{% import 'macro.html' as func %}
+{% func.function() %}
+
+
+{% macro in(conten='',type='',name='',value='') %}
+	{{content}}<input type='{{type}}' name='{{name}}' value='{{value}}'>
+{% endmacro %}
+{{in(content='用户名：',type='text')}}
+
+
+
+
+
+
+
+
+
+
+

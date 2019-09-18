@@ -1,0 +1,12 @@
+MVC全名是Model View Controller,是模型(model)-视图(view)-控制器(controller)的缩写
+用于映射传统的输入、处理和输出功能在一个逻辑的图形化用户界面的结构中
+
+mvt:
+M全拼为Model，与MVC中的M功能相同，负责和数据库交互，进行数据处理。
+V全拼为View，与MVC中的C功能相同，接收请求，进行业务处理，返回应答。
+T全拼为Template，与MVC中的V功能相同，负责封装构造要返回的html。
+
+mvc:
+M全拼为Model，主要封装对数据库层的访问，对数据库中的数据进行增、删、改、查操作。
+V全拼为View，用于封装结果，生成页面展示的html内容。
+C全拼为Controller，用于接收请求，处理业务逻辑，与Model和View交互，返回结果

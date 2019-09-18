@@ -1,0 +1,56 @@
+request.scheme
+
+：
+请求的方式，即http或者是https
+
+
+
+request.get_host()      获取请求地址，就是上一个页面地址 
+request.path：
+
+请求的路径，这里的路径是指相对路径，也就是说一个登陆后台页面的请求：http://127.0.0.1:8000/admin 的路径是 /admin
+
+获取完整路径（包括参数）：HttpRequest.get_full_path()
+
+获取绝对url： 
+HttpRequest.bulid_absolute_uri(location) 此参数默认为完整路径
+
+
+request.encoding：
+
+请求提交的数据的编码方式
+
+
+
+request.session：
+
+request.session 获取的是一个类似于字典的对象，可以进行读取写入操作，常用来保存一些数据来实现会话跟踪技术。因为 HTTP 是一个无状态，不连续的协议。如果想让服务器记住当前的访问对象，就需要记录请求者的一些信息来达到这个目的。
+
+# 设置session
+request.session["name"] = "root"
+# 获取session
+name = request.sessin["name"]
+
+！！！说到这里需要提一下，django会默认为session使用json序列化。json序列化只能序列化一些基本数据类型，如数字，字符串，列表等。所以session不能直接存储对象.可以简单的在settings中添加 SESSION_SERIALIZER = "django.contrib.sessions.serializers.PickleSerializer"
+
+
+request.COOKIES
+与session类似，区别是cookies数据是保存在客户端，session数据是保存在服务端。相对而言session更安全，cookies在不同的浏览器上保存数据的大小限制也不同。但是，存在即合理。cooike自有它的好处这里不多说。
+
+
+# 设置cookies
+response.set_cookie('name','root')
+
+# 设置加密cookies
+response.set_cookie('passsword','123456',salt='@#$!%^&')
+
+# 获取cookie
+request.COOKIES.get("name")
+
+# 获取加密的cookie
+request.get_signed_cookie("password",salt="@#$!%^&")
+
+
+
+
+

@@ -1,0 +1,61 @@
+
+py文件
+
+from flask  import Flask,render_template,request,flash
+# 导入验证层
+from flask_wtf import FlaskForm
+# 导入需要的字段的包
+from wtforms import StringField,PasswordField
+# 导入验证字段的包
+from wtforms.validators import DataRequired,EqualTo
+app = Flask(__name__)
+app.config['SECRET_KEY'] = "asdfdcs"
+# 继承验证类就能使用验证类的很多方法 对传递过来的字段进行验证
+class RegisterForm(FlaskForm):
+    username = StringField('用户名',validators=[DataRequired(message='用户名不能为空')]) # 通过StringField生成字符串，再通过validators参数传递多个验证规则，列表类型
+    password = PasswordField('密码',validators=[DataRequired(message='密码不能为空')])
+    password2 = PasswordField('确认密码',validators=[DataRequired(message='确认密码不能为空'),EqualTo('password',message='两次密码不一样')])      #！！！！！！！！！password要加引号，是根据表单名判断的
+
+
+@app.route('/',methods=['POST','GET'])
+def reg():
+    register_form = RegisterForm()
+    if request.method=='POST':
+        if register_form.validate_on_submit():
+            flash("注册成功")
+        else:
+            flash("注册失败")
+    return render_template('7.html',register_form = register_form)
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+
+
+html文件
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post">
+    {{ reg.csrf_token() }}           #让网页可以加载表单
+    {{ reg.username.label }}{{ reg.username }}<br>
+    {{ reg.password.label }}{{ reg.password }}<br>
+    {{ reg.password2.label }}{{ reg.password2 }}<br>
+    {{ reg.submit }}
+</form>
+{% for message in get_flashed_messages() %}                      #这是个函数  后面要加括号
+    <span style="color: cornflowerblue">{{ message }}</span>
+{% endfor %}
+<br>
+{% for value in reg.errors.values() %}                #如果表框里输入的内容不符合规则  则会闪现出错误
+    {{ value[0] }}
+{% endfor %}
+
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+from flask import Flask,redirect,url_for
+app=Flask(__name__)
+@app.route('/')
+def a():
+	return 'a'
+
+@app.route('/five')
+def five():
+	return redirect(url_for('a'))   #当你输入网址为你的ip+/+five 时 这个网页展示内容其实就跳转到a()方法里返回的内容
+____________________________________________________________________________
+重定向到黑马官网
+@app.route('/demo5')
+def demo5():
+	return redirect('http://www.itheima.com')
+____________________________________________________________________________
+重定向到自己写的视图函数
+可以直接填写自己url路径
+也可以使用url_for生成指定视图函数所对应的url
+
+@app.route('/demo1')
+def demo1():
+	return 'demo1'
+
+#重定向
+@app.route('/demo5')
+def demo5():
+	return redirect(url_for('demo1'))
+____________________________________________________________________________
+重定向到带有参数的视图函数
+
+    在 url_for 函数中传入参数
+
+# 路由传递参数
+@app.route('/user/<int:user_id>')
+def user_info(user_id):
+    return 'hello %d' % user_id
+
+# 重定向
+@app.route('/demo5')
+def demo5():
+    # 使用 url_for 生成指定视图函数所对应的 url
+    return redirect(url_for('user_info', user_id=100))
+
+

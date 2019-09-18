@@ -1,0 +1,45 @@
+numpy排序：
+data.sort(axis=0)  按照列排序
+data.sort(axis=1)  按照行排序
+
+pandas排序：
+df.sort_index(ascending=True)  #按照索引升序排序，为False 降序
+df.sort_values(by=['a','b'],ascending=False) 
+#先按照a列进行降序排序，如果a列的值相等，在按照b列的值进行比较，
+False为降序。默认是升序
+
+np.random.randint(90,100,size=3)  #在90到100之间随机选出三个数组成一个数组
+np.random.randn(10) #正太分布数据
+
+import pandas as pd
+#np.nan:numpy中的空值 ，写np.nan 就相当于写了一个null值
+
+df=pd.DataFrame([np.random.randn(3),[1,2,np.nan],[np.nan,4,8]])
+
+#df.isnull() 查看数组结构里判断每个值是否为空值，为True或False ,True为空，False不为空
+
+填充空值：
+df.fillna(100,inplace=True) #将df数组里的空值都变为100，100是float类型，如果inplace的值为False,则不修改
+
+df.describe()  #更强调的是数据  查看数组各项数据  比如最大值、最小值等
+df.info()  #更强调的是结构    查看数组的各项数据
+
+#替换
+df.replace(1,100,inplace=True)  #将df数组里的1都换为100
+df.replace([1,2],100,inplace=True)  #将df数组里的1和2都换为100
+df.replace([1,2],[100,200],inplace=True)  #将df数组里的1都换为100，2都换为200
+
+#empty:
+data=np.empty((2,3))  生成一个2*3的随机矩阵
+
+#zeros
+data=np.zeros((3,4))  生成一个3*4的全0矩阵
+
+#ones
+data=np.ones((3,4))  生成一个3*4的全1矩阵  以此类推
+
+#删除：
+data.dropna(inplace=True)  删除有空值的行
+print(df.drop(['one'],axis=1))   #按行标签删除
+print(df.drop(['a','c'],axis = 0))   #按列标签删除
+ 

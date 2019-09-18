@@ -1,0 +1,38 @@
+在django的代码中，我们可以使用一些提供Response响应的类，如：HttpResponse,redirect等实例的内置set_cookie函数来进行django项目中的Cookie设置
+
+set_cookie(key,value='',max_age=None,expires=None,path='/',domain=None,secure=False,httponly=False)
+
+key:Cookie的key值，未来通过该key值获取到对应设置好的Cookie.
+
+value='':对应Cookie的key值的value，比如：set_cookie(key='value',value='shuai')
+
+max_age=None:Cookie生效的时间，单位为秒，如果Cookie值只持续在客户端浏览器的会话时长，那么这个值应该为None,存在该值时，expires会被计算得到
+
+expires=None:Cookie具体过期日期，是一个datetime.datetime对象，如果该值存在，那么max_age也会被计算得到
+
+import datetime
+current_time=datetime.datetime.now()  #当前时间
+expires_time=current_time+datetime.timedelta(seconds=10)  #向后推延十秒
+set_ccokie('key','value',expires=expires_time) #设置Cookie及对应超时时间
+
+path='/':指定哪些url可以访问到Cookie,默认‘/’为所有
+
+domain=None:当我们需要设置的为一个跨域的Cookie的值，那么可以使用该参数，比如：domain='.test.com',那么这个Cookie值可以被www.test.com、bbs.test.com等主域名相同的域所读取。为None时，代表当前域名下全局生效
+
+secure=False:https加密传输设置，当使用https协议时，需要设置该值，同样的，如果设置该值为True,如果不是https连接情况下，不会发送该Cookie值
+
+httponly=False:HTTPOnly是包含在HTTP响应头部中Set-Cookie中的一个标记，为一个bool值，当设置为True时，代表阻止客户端的Javascript访问Cookie.这是一种降低客户端脚本访问受保护的Cookie数据风险的有效的办法
+
+
+
+
+
+
+
+
+
+
+
+
+
+

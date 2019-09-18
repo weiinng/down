@@ -1,0 +1,34 @@
+from django.shortcuts import render,redirect,reverse,HttpResponse
+
+# Create your views here.
+
+def login(request):
+    if request.method=='POST':
+        cookie_response=HttpResponse('这是一个关于cookie的测试')
+        cookie_response.set_cookie('test','hello cookie')
+        return cookie_response
+    return render(request,'login.html')
+
+def content(request):
+    cookie_data=request.COOKIES.get('test')
+    if cookie_data:
+        return render(request,'content.html',locals())
+    else:
+        return redirect(reverse('login'))
+
+def dele(request):
+    response=HttpResponse('ok')
+    response.delete_cookie('test')
+    return response
+
+def check_salt_cookie(request):
+    try:
+        salt_cookie=request.get_signed_cookie(key='salt_cookie',salt='nice')
+    except KeyError:
+        response=HttpResponse('正在设置一个salt Cookie值')
+        response.set_signed_cookie(key='salt_cookie',salt='nice',value='salt_cookie')
+        return response
+    else:
+        return HttpResponse('获取到的salt Cookie值%s'%salt_cookie)
+
+默认有效期是关闭浏览器之前

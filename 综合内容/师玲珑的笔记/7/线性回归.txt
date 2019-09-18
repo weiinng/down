@@ -1,0 +1,134 @@
+import numpy as np
+import pandas as pd
+from matplotlib import pyplot as plt
+#不用plt.show()
+%matplotlib inline  
+np.random.seed(30)
+
+#生成随机数据
+x = np.arange(10,100)
+#randn:标准正态分布 ，数量 ，normal:均值，标准差，数量
+x_shift=np.random.normal(loc=0,scale=1,size=x.shape)  #生成高斯分布数据，就是正太分布
+#里面还有参数loc=  是指定均值  scale= 指定标准差
+
+# print(x)
+# print(x_shift) 
+# print(np.mean(x_shift))
+# print(np.std(x_shift))
+
+x=x+x_shift
+error = np.random.normal(size=x.shape)*1000 #生成噪声数据
+y = 2*x*x + 5*x + error
+#分割数据
+dataset = [(i,j) for i,j in zip(x,y)]
+from sklearn.model_selection import train_test_split
+train_set,test_set=train_test_split(dataset,test_size=0.2)  
+#test_size测试集大小  90*0.2=18  test_set 里有18个数据集
+#取出训练集的x和y
+# print(len(dataset))
+# print(len(test_set))
+# print(len(train_set))
+trainX = np.array([i for i,j in train_set]).reshape(-1,1)
+trainY = np.array([j for i,j in train_set]).reshape(-1,1)
+testX = np.array([i for i,j in test_set]).reshape(-1,1)
+testY = np.array([j for i,j in test_set]).reshape(-1,1)
+#构建模型 一次方
+from sklearn import linear_model #当均方误差不大时,用于一元
+
+
+#构建模型，将数据进行多项式处理 二次方
+from sklearn.preprocessing import PolynomialFeatures
+poly=PolynomialFeatures(degree=2)  #degree指定x的幂数
+trainX_polyed=poly.fit_transform(trainX)
+# print(trainX[0])
+# print(trainX_polyed[0])  #是几次幂，就有几个结果，依次是上面那个数的0次方，1次方，2次方..
+linear_er=linear_model.LinearRegression() #初始化线性模型
+linear_er.fit(trainX_polyed,trainY)  #创建模型
+
+#一次方：
+# #初始化线性模型
+# linear_er=linear_model.LinearRegression()
+# linear_er.fit(trainX,trainY)  #训练模型
+# #预测数据
+# y_pre=linear_er.predict(trainX)  #根据测试集的x找出y
+# y_pre2=linear_er.predict(testX)
+# l=np.array(list(range(10))).reshape(-1,1)
+# y_pre3=linear_er.predict(l)
+# # jiegu=linear_er.predict(np.array([0]).reshape(-1,1))
+# # print(jiegu)
+# #绘图
+# plt.scatter(trainX,trainY)
+# plt.scatter(trainX,y_pre)
+# # plt.scatter(testX,testY,marker='>')
+# # plt.scatter(l,y_pre3,marker='^')
+# b=linear_er.intercept_  #获取方程的截距
+# a = linear_er.coef_ #获取方程系数
+# print(a)
+# print(b)
+# #获取方程
+# # print(len(testX))
+# # print(len(y_pre))
+
+#二次方：
+y_pre_train=linear_er.predict(trainX_polyed)
+#获取函数系数
+print('得到的多项式方程为：y={:.3f}x^2+({:.3f}x)+{:.3f}'.format(
+        linear_er.coef_[0][-1],
+        linear_er.coef_[0][-2],             
+        linear_er.intercept_[0])) 
+plt.scatter(trainX,y_pre_train)
+
+#二次方用一次方方法：
+# print(trainX_polyed)
+linear_er=linear_model.LinearRegression()
+linear_er.fit(trainX,trainY)  #训练模型
+
+
+
+
+
+#评估模型
+from sklearn import metrics
+print('平均绝对误差：{}'.format( round(metrics.mean_absolute_error(y_pre,trainY),2))) 
+print('均方误差MSE：{}'.format(  round(metrics.mean_squared_error(y_pre,trainY),2))) 
+print('中位数绝对误差：{}'.format(  round(metrics.median_absolute_error(y_pre,trainY),2)))
+print('解释方差分：{}'.format(  round(metrics.explained_variance_score(y_pre,trainY),2))) 
+print('R方得分：{}'.format(  round(metrics.r2_score(y_pre,trainY),2)))
+
+'''
+1，对一个模型的评价指标非常多，而对线性回归模型，可以只看均方误差和解释方差分
+，均方误差越小越好，而 解释方差分越大越好。
+2，本模型的均方误差比较大的原因，可能在于准备数据集时引入的误差太大，
+导致了数据太过分散，得到的模型 拟合的直线与随机点的误差较大。
+'''
+
+#模型的保存和加载
+
+# 回归模型的保存和加载
+ 
+# 在保存之前先看一下模型的内部参数，主要为两项，截距和系数 
+
+print('直线的截距: {}'.format(linear_regressor.intercept_)) #这是截距 
+
+print('直线的系数（斜率）: {}'.format(linear_regressor.coef_)) #这系数，对应于本项目的直线斜率 
+
+y_value=linear_regressor.predict([[120]]) 
+
+print('用线性模型计算的值：{}'      .format(y_value)) # 这两个print的结果应该是一样的 
+print('直线方程计算的值：{}'      .format(linear_regressor.coef_*120+linear_regressor.intercept_)) 
+ 
+save_path='d:/Models/LinearRegressor_v1.txt'
+ 
+# joblib 
+
+from sklearn.externals import joblib 
+
+joblib.dump(linear_regressor,save_path) # 模型保存到文件中 loaded_classifier2=joblib.load(save_path) 
+y_value=loaded_classifier2.predict([[120]]) 
+print('joblib加载后的模型计算结果：{}'.format(y_value))
+
+
+
+
+
+

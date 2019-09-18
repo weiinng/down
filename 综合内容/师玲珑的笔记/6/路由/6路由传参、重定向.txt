@@ -1,0 +1,44 @@
+路由传参：
+
+在myapp下的views模块里
+def index(request,x):        #视图函数要接收参数
+	content={'message':'x=%s'%x}
+	return render(request,'index.html',content)
+
+
+myapp.urls里：
+urlpatterns=[
+	path('<x>/',views.index)
+]
+
+
+当你输入网址http://127.0.0.1/a时就进入index.html页面了，x的值为a,   a可以替换其他值，是传过去的参数，没有转换器的限制自己写什么都可以，
+
+重定向
+要引入redirect
+from django.shortcuts import redirect
+
+def index(request):
+	return render(request,'index.html')
+
+def index2(request):
+	return redirect(to='/',permanent=False)   #to后面的参数是路由网址后面的参数，这个是重定向到http://127.0.0.1/
+	return redirect(to='/myapp/',permanent=False)
+是重定向到http://127.0.0.1/myapp
+permanent:如果设置为True，将返回301状态吗，代表永久重定向
+
+302：临时重定向，旧地址资源临时用不了，搜索引擎只会暂时抓取新地址的内容而保存旧的地址
+301：永久重定向，旧地址资源已经不复存在了，搜索引擎不光会抓取新地址的内容，还会替换旧地址为新地址
+
+使用name进行重定向
+要用到reverse
+from django.shortcuts import reverse
+
+urlpatterns=[
+	path('<x>',views.index,name='left')
+]
+
+return redirect(reverse('left',args=('aaa',)))   #left为name值，aaa为传过去的参数,重定向到index该视图函数里
+
+<a href="{% url 'myapp:right' 123 'okj' %}">点击进入右页面</a>
+

@@ -1,0 +1,39 @@
+Numpy:提供了一个在python中做科学计算的基础库，重在数值计算，主要用于多维数组（矩阵）处理的库。用来存储和处理大型矩阵，比python自身的嵌套列表结构要高效的多。本身是由C语言开发，是个很基础的扩展，python其余的科学计算扩展大部分都是以此为基础
+
+
+ndarray多维数组
+NumPy数组是一个多维的数组对象（矩阵），称为ndarray,具有矢量算术运算能力和复杂的广播能力，并具有执行速度快和节省空间的特点
+
+注意：ndarray的下标从0开始，且数组里的所有元素必须是相同类型
+
+——————————————————————
+
+性能对比
+
+import numpy
+def pySum():
+	a=list(range(10000))  #制造一个a列表，里面的元素是0-9999
+	b=list(range(10000))
+	c=[]
+	for i in range(len(a)):
+		c.append(a[i]**2+b[i]**2)
+	return c
+
+%timeit pySum()   #调用函数前面加上%timeit 就把调用函数变成了 调用这个函数需要多长时间了
+print(type(pySum()) #<class 'list'>
+————————————————————
+
+import numpy
+def npSum():
+	a=numpy.arange(10000)  #用numpy的方法制造一个列表,里面的元素有0-9999
+	b=numpy.arange(10000)
+	c=a**2+b**2
+	return c
+%timeit npSum()
+print(type(npSum())     #<class 'numpy.ndarray'>
+ 
+结论：
+numpy的向量化运算的效率远远高于python的循环遍历运算（效率相差好几百倍）
+
+——————————————————————————————————————
+

@@ -1,0 +1,37 @@
+import scrapy
+from ..items import ThreeItem
+
+class ItcastSpider(scrapy.Spider):
+    name = 'itcast'
+    url='http://www.bloggerlee.com/?paged='
+    num=1
+    allowed_domains = ['bloggerlee.com']
+    start_urls = [url+str(num)]
+
+    def parse(self, response):
+        all=response.xpath("//div[@id='content']//div[@class='box-wrap']")
+        list=[]
+        for x in all:
+            item=ThreeItem()
+            item['title']=x.xpath(".//h2/a/text()").extract()[0]
+            item['image_urls']=x.xpath("./div/a/img/@src").extract()[0]
+            item['classify']=x.xpath(".//div[@class='post-content']/ul/li[1]/a/text()").extract()[0]
+            contentUrl=x.xpath(".//div[@class='read_more']/a/@href").extract()
+            if contentUrl!=[]:
+                item['content_urls']=contentUrl[0]
+                # meta是向下个方法里传递参数 以字典的形式  key:value 可以传递多个参数  dont_filter是url去重
+                yield scrapy.Request(url=item['content_urls'],callback=self.crawlContent,meta={'item':item},dont_filter=True)
+            else:
+                item['content_urls']=' '
+            list.append(item)
+        if self.num!=2:     #之抓取两页
+            self.num += 1
+            yield scrapy.Request(url=self.url+str(self.num),callback=self.parse)
+        print(list)
+
+    def crawlContent(self,response):
+        item=response.meta['item']
+        item['content']=''.join(response.xpath("//div[@class='content']/p[position()>1][position()<last()]/text()").extract())
+        yield item
+
+

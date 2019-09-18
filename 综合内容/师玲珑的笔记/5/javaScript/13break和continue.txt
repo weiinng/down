@@ -1,0 +1,5 @@
+JavaScript支持的跳转语句主要有2种：
+
+（1）break语句；
+（2）continue语句；
+break语句与continue语句的主要区别是：break是彻底结束循环，而continue是结束本次循环。在这一点跟其他编程语言（如C和Java）相同的。

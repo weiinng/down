@@ -1,0 +1,18 @@
+@app.route('/')
+def hello():
+    #会返回status code
+    #content-type 在http headers里
+    #content-type=text/html  #默认值 当成html格式来解析
+    #将返回的结果封装成一个Response对象
+    headers={
+        # 'content-type':'text/plain',  #当成普通的字符串来解析
+
+        'content-type':'application/json'   #返回json类型
+    }
+    # response=make_response('<html></html>',200)    #301是重定向
+    # response.headers=headers
+    # return response
+    # return '<html></html>'
+    return '<html></html>',200,headers
+
+# app.add_url_rule('/hello',view_func=hello)   #也可以这样来注册路由的

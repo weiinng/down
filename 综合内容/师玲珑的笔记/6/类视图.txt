@@ -1,0 +1,23 @@
+views.py
+from django,views import View
+
+class Index(View):
+	def get(self,request):
+		return HttpResponse('这是get请求')
+
+	def post(self,request):
+		name=request.POST.get('name')
+		return HttpResponse('%s'%name)
+
+
+  #as_view()->dispatch ->请求类型的判断  如果判断到是post，他会在类中查找同名的post函数
+
+urls.py:
+
+path('get/',views.Index.as_view())
+
+
+smtplib
+
+
+			

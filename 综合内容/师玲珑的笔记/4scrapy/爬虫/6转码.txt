@@ -1,0 +1,17 @@
+str:unicode的呈现形式
+bytes:字节类型，互联网上数据的都是以二进制的方式（字节类型）传输的
+
+str和bytes类型的互相转换：
+str使用encode方法转换为bytes
+s='asd'
+print(type(s))     结果为str
+#str编码转变为bytes类型
+b=s.encode()
+print(type(b))
+
+bytes通过decode转化为str
+b=b'asd'
+print(type(b))
+#bytes类型解码成为str类型
+s=b.decode()
+print(type(s))

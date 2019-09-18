@@ -1,0 +1,18 @@
+from django.urls import re_path
+
+#^以固定头开始，$固定尾结尾
+re_path(r'^articles/2003/$',views.index)
+
+#带一个参数
+#注意！以分组形式的正则会把分组得到的值以参数形式传给视图
+re_path(r'^articles/([0-9]{4})/$',views.index)
+
+#两个参数，自定义名传参 格式： ?P<参数名>
+#！视图收参，必须是<>设置的名字
+re_path(r'articles/(?P<y>[0-9]{4})/(?P<m>[0-9]{2})/$',views.index)
+
+
+views中
+def index(request,y,m):
+	return 
+

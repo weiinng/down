@@ -1,0 +1,81 @@
+<template>
+	<div id="a">
+		<button @click='c'>点击爬取智联招聘</button>
+		<br>
+		{{result}}
+		<br>
+		<form method="post" v-on:submit.prevent='prevent'>
+			<input type="text" v-model='title'>
+			<button type="submit">搜索</button>
+		</form>
+		<br>
+		{{search_t}}
+		<br><br>
+		<table border="1" cellpadding="5" cellspacing="0" align="center">
+			<tr v-for="i in a">
+				<td>{{i}}</td>
+			</tr>
+		</table>
+		<button v-if="last" @click='l'>上一页</button>
+		<button v-if="next" @click='n'>下一页</button>
+	</div>
+</template>
+
+<script type="text/javascript">
+	import Qs from 'qs'
+	export default{
+		name:"#a",
+		data:function(){
+			return{
+				a:'',
+				result:'',
+				last:false,
+				next:false,
+				num:10,
+				data:'',
+				len:0,
+				title:'',
+				search_t:'',
+			}
+		},
+		methods:{
+			c:function(){
+				this.axios.get('/api/zhilian/').then((res)=>{
+					console.log(res.data)
+					this.data=res.data
+					this.a=this.data.slice(0,this.num)
+					this.result='爬取结果为：'
+					this.next=true
+					this.len=this.data.length
+				}).catch(function(error){
+					console.log(error)
+				})
+			},
+			n:function(){
+				this.num+=10
+				this.a=this.data.slice(this.num-10,this.num)
+				this.last=true
+				if(this.num>=this.len){
+					this.next=false
+				}
+			},
+			l:function(){
+				this.num-=10
+				this.a=this.data.slice(this.num-10,this.num)
+				if(this.num<=10){
+					this.last=false
+				}
+				this.next=true
+			},
+			prevent:function(){
+				this.axios.post('/api/search/',
+					Qs.stringify({  
+               				title: this.title,
+            				}),
+					).then((res)=>{
+							this.search_t=res.data.title		
+					})
+			}
+		}
+	}
+</script>

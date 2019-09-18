@@ -1,0 +1,180 @@
+### 常见请求方式
+
+> POST和GET是HTTP协议定义的与服务器交互的方法。
+>
+> GET一般用于获取/查询资源信息，而POST一般用于更新资源信息。另外，还有PUT和DELETE方法
+
+#### get
+
+> 常用来从指定地址请求数据；
+>
+> 如果需要在请求时提交某些数据，则以路由形式传递参数，查询Query字符串如下格式所示：
+
+```
+https://www.baidu.com/?key=abc&pos=shanxi
+```
+
+* get请求可被浏览器缓存，保存在历史记录中
+* get不应在使用敏感数据时使用，明文包路在请求地址中
+* get有长度限制
+
+#### post
+
+> 向指定的资源提交要被处理的数据
+>
+> 使用POST，提交的数据保存在HTTP协议中的消息主体部分
+
+* post请求不会被浏览器缓存
+* post提交数据长度无限制
+* post比get更加安全
+
+
+### request
+
+> 如果说 urls.py 是 Django 中前端页面和后台程序桥梁，那么 request 就是桥上负责运输的小汽车 可以说后端接收到的来至前端的信息几乎全部来自于requests中
+
+#### request.method
+
+> 获取当前用户请求方式，
+>
+> 请求方式字符串为纯大写：'GET'、'POST'
+>
+> 如用户以get方式发起请求，对应代码中获取到的结果以及在判断时像是这样
+
+```python
+def index(request):
+	if request.method == 'GET':
+		…
+```
+
+#### request.GET
+
+> 当用户通过get方式请求站点，并在路由中提供了查询参数，可以通过该属性获取到对应提交的值
+
+```python
+def index(request):
+    print(request.GET) 
+    # <QueryDict: {'name': ['jack'], 'id': ['1']}>
+    print(type(request.GET)) 
+    # <class 'django.http.request.QueryDict'>
+    name_ = request.GET.get('name')
+    id_ = request.GET.get('id')
+    content = '%s:%s' % (name_,id_)
+    return HttpResponse(content)
+```
+
+> request.GET是一个类似字典的数据类型：QueryDict
+>
+> 其中也支持类似对字典的get或直接dict.[key]键值访问方式，当然使用get方式进行对应key获取会更好，因为get在访问不到时不会报错
+
+* 如果定义了如上所示的视图函数，那么在访问连接时，我们可以通过路由传参：
+
+```
+http://127.0.0.1:8000/?name=jack&id=1
+```
+
+* 这里对应页面会显示的结果：
+
+```
+jack:1
+```
+
+* > **注意**：使用GET方法在连接中进行参数提交，类型均是字符串
+
+-------------------------------------
+
+#### request.POST
+
+> 获取用户以post形式提交的数据并保存在后台，为类字典数据，这里和request.GET是一个东西；
+>
+> 在网页中，一般我们通过html的表单进行数据的提交，POST方式可以提交空数据
+
+* 因为涉及到了表单页面，所以我们先来弄一个HTML页面
+
+
+——————————————————————————————————————————
+* `request.POST.get(key, default=None)`
+  * 返回对应key值的数据中的**最后一个**数据单独返回；key值不存在，取default的值返回。
+
+> 要想真正拿出所有的结果，应该使用getlist函数
+
+* `request.POST.getlist(key, default=None)`
+  * 将对应key值的所有数据以**一个列表**形式返回；key值不存在，取default的值返回
+用来获取多选框的值  key为name值
+
+——————————————————————————————————————————
+#### request.FILES
+
+> 接收用户上传文件及相关信息。同样类似于 request.POST，提取到的数据为一个类字典的数据类型，包含所有文件上传的信息
+
+* `f = request.FILES.get('upload_file')`
+
+  * `file_data = f.read()`：读取整个上传文件的内容，适合小文件上传
+
+  * `yiled = f.chunks()`：返回一个类似生成器`（<class 'generator'>）`的数据，每一次读取按块返回文件，可以通过`for`迭代访问其中数据；适合上传大文件到服务器。
+
+  * `f.multiple_chunks()`：返回文件大小，当文件大小大于2.5M时，返回True，反之返回False，可以通过该函数来选择是否使用chunks方法或read直接存储。
+
+    > 如果想要修改这个文件判定的默认值，可以通过：`FILE_UPLOAD_MAX_MEMORY_SIZE`在settings文件下进行设置
+
+  * `f.content_type`：上传文件时头部中的Content-Type字段值，参考MIME类型
+
+  * `f.name`：上传文件名字
+
+  * `f.charset`：上传文件编码
+
+  * `f.size`： 上传文件大小，字节为单位：byte
+
+> 创建好静态资源目录，并在下面创建一个img文件夹，保存我们即将上传的图片；
+>
+> 完成上传文件的HTML表单页面
+要在页面头标签里加这个
+{% load staticfiles %}
+
+```html
+<form action="/" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name="upload_file" />
+    <input type="submit" value="提交">
+</form> 
+<img src="{% static 'img/1.jpg' %}" alt="这是一张图片">
+
+当你从数据库中展示图片时：
+<img src="{% static x.img_path %}">
+
+<!-- 这里使用的是即将要上传的文件名字，只做文件是否上传成功的简单测试 -->
+```
+
+> **注意**：上传文件的页面表单，一定要记得设置属性`enctype="multipart/form-data"`
+
+* 视图函数如下编写，接收上传图片，并保存在静态目录下刚才创建好的img目录中
+
+
+```python
+from django.shortcuts import render
+from pro2 import settings
+# Create your views here.
+from myapp import models
+from django.http import HttpResponse
+import os
+
+def index(request):
+    if request.method == "POST":
+        f = request.FILES.get("upload_files")
+        path = os.path.join(settings.STATICFILES_DIRS[0],'img/'+f.name)
+  		# 上传文件本地保存路径
+        with open(path,'wb') as fp:
+            if f.multiple_chunks: #判断到上传文件为大于2.5MB的大文件
+                for buf in f.chunks(): #迭代写入文件
+                    fp.write(buf)
+            else:
+                fp.write(f.read())
+            return HttpResponse("Success!")
+  	return render(request, 'index.html')
+```
+
+> 测试上传一个名为1.jpg的图片，如果成功上传，那么后台static目录下会出现该图片，并且模板页面也可以展示对应图片效果
+
+
+
+

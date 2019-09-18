@@ -1,0 +1,16 @@
+#读取网络
+
+lst=pd.read_html('网址')
+lst  #只能识别表格
+
+
+#读取数据库
+import pymysql
+import pandas as pd
+con=pymysql.connect(host='localhost',user='root',password='',db='pandas1')
+data_sql=pd.read_sql(" select *from school",con)
+data_sql.to_csv('test.csv')
+
+
+#读取透视表
+ df = DataFrame({'水果种类':['苹果','苹果','梨','梨','草莓','草莓'],               '信息':['价格','数量','价格','数量','价格','数量'],               '值':[4,3,5,4,6,5]}) df.pivot(index='水果种类',columns='信息',values='值')#将水果种类作为行索引，将信息作为列索引

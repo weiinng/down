@@ -1,0 +1,75 @@
+当你用vue获取后台页面时是get
+<template>
+	<div id="#a">
+		<button @click='reloadmes'>点击加载</button>
+		<table>
+			<tr v-for="x in mes">
+				<td>{{x.id}}</td>
+				<td>{{x.age}}</td>
+			</tr>
+		</table>
+	</div>
+</template>
+<script type="text/javascript">
+	export default{
+	name:"#a",
+	data:function(){
+	return{
+	mes:[]
+	},
+	methods:{
+	reloadmes:function(){
+	this.axios.get('/api').then((res)=>{         //'/api'就代表后台网页网址127.1.1.0:5000  
+	this.mes=res.data.mes
+}).catch(function(error){
+	console.log(error)
+})
+}
+}
+}
+}
+
+当你要提交数据给后台时要用post，并且还要传参数
+<template>
+	<div id="a">
+		<form v-on:submit.prevent='prevent'>
+			用户名：<input type="text" name="username" v-model='a'>
+			密码:<input type="password" name="password" v-model='b'>
+			<button type="submit">登录</button>
+		</form>
+	</div>
+</template>
+<script type="text/javascript">
+	export default{
+		name:"#a",
+		data:function(){
+			return{
+				a:'',
+				b:''
+			}
+		},
+		methods:{
+			prevent:function(){
+				var r=this.$router
+				this.axios.post('/api/login',{'name':this.a,'password':this.b}).then((res)=>{
+					if(res.data.code==200){
+						r.push({'path':'/show'})
+					}else{
+						alert('登录失败')
+					}
+				}).catch(function(error){
+					console.log(error)
+				})
+			}
+		}
+	}
+</script>
+
+在pycharm里获取传过来的参数时要先将内容转换为python类型，然后按照键值对取值
+ret=json.loads(request.data.decode())
+name=ret['name']
+password=ret['password']
+
+
+
+

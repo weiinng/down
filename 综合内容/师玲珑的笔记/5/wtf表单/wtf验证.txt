@@ -1,0 +1,13 @@
+WTForms常用验证函数
+验证函数		说明
+DataRequired		确保字段中有数据
+EqualTo			比较两个字段的值，常用于比较两次密码输入 ，里面的参数是你要验证的表单框名，不是值， 表单框名要加引号
+Length			验证输入的值在数字范围内
+URL			验证URL
+AnyOf			验证输入值在可选列表中
+NoneOf			验证输入值不在可选列表中
+ 使用Flask-WTF需要配置参数SECRET_KEY
+CSRF_ENABLED是为了CSRF(跨站请求伪造)保护。SECRET_KEY用来生成加密令牌，当CSRF激活的时候，该设置会根据设置的密钥生成加密令牌，在HTML页面中直接写form表单
+
+即在html页面<form>表单里写
+{{reg.csrf_token()}}   reg是你传过来的表单数据

@@ -1,0 +1,53 @@
+array可以初始化一个数组
+import numpy as np
+data=np.array([[1,2],[3,4]])  #初始化一个二维数组
+data=np.array([1,2,3,4,5,6])  #初始化一个一维数组  可以称为矩阵
+print(type(data))   # 查看数据类型 
+print(data.ndim)   #查看数组是几维
+print(data.shape)   #查看多维数组的结构
+data2=data.reshape(2,3)  #改变数组形状，由一维变为二维，2表示一个大列表里有两个小列表，3表示小列表里有三个数据
+
+data.head()  默认取前五条
+data.tail()  默认取后五条
+data.head(2)  去前两条
+
+————————————————————————————————————
+arange生成区间数组
+
+import numpy as np
+data=np.arange(2,10,2)  里面的数字跟for里面的参数意思一样
+data2=np.array([data,data])  #用array
+
+————————————————————————————————————
+linspace
+import numpy
+data=np.linspace(2,10,5)  #意思是在[2,10]区间范围内生成五个数 每个数之间的间隔大小相等
+由这五个数组成一个一维数组，并且这些数都是float64类型
+
+————————————————————————————————————
+numpy.sum(data)  求和函数
+numpy.mean(data)求平均值  numpy.average(data) 求平均权均值  两者差别不大
+numpy.max(data) 求最大值
+numpy.min(data) 求最小值
+numpy.std(data)  求标准差  离散程度  数值越大越分散
+numpy.var(data) 求方差
+
+方差=标准差的平方
+方差=每个数与数组的平均值的差值的和在除以数组里的长度
+
+——————————————————————————————————————
+tolist  将数组转为列表
+data=numpy.linspace(1,10,10)
+data2=data.tolist()
+也可以用python内置函数
+data2=list(data)
+
+当数组里的数少时list()效率高，当数组里的数多时，tolist()效率高
+
+array()将列表转为数组
+data3=numpy.array(data2)
+——————————————————————————————————————
+
+dtype 指定数组里的数的数据类型
+
+data=numpy.array([1,2,3],dtype='double') #将数组里的数的数据类型转为double类型

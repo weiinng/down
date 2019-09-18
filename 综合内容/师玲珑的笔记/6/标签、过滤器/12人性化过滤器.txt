@@ -1,0 +1,61 @@
+### 人性化过滤器
+
+在你自己创建的app目录下
+
+
+> 除去上面所介绍的过滤器，django还提供了一个专门人性化处理数据的过滤器组件；
+>
+> 使用时，需要将**'django.contrib.humanize'**添加到`settings.py`文件中的`INSTALLED_APPS`属性中
+>
+> 之后在模板页面加载`{% load humanize %}`就可以使用到`humanize`中的人性化过滤器
+
+#### apnumber
+
+> 语法：`{{ value|apnumber }}`
+
+> 将整数转化为字符串，并按照语言设置返回对应的数字表示方式
+
+```jinja2
+<p>intcomma : {{ "3000"|intcomma }}</p> 
+<p>intcomma : {{ "23300"|intcomma }}</p>
+```
+
+#### intword
+
+> 语法：`{{ value|intword }}`
+
+> 将一个大型数字转换成友好的文字表达形式，适合超过`100万`的数字
+
+```jinja2
+<p>intword : {{ "310100100"|intword }}</p>
+```
+
+#### naturalday
+
+> 语法：`{{ value|naturalday }}`
+
+> 返回value时间相对于今天。返回"今天"，"明天"或者"昨天"
+
+```python
+today = datetime.datetime.now()
+```
+
+```jinja2
+<p>naturalday : {{ today|naturalday }}</p>
+```
+
+#### naturaltime
+
+> 语法：`{{ value|naturaltime }}`
+
+> 获得`value`与当前时间的时间间隔，并使用合适的文字来描述；
+>
+> 如果超过一天间隔，将会使用`timesice`过滤器格式
+
+```python
+start_time = datetime.datetime(2019, 3, 3, 15)
+```
+
+```jinja2
+<p>naturalday : {{ start_time|naturaltime }}</p>
+```

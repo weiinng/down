@@ -1,0 +1,94 @@
+ 命名空间
+
+> 如果想在多个app下使用相同的name路由命名，那么我们可以通过路由分发过程中的include函数来指定不同app所属的命名空间
+
+```python
+from django.contrib import admin
+from django.urls import path,include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('app1/',include(("app1.urls",'app1'))),
+    #直接传递一个元祖，元祖第一个值为分发路由地址，第二个值为命名空间
+    path('app2/',include(("app2.urls",'app2')))
+]
+```
+
+> 当为每个`app`的路由分发映射设置了命名空间，接下来在模板页面以及视图函数对路由的反向解析将是如下所示的样子，路由解析前加冒号指明命名空间
+
+```python
+def index(request):
+	return redirect(reverse("app1:left"))
+```
+
+```html
+<a href="{% url 'app2:left' %}">app2:left</a>
+```
+
+#### 应用命名空间：app_name
+
+> 使用`app_name`指明命名空间，在子app的urls.py文件下配置全局变量app_name，这个值是唯一的
+>
+> 在这个路由文件中定义的其他映射关系，将具有命名空间app1；
+
+```python
+app_name = "app1" # 这个值应该是唯一的
+urlpatterns = [
+   	...
+]
+```
+
+#### 实例命名空间：namespace
+
+> 当有多个子app同时引入同一个子路由映射文件，比如这样
+
+```python
+from django.contrib import admin
+from django.urls import path,include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('app1/',include("app1.urls")),
+    path('app2/',include("app1.urls"))
+]
+```
+
+> 这就会出现一个问题，不同的路由访问在做路由反向解析时，会造成混淆，所以我们需要给每一个路由分发的规则设置namespace属性，为实例进行命名空间
+
+```python
+from django.contrib import admin
+from django.urls import path,include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('app1/',include("app1.urls",namespace="app1")),
+    path('app2/',include("app1.urls",namespace="app2"))
+]
+```
+
+> 这样做的好处，可以在不同路由导向同一app下时，为他们的不同命名空间；
+>
+> 虽然看起来到最后执行的视图函数功能是一样的，但可以分清楚究竟是哪个路由引起视图函数在工作
+>
+> 接下来视图及模板页面中使用namespace的值
+
+```html
+<p>我是左页面</p>
+<p>路由参数: {{ message }}</p>
+<a href="{% url 'app1:right' 123 %}">app1的右页面</a>
+<p>我是右页面</p>
+<p>路由参数: {{ message }}</p>
+<a href="{% url 'app1:left' 'abc' %}">app1的左页面</a>
+<!-- ----------------------------------------- -->
+<p>我是左页面</p>
+<p>路由参数: {{ message }}</p>
+<a href="{% url 'app2:right' 123 %}">app2的右页面</a>
+<p>我是右页面</p>
+<p>路由参数: {{ message }}</p>
+<a href="{% url 'app2:left' 'abc' %}">app2的左页面</a>
+```
+
+
+
+
+

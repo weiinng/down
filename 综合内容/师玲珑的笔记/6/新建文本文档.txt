@@ -1,0 +1,19 @@
+mvt
+m全拼为model,与mvc中的m功能相同，负责和数据的交互，进行数据处理
+
+
+v全拼为view,与mvc中的c功能相同，接受请求，进行业务处理，返回响应
+
+t全拼为template,与mvc中的v功能相同，负责封装构造要返回的的html
+
+
+mvc:
+m全拼为model
+v全拼为view
+c全拼为controller
+
+
+三大框架：、
+flask django tornado
+
+

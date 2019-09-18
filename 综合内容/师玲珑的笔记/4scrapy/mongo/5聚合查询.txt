@@ -1,0 +1,40 @@
+语法：
+db.集合名称.aggregate({管道:{表达式}})
+
+$group:将集合中的文档分组，可用于统计结果
+$match:过滤数据，只输出符合条件的文档
+$project:修改输入文档的结构，如重命名、增加、删除字段、创建计算结果
+$sort：将输入文档排序后输出
+$limit:限制聚合管道返回的文档数
+$skip:跳过指定数量的文档，并返回余下的文档
+
+常用表达式：
+表达式：处理输入文档并输出 语法： 表达式:'$列名'
+常用表达式：
+$sum :计算总和，$sum:1 表示以一倍计数
+$avg:计算平均值
+$min:获取最小值
+$max:获取最大值
+$push:在结果文档中插入值到一个数组中
+
+管道命令之$group
+3.1 按照某个字段进行分组
+$group是所有聚合命令中用的最多的一个命令，用来将集合中的文档分组，可用于统计结果
+
+db.student.aggregate([{$group:{'_id':'$gender'}}])   根据gender分组输出gender的数据
+db.student.aggregate([{$group:{'_id':'$gender',counter:{$sum:1}}}])   根据gender分组输出gender的数据并且统计个有几个
+db.student.aggregate([{$group:{'_id':null,counter:{$sum:1}}}])   查看一共有多少条数据  sum后面参数是2的话结果变为两倍
+
+数据透视：
+正常情况在统计的不同姓名的数据的时候，需要知道所有的name，需要逐条观察，如果通过某种方式把所有的name放在一起，那么此时就可以理解为数据透视
+
+db.student.aggregate([{$group:{'_id':'$gender','name':{$push:'$name'}}}])  根据gender分组，统计出每个分组里 的name
+
+使用$$ROOT可以将整个文档放入数组中
+db.students.aggregate([{$group:{'_id':'$gender','name':{$push:'$$ROOT'}}}])   这个是全部数据都可以展示，上面那个是只显示name
+前面那个_id后面的参数表示按照什么分组  可以是null  意思是全部数据 不分组  必须是_id
+后面那个name可以随便起  
+db.student.aggregate([{$group:{'_id':'$gender','all':{$push:'$$ROOT'},'name':{$push:'$name'}}}])
+db.student.aggregate([{$group:{'_id':'$gender','all':{$push:'$$ROOT'},'name':{$push:'$name'},'max_age':{$max:'$age'}}}])
+
+

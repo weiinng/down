@@ -1,0 +1,18 @@
+数据库连接设置
+在Flask-SQLAlchemy中，数据库使用URL指定，而且程序使用的数据库必须保存到Flask配置对象的SQLALCHEMY_DATABASE_URL键中
+app.config['SQLALCHEMY_DATABASE_URL']='mysql://root:qwq@localhost:3306/数据库名'
+
+其他设置：
+#动态追踪修改设置，如未设置只会提示警告
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=True
+#查询时会显示原始SQL语句
+app.config['SQLALCHEMY_ECHO']=True
+
+配置完成需要去MySQL中创建项目所使用的数据库
+
+其他配置
+名字				备注
+SQLALCHEMY_DATABASE_URL	用于连接的数据库URL
+		
+
+

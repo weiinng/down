@@ -1,0 +1,154 @@
+
+创建数据库  ： use 名称        
+      注：如果数据库不存在，则创建数据库，否则切换到指定数据库。
+实例：
+> use runoob
+switched to db runoob
+> db
+runoob
+> 
+
+
+
+查看所有数据库 ： show dbs 
+
+实例：
+> show dbs
+admin   0.000GB
+local   0.000GB
+> 
+
+
+
+数据库插入数据 ： db.runoob.insert({"name":"菜鸟教程"})
+实例：
+> db.runoob.insert({"name":"菜鸟教程"})
+WriteResult({ "nInserted" : 1 })
+> show dbs
+local   0.078GB
+runoob  0.078GB
+test    0.078GB
+> 
+
+
+注意：MongoDB 中默认的数据库为 test，如果你没有创建新的数据库，集合将存放在 test 数据库中。
+
+注意: 在 MongoDB 中，集合只有在内容插入后才会创建! 就是说，创建集合(数据表)后要再插入一个文档(记录)，集合才会真正创建。
+
+
+
+
+
+删除数据库 ： db.dropDatabase()
+删除当前数据库，默认为 test，你可以使用 db 命令查看当前数据库名。
+
+实例：
+> show dbs
+local   0.078GB
+runoob  0.078GB
+test    0.078GB
+接下来我们切换到数据库 runoob：
+
+> use runoob
+switched to db runoob
+> 
+执行删除命令：
+
+> db.dropDatabase()
+{ "dropped" : "runoob", "ok" : 1 }
+最后，我们再通过 show dbs 命令数据库是否删除成功：
+
+> show dbs
+local  0.078GB
+test   0.078GB
+> 
+
+
+
+
+
+删除集合 ：db.集合名.drop()
+
+实例：
+删除了 runoob 数据库中的集合 site：
+> use runoob
+switched to db runoob
+> show tables
+site
+> db.site.drop()
+true
+> show tables
+> 
+
+
+查询文档 :  db.collection.find(query, projection)
+MongoDB 查询文档使用 find() 方法。
+find() 方法以非结构化的方式来显示所有文档。
+
+语法
+MongoDB 查询数据的语法格式如下：
+
+query ：可选，使用查询操作符指定查询条件
+projection ：可选，使用投影操作符指定返回的键。查询时返回文档中所有键值， 只需省略该参数即可（默认省略）。
+如果你需要以易读的方式来读取数据，可以使用 pretty() 方法，语法格式如下：
+
+>db.col.find().pretty()
+pretty() 方法以格式化的方式来显示所有文档。
+
+实例:
+
+以下实例我们查询了集合 col 中的数据
+> db.col.find().pretty()
+{
+        "_id" : ObjectId("56063f17ade2f21f36b03133"),
+        "title" : "MongoDB 教程",
+        "description" : "MongoDB 是一个 Nosql 数据库",
+        "by" : "菜鸟教程",
+        "url" : "http://www.runoob.com",
+        "tags" : [
+                "mongodb",
+                "database",
+                "NoSQL"
+        ],
+        "likes" : 100
+}
+除了 find() 方法之外，还有一个 findOne() 方法，它只返回一个文档。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

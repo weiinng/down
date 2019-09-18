@@ -1,0 +1,21 @@
+def login(request):
+    imgname=imgName(time.time())
+    if request.method=='POST':
+        name=request.POST.get('name')
+        age=request.POST.get('age')
+        gender=str(request.POST.get('gender'))
+        phone=request.POST.get('phone')
+        joy=','.join(request.POST.getlist('joy',default=None))
+        f=request.FILES.get('head')
+        head = os.path.join(settings.STATICFILES_DIRS[0],'img/'+imgname+'.'+f.name.split('.')[-1])
+        if models.Message.objects.filter(name=name).first():
+            name=name+'2'
+        models.Message.objects.create(name=name,age=age,gender=gender,phthon=phone,joy=joy,head=head)
+        with open(head,'wb') as fp:
+            if f.multiple_chunks: #判断到上传文件为大于2.5MB的大文件
+                for buf in f.chunks(): #迭代写入文件
+                    fp.write(buf)
+            else:
+                fp.write(f.read())
+        return redirect(reverse('show'))
+    return render(request,'login.html')

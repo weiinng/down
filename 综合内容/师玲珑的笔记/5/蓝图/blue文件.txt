@@ -1,0 +1,9 @@
+from flask import Flask
+from user import user_blue
+
+app=Flask(__name__)
+#注册蓝图 url_prefix后的参数意思是访问蓝图里的路由时网址前面要加上/user
+app.register_blueprint(user_blue,url_prefix='/user')
+
+if __name__=='__main__':
+	app.run()

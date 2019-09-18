@@ -1,0 +1,24 @@
+按照某个字段进行分组
+$group是所有聚合命令中用的最多的一个命令，用来将集合中的文档分组，可用于统计结果
+使用示例如下：
+db.stu.aggregate([{$group:{'_id':'$gender','counter':{$sum:1}}}])
+其中注意点：
+db.集合名.aggregate 是语法，所有的管道命令都需要写在其中
+_id表示分组的依据，按照哪个字段进行分组，需要使用$gender表示选择这个字段进行分组
+$sum:1 表示把每条数据作为1进行统计，统计的是该分组下面数据的条数
+
+group by null
+当我们需要统计整个文档的时候，$group的另一种用途就是把整个文档分为一组进行统计
+使用示例如下：
+db.stu.aggregate([{$group:{'_id':null,'counter':{$sum:1}}}])
+其中注意点：
+_id:null表示不指定分组的字段，即统计整个文档，此时获取的counter表示整个文档的个数
+
+数据透视
+正常情况在统计的不同性别的数据的时候，需要知道所有的name，需要逐条观察，如果通过某种方式把所有的name放在一起，那么此时就可以理解为数据透视
+使用示例如下：
+统计不同性别的学生：
+db.stu.aggregate({$group:{_id:null,name:{$push:'$name'}}})
+
+使用$$ROOT可以将整个文档放入数组中
+db.stu.aggregate({$group:{_id:null,all:{$push:'$$ROOT'}}})

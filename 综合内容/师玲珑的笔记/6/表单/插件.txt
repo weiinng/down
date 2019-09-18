@@ -1,0 +1,101 @@
+Django内置插件：
+
+TextInput(Input)
+NumberInput(TextInput)
+EmailInput(TextInput)
+URLInput(TextInput)
+PasswordInput(TextInput)
+HiddenInput(TextInput)
+Textarea(Widget)
+DateInput(DateTimeBaseInput)
+DateTimeInput(DateTimeBaseInput)
+TimeInput(DateTimeBaseInput)
+CheckboxInput
+Select
+NullBooleanSelect
+SelectMultiple
+RadioSelect
+CheckboxSelectMultiple
+FileInput
+ClearableFileInput
+MultipleHiddenInput
+SplitDateTimeWidget
+SplitHiddenDateTimeWidget
+SelectDateWidget
+
+
+
+
+
+————————————————————————————————————————
+
+# 单radio，值为字符串
+# user = fields.CharField(
+#     initial=2,
+#     widget=widgets.RadioSelect(choices=((1,'上海'),(2,'北京'),))
+# )
+ 
+# 单radio，值为字符串
+# user = fields.ChoiceField(
+#     choices=((1, '上海'), (2, '北京'),),
+#     initial=2,
+#     widget=widgets.RadioSelect
+# )
+ 
+# 单select，值为字符串
+# user = fields.CharField(
+#     initial=2,
+#     widget=widgets.Select(choices=((1,'上海'),(2,'北京'),))
+# )
+ 
+# 单select，值为字符串
+# user = fields.ChoiceField(
+#     choices=((1, '上海'), (2, '北京'),),
+#     initial=2,
+#     widget=widgets.Select
+# )
+ 
+# 多选select，值为列表
+# user = fields.MultipleChoiceField(
+#     choices=((1,'上海'),(2,'北京'),),
+#     initial=[1,],
+#     widget=widgets.SelectMultiple
+# )
+ 
+ 
+# 单checkbox
+# user = fields.CharField(
+#     widget=widgets.CheckboxInput()
+# )
+ 
+ 
+# 多选checkbox,值为列表
+# user = fields.MultipleChoiceField(
+#     initial=[2, ],
+#     choices=((1, '上海'), (2, '北京'),),
+#     widget=widgets.CheckboxSelectMultiple
+# )
+
+
+在使用选择标签时，需要注意choices的选项可以从数据库中获取，但是由于是静态字段 ***获取的值无法实时更新***，那么需要自定义构造方法从而达到此目的。
+
+from django.forms import Form
+from django.forms import widgets
+from django.forms import fields
+from django.core.validators import RegexValidator
+ 
+class MyForm(Form):
+ 
+    user = fields.ChoiceField(
+        # choices=((1, '上海'), (2, '北京'),),
+        initial=2,
+        widget=widgets.Select
+    )
+ 
+    def __init__(self, *args, **kwargs):
+        super(MyForm,self).__init__(*args, **kwargs)
+        # self.fields['user'].widget.choices = ((1, '上海'), (2, '北京'),)
+        # 或
+        self.fields['user'].widget.choices = models.Classes.objects.all().value_list('id','caption')
+
+

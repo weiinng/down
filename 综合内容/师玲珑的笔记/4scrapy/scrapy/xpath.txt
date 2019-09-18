@@ -1,0 +1,1 @@
+names=response.xpath("//tr[contains(@class,"odd") or contains(@class,"even")]")

@@ -1,0 +1,56 @@
+dataset=df.as_matrix() #将pandas转为np.ndarray
+
+
+list=data.tolist()  将数组转为list
+
+print(np.choose([1,2,3],[0,1,2,3,4]))   第一个是要筛选取的下标值 第二个是要取的内容
+
+randon_state=37   这是固定随机值  和random.seed() 一样
+
+raw_df=pd.read_csv(dataset_path,index_col=0)    以第一列的值做为行标签
+
+df=pd.read_csv(data_path,header=None)    header=None  将列标签变为下标值 0123
+
+l=pd.DataFrame([[1,2,3,4],[5,6,7,8]])
+l.to_csv('1.csv',index=False,encoding='utf-8')   写入csv
+
+特征是x的值
+标签是y 的值
+
+c=np.array([[1,2,3],[4,5,6],[7,8,9]]).ravel()
+c
+array([1, 2, 3, 4, 5, 6, 7, 8, 9])
+
+
+将pandas转为numpy的三种方法
+df.values
+df.as_matrix()
+np.array(df)
+
+dataset_X = encoder_set[:,:-1].astype(int)    将数组里的元素变为int类型
+
+
+
+data=np.random.normal(loc=10,scale=20,size=(1000*5))  #生成高斯分布数据，就是正太分布
+#里面还有参数loc=  是指定均值  scale= 指定标准差
+
+
+Python中的itertools.product（关键词：itertools/product）
+
+product(A, B)函数，返回A、B中的元素的笛卡尔积的元组。听起来有点绕，先看代码吧：
+
+import itertools
+itertools.product([1,2,3],[100,200])
+
+for item in itertools.product([1,2,3],[100,200]):
+
+	print(item)
+
+
+结果为:
+(1, 100)
+(1, 200)
+(2, 100)
+(2, 200)
+(3, 100)
+(3, 200)

@@ -1,0 +1,220 @@
+> 
+
+```python
+def index(request):
+    int_ = 123
+    float_ = 0.123 
+    str_ = 'str'
+    list_ = ['l','i','s','t']
+    tuple_ = ('t','u','p','l','e')
+    dict_ = {"key":"value"}
+    set_ = {'s','e','t'}
+    return render(request,"index.html",locals())
+```
+
+- `locals()`：该函数将当前作用域下的所有变量名和对应变量值组成字典，免去了我们构造存储字典的麻烦
+
+
+
+* 正确的对字典中键值对进行获取的方式是通过内置字典`items`属性：
+
+```jinja2
+{% for key,value in dict_.items %}
+    <p>{{ key }} {{ value}}</p>
+{% endfor %}
+
+
+{% for var in iterable %}
+	{{ forloop.counter }} <!--当前循环次数，从1开始计数 -->
+	{{ forloop.counter0 }} <!--当前循环次数，从0开始计数 -->
+	{{ forloop.revcounter }} <!--当前循环次数，从最大长度开始 -->
+	{{ forloop.revcounter0 }} <!--当前循环次数，从最大索引开始 -->
+	{{ forloop.first }} <!-- 判断是否为第一次循环 -->
+	{{ forloop.last }} <!-- 判断是否为第一次循环 -->
+	{{ forloop.parentloop }} <!-- 当循环嵌套时，访问上层循环的每个属性:forloop.counter,forloop.counter0,forloop.revcounter,forloop.revcounter0,forloop.first,forloop.last -->
+{% endfor %}
+
+* 通过`{% empty %}`标签判断迭代对象是否为空
+
+{% for var in test_list %}
+	{{ var }}
+{% empty %}
+	空空如也
+{% endfor %}
+
+如果list是空列表  页面展示空空如也，如果不是空列表，页面展示list里的元素，空空如也不显示
+
+————————————————————————————————————————
+### if 标签
+
+> 可以通过{% if %}标签语法来进行模板变量的值判断；
+>
+> 语法如下
+
+```jinja2
+{% if test_list %}
+    列表不为空
+{% elif test_dict %}
+    列表为空，字典不为空
+{% else %}
+	列表字典均为空
+{% endif %}
+
+——————————————————————————————————————————————
+{% comment %}
+	这里的内容会被忽略，相当于注释起来。
+{% endcomment %}
+
+————————————————————————————————————
+
+* 转义规则
+
+| 符号        | 转义规则 |
+| ----------- | ------------- |
+| <           | `&lt;`       |
+| >           | `&gt;`     |
+| '（单引号）   | `&#39;`  |
+| "（双引号）   | `&quot;` |
+| &           | `&amp;`    |
+
+——————————————————————————————————————————
+> 比如一个`<h1>`标签我们希望他真正展示出`h1`的样子，而不是一个朴素的`<h1>`字符串，那么就需要我们使用autoescape标签来进行防止转义处理
+
+```python
+str_ = "<h1>这是H1标签</h1>"
+```
+
+```jinja2
+{% autoescape on %}
+    {{ str_ }}         #原样展示
+{% endautoescape %}
+{% autoescape off %}
+    {{ str_ }}      #标签起效了
+{% endautoescape %}
+————————————————————————————————————————
+
+ cycle 标签、
+
+
+list_ = ['l','i','s','t'] # 视图定义的模板变量
+```
+
+```jinja2
+<style>
+    .red{
+        color:red;
+    }
+    .blue{
+        color:blue;
+    }
+</style>
+
+{% for var in list_ %}
+    <p class="{% cycle 'red' 'blue' as style %}">
+        {{ var }}
+    </p>
+{% endfor %}
+
+展示效果为
+l   红色
+i   蓝色
+s   红色
+t   蓝色
+
+————————————————————————————————————————
+ 某些时候，我们可能希望在使用一次`cycle`之后，接下来使用不是继续向后迭代取值，而是继续沿用这一次取到的值；
+>
+> 那么我们可以通过`as`语法给`cycle`标签取别名，在接下来需要沿用的地方直接使用别名作为模板变量即可，比如这样
+
+{% for var in list_ %}
+    <p class="{% cycle 'red' 'blue' as style %}">
+	a
+    </p>
+    <span class="{{ style }}">{{ style }}</span><br>
+{% endfor %}
+
+结果为：
+字体红色的：ared 
+字体为蓝色的：ablue
+字体红色的：ared 
+字体为蓝色的：ablue
+
+________________________________________________________________________________
+
+每一次循环取到的cycle其中的值，都可以通过别名style在这次循环区域中重复利用而不递进
+
+> 但是我们发现个问题，`as`语句本身在使用时也会造成对`cycle`中的数据进行一次取值，那有什么办法可以在第一次`as`语句出现时，我只做声明，而不是为了取值，`django`模板中提供了一个叫`silent`的属性，可以用来`as`命名时不进行取值动作
+
+{% for var in list_ %}
+    <p class="{% cycle 'red' 'blue' as style %}">
+	a
+    </p>
+    <span class="{{ style }}">{{ style }}</span><br>
+{% endfor %}
+正常颜色的：a 红色的：red
+正常颜色的：a 蓝色的：blue
+正常颜色的：a 红色的：red
+正常颜色的：a 蓝色的：blue
+
+————————————————————————————————————————————
+{% cycle 'red' 'blue' as style silent %}
+<h1>{{ style }}</h1>
+<h1>{{ style }}</h1>
+{% cycle style %}
+<h1>{{ style }}</h1>
+{% cycle style %}
+<h1>{{ style }}</h1>
+<h1>{{ style }}</h1>
+
+> 通过`silent`可以在初次定义时不进行取值，
+>
+> 接下来使用`cycle`所创建的迭代器，每次访问得到当前值，不会继续向后迭代；
+>
+> 如果希望取到下一个值，可以使用迭代器标签`{% style %}`，这次访问不会生产数据，但是会让迭代访问位置向后推进一次，在接下来`{{ style }}`使用将得到下一个值
+
+结果为：
+red
+red
+blue
+red
+red
+
+——————————————————————————————————————
+{% for var in list_ %}
+        <p class="{% cycle 'red' 'blue' as style %}">
+        a
+        </p>
+        <span class="{{ style }}">{{ style }}</span><br>
+        {% cycle style %}
+        <span class="{{ style }}">{{ style }}</span><br>
+    {% endfor %}
+
+结果为：
+正常颜色的:a 红色的:red 蓝色的:blue
+正常颜色的:a 红色的:red 蓝色的:blue
+正常颜色的:a 红色的:red 蓝色的:blue
+正常颜色的:a 红色的:red 蓝色的:blue
+
+——————————————————————————————————————
+{% for var in list_ %}
+        <p class="{% cycle 'red' 'blue' as style %}">
+        a
+        </p>
+        <span class="{{ style }}">{{ style }}</span><br>
+        <span class="{{ style }}">{{ style }}</span><br>
+    {% endfor %}
+
+结果为：
+正常颜色的:a 红色的:red 红色的:blue
+正常颜色的:a 蓝色的:red 蓝色的:blue
+正常颜色的:a 红色的:red 红色的:blue
+正常颜色的:a 蓝色的:red 蓝色的:blue
+
+
+——————————————————————————————————————————
+
+
+
+
+
+

@@ -1,0 +1,25 @@
+mongo  进入Mongo
+show dbs  展示出mongo里数据库有哪些
+db  显示当前数据库
+use admin 切换到admin这个数据库
+show collections 展示里面的集合 
+db.info.insert({'name':'zhangsan','age':20})   向当前数据库info列里插入这项数据
+db.info.find() 查询info里的数据
+db.dropDatabase() 删除当前的数据库
+ 
+mongodb集合的命令
+不手动创建集合：向不存在的集合中第一次加入数据时，集合会被创建出来
+手动创建集合：
+db.createCollection(name,options)
+db.createCollection('stu')
+db.createCollection('sub',{capped:true,size:10,max:10})
+size 是整个集合空间大小  单位为Kb
+max 是集合文档个数上限单位是 个
+参数capped :默认值为false表示不设置上限，值为true表示设置上限
+参数size:当capped值为true时，需要指定此参数，表示上限大小，当文档达到上限时，会将之前的数据覆盖
+
+查看集合：show collections
+删除集合:db.集合名称.drop()
+检查集合是否有上限：db.集合名.isCapped()
+db.stu.renameCollection('stu2') 将集合stu重命名为stu2
+

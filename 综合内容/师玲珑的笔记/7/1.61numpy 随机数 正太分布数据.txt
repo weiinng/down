@@ -1,0 +1,12 @@
+random 随机模块
+
+import numpy as np
+np.random.randint(10,30,size=(5,2)) 十到三十 之间随机数 五行两列
+np.random.seed(10)   随机种子 固定随机数 
+print（np.r_[]） 行相加（列数必须相同）
+print（np.c_[]） 列相加（行数必须相同）
+
+print(np.linspace(10,21,10))   #生成等分数据
+
+data4 = np.random.randn(100)  #生成一组 正太分布数据
+data5 = np.random.normal(loc=0,scale=1,size=(2000,3000))  #把均值为0 方差为1的数据分布称为标准正太分布数据

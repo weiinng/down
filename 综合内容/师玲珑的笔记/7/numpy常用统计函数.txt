@@ -1,0 +1,18 @@
+arr2=numpy.array(([1,2,3],[3,4,5],[5,6,7]))
+print(arr2,arr2.ndim)
+print('和为：%d'%numpy.sum(arr2))
+print('平均值为:%d'%numpy.mean(arr2))
+print('最大值为:%d'%numpy.max(arr2))
+print('最小值为:%d'%numpy.min(arr2))
+print('标准偏差为:%d'%numpy.std(arr2))
+print('方差为:%d'%numpy.var(arr2))
+
+[[1 2 3]
+ [3 4 5]
+ [5 6 7]] 2
+和为：36
+平均值为:4
+最大值为:7
+最小值为:1
+标准偏差为:1
+方差为:3

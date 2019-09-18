@@ -1,0 +1,66 @@
+MIDDLEWARE_CLASSES = (
+    'django.contrib.sessions.middleware.SessionMiddleware',
+	...
+)
+
+def set_session(request):
+    request.session['h1']='hello'
+    request.session.set_expiry(20)
+    return HttpResponse('写session%s'%request.session.get_expiry_age())
+
+def get_session(request):
+    s=request.session.get('h1')
+    return HttpResponse('%s'%s)
+
+def del_session(request):
+    del request.session['h1']
+    return HttpResponse('删除session')
+
+
+#### 设置有效期
+
+- `request.session.set_expiry(value)`：设置Session的有效时间。
+
+  > `value`：有效时间。
+  >
+  > **为整数时**：将在value为秒单位之后过期
+  >
+  > **为0时**：将在用户关闭浏览器之后过期。
+  >
+  > **为None时**：使用全局过期的设置，默认为两个星期，14天。
+  >
+  > **为datetime时**：在这个指定时间后过期。
+
+- ` request.session.get_expiry_age()`
+
+  > 返回距离过期还剩下的秒数。
+
+- `request.session.clear_expired()`
+
+  > 清除过期的`Session`会话。
+
+
+#### 删除Session
+
+- `del request.seesion[Key]`
+
+  > 删除对应session，`Key`值不存在时，引发`KeyError`
+
+- `request.session.clear()`
+
+  > 清空`Session`中的所有数据。这里客户端还会保留`sessionid`
+  >
+  > 只不过在服务端`sessionid`对应的数据没有了。
+
+- `request.session.flush()`
+
+  > 直接删除当前客户端的的Seesion数据。这里不光服务端sessionid对应的数据没有了，客户端的sessionid也会被删除
+
+
+#### Session删除总结
+
+> 使用的是`del`的针对性删除方式，这样不会将整个客户端的`session`删除掉
+>
+> 使用`request.session.clear()`，只是清空了服务端`Session`中的数据，但是客户端的`Cookie`中还会保存`sessionid`，只不过这个值对应的字符串所对应的用户数据是一个空
+>
+> 使用`request.session.flush()`，那么客户端`Cookie`中保存的`sessionid`首先会被删除，其次服务端通过`sessionid`值保存的用户数据也会被全部删除。

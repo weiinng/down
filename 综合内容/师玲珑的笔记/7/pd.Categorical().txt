@@ -1,0 +1,40 @@
+st = ['a','a','b','c','c']
+
+
+ss = pd.Categorical(st)
+
+
+
+ss
+
+
+[a, a, b, c, c]
+
+Categories (3, object): [a, b, c]
+
+
+
+In [22]: ss.dtype
+
+Out[22]: CategoricalDtype(categories=['a', 'b', 'c'], ordered=False)
+
+
+
+
+
+这里就可以看到 categorical  实际上是计算一个列表型数据中的类别数，即不重复项，它返回的是一个CategoricalDtype 类型的对象，相当于在原来数据上附加上类别信息 ，
+具体的类别可以通过和对应的序号可以通过  codes  和 categories 来查看：
+
+
+
+
+In [23]: ss.codes
+
+
+Out[23]: array([0, 0, 1, 2, 2], dtype=int8)
+
+
+In [21]: ss.categories
+
+
+Out[21]: Index(['a', 'b', 'c'], dtype='object')

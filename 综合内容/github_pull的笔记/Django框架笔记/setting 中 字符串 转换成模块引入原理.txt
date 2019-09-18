@@ -1,0 +1,25 @@
+# settings.py
+class Foo:
+	ADD = true
+	DEL = true
+
+
+# xx.py
+# 提供一个字符串形式的类的路径，找到这个类
+impory importlib
+
+path = "settings.Foo"
+
+p,c = path,rsplit(".",maxsplit=1)
+m = importlib.import_module(p)
+cls = getattr(m,c)
+
+# 如何找到这个类中的所有大写字段的属性
+
+for key in dir(cls):
+	if key.isupper():
+		print(key,getattr(cls,key))
+
+
+
+# django 的中间件就是通过这个原理来完成的 

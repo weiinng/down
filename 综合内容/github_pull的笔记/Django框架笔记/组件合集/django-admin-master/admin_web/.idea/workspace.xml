@@ -1,0 +1,1036 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="e2093fd2-f7bb-4398-bb5c-c2913eceb7cc" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/../.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/jsLinters/jshint.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin_a/migrations/0007_auto_20190206_0224.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/king_admin/migrations/0001_initial.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/king_admin/migrations/0002_auto_20190205_0732.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/king_admin/migrations/0003_auto_20190206_0224.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/fixed_page.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/index_base.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/login.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/rbac/base.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/rbac/menu.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/rbac/roles.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/rbac/test.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/rbac/users.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/test.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../TmSccity_models" beforeDir="false" afterPath="$PROJECT_DIR$/../../TmSccity_models" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../page_demo/app01/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../page_demo/app01/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../stark/service/stark.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../stark/service/stark.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../python_笔记/django知识点备注.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../python_笔记/django知识点备注.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../python_笔记/python知识点备注.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../python_笔记/python知识点备注.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../爬虫笔记/github corf验证实例.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../爬虫笔记/爬抽屉 初次登陆cookie 携带实例.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../爬虫笔记/爬拉钩 自定义的请求头参数 携带实例.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../爬虫笔记/爬虫 笔记.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../爬虫笔记/爬虫 笔记.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../面试题/其他面试题集合.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../面试题/其他面试题集合.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../面试题/并发，网络编程相关.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../面试题/并发，网络编程相关.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../面试题/数据库 相关.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../面试题/数据库 相关.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../面试题/爬虫 相关.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../面试题/爬虫 相关.py" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/admin_web$running.coverage" NAME="running Coverage Results" MODIFIED="1505893469122" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../smcsystem_0.1.2/smcsystem/client" />
+    <SUITE FILE_PATH="coverage/admin_web$a.coverage" NAME="a Coverage Results" MODIFIED="1501730289958" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../web_api" />
+    <SUITE FILE_PATH="coverage/admin_web$tes.coverage" NAME="tes Coverage Results" MODIFIED="1503565237193" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../smcsystem_0.1.2/smcsystem/client" />
+    <SUITE FILE_PATH="coverage/admin_web$ii.coverage" NAME="ii Coverage Results" MODIFIED="1510822335673" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../web_api" />
+    <SUITE FILE_PATH="coverage/admin_web$test_baidu.coverage" NAME="test_baidu Coverage Results" MODIFIED="1506736044959" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../web_api" />
+    <SUITE FILE_PATH="coverage/admin_web$pc.coverage" NAME="pc Coverage Results" MODIFIED="1506326172744" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../web_api" />
+    <SUITE FILE_PATH="coverage/admin_web$gethostdisk.coverage" NAME="gethostdisk Coverage Results" MODIFIED="1503562137768" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../smcsystem_0.1.2/smcsystem/filing/management/commands" />
+    <SUITE FILE_PATH="coverage/admin_web$reqst.coverage" NAME="reqst Coverage Results" MODIFIED="1506388135197" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../web_api" />
+    <SUITE FILE_PATH="coverage/admin_web$1.coverage" NAME="1 Coverage Results" MODIFIED="1506409050511" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../web_api" />
+    <SUITE FILE_PATH="coverage/admin_web$1__1_.coverage" NAME="1 (1) Coverage Results" MODIFIED="1506421181128" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../web_api/pc" />
+    <SUITE FILE_PATH="coverage/admin_web$views.coverage" NAME="views Coverage Results" MODIFIED="1505370193539" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../smcsystem_0.1.2/smcsystem/filing" />
+    <SUITE FILE_PATH="coverage/admin_web$smcapi.coverage" NAME="smcapi Coverage Results" MODIFIED="1501745371984" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../smcsystem/client" />
+    <SUITE FILE_PATH="coverage/admin_web$a__1_.coverage" NAME="a (1) Coverage Results" MODIFIED="1501758152614" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../smcsystem/client" />
+    <SUITE FILE_PATH="coverage/admin_web$tags.coverage" NAME="tags Coverage Results" MODIFIED="1502690877684" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../smcsystem_0.1.2/smcsystem/king_admin/templatetags" />
+    <SUITE FILE_PATH="coverage/admin_web$e.coverage" NAME="e Coverage Results" MODIFIED="1507876017139" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../web_api" />
+    <SUITE FILE_PATH="coverage/admin_web$zabbix_api.coverage" NAME="zabbix_api Coverage Results" MODIFIED="1502260868580" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../smcsystem_0.1.2/smcsystem/filing" />
+    <SUITE FILE_PATH="coverage/admin_web$dload.coverage" NAME="dload Coverage Results" MODIFIED="1506391501858" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../web_api" />
+    <SUITE FILE_PATH="coverage/admin_web$decoder.coverage" NAME="decoder Coverage Results" MODIFIED="1506673392416" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="C:/Python/Lib/json" />
+    <SUITE FILE_PATH="coverage/admin_web$sss.coverage" NAME="sss Coverage Results" MODIFIED="1500448140965" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/admin_web$sun.coverage" NAME="sun Coverage Results" MODIFIED="1510822644662" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../web_api" />
+    <SUITE FILE_PATH="coverage/admin_web$aaa.coverage" NAME="aaa Coverage Results" MODIFIED="1503651730330" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../smcsystem_0.1.2/smcsystem/filing" />
+    <SUITE FILE_PATH="coverage/admin_web$get_info.coverage" NAME="get_info Coverage Results" MODIFIED="1501741294499" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../smcsystem/client" />
+    <SUITE FILE_PATH="coverage/admin_web$cron.coverage" NAME="cron Coverage Results" MODIFIED="1503972781401" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../smcsystem_0.1.2/smcsystem/client" />
+    <SUITE FILE_PATH="coverage/admin_web$dict_test.coverage" NAME="dict_test Coverage Results" MODIFIED="1510217980593" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../web_api" />
+    <SUITE FILE_PATH="coverage/admin_web$settings.coverage" NAME="settings Coverage Results" MODIFIED="1505377900078" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../smcsystem_0.1.2/smcsystem/client" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="db" type="feb32156:DbDataSourceImpl" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="db" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="db" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="main: schema" type="90513b60:SqliteImplModel$Schema" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
+  </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="268545570">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="3" />
+          <entry key="project.open.time.1" value="1" />
+          <entry key="project.open.time.3" value="1" />
+          <entry key="project.open.time.42" value="1" />
+          <entry key="project.open.time.5" value="1" />
+          <entry key="project.opened" value="4" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="admin_a_author" value="1" />
+          <entry key="admin_a_book" value="1" />
+          <entry key="admin_a_book_authors" value="1" />
+          <entry key="admin_a_direction" value="2" />
+          <entry key="admin_a_ip_host" value="2" />
+          <entry key="admin_a_publish" value="1" />
+          <entry key="admin_a_userinfo" value="4" />
+          <entry key="admin_a_userinfo_tags" value="1" />
+          <entry key="auth_group" value="2" />
+          <entry key="auth_group_permissions" value="2" />
+          <entry key="auth_permission" value="1" />
+          <entry key="auth_user" value="1" />
+          <entry key="auth_user_groups" value="1" />
+          <entry key="auth_user_user_permissions" value="1" />
+          <entry key="css" value="1" />
+          <entry key="django_content_type" value="1" />
+          <entry key="html" value="48" />
+          <entry key="king_admin_control" value="2" />
+          <entry key="king_admin_group" value="2" />
+          <entry key="king_admin_group_to_control" value="2" />
+          <entry key="king_admin_role" value="1" />
+          <entry key="king_admin_user" value="1" />
+          <entry key="king_admin_userinfo" value="2" />
+          <entry key="king_admin_userinfo_to_control" value="2" />
+          <entry key="king_admin_userinfo_to_group" value="2" />
+          <entry key="py" value="108" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="CSS" value="1" />
+          <entry key="Database Element" value="36" />
+          <entry key="HTML" value="48" />
+          <entry key="Python" value="108" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="cell" value="35" />
+          <entry key="dummy" value="12" />
+          <entry key="py" value="568" />
+          <entry key="py@admin_web" value="50" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="CommandLine" value="12" />
+          <entry key="PLAIN_TEXT" value="50" />
+          <entry key="Python" value="568" />
+          <entry key="Scratch" value="35" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/admin_a/admin.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="247">
+              <caret line="28" column="43" selection-start-line="28" selection-start-column="43" selection-end-line="28" selection-end-column="43" />
+              <folding>
+                <element signature="e#0#32#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/admin_web/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="23" column="45" selection-start-line="23" selection-start-column="45" selection-end-line="23" selection-end-column="45" />
+              <folding>
+                <element signature="e#643#684#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/king_admin/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="110">
+              <caret line="5" column="30" selection-start-line="5" selection-start-column="30" selection-end-line="5" selection-end-column="30" />
+              <folding>
+                <element signature="e#1#42#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/king_admin/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="79">
+              <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+              <folding>
+                <element signature="e#0#59#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+        <option value="HTML File" />
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>command</find>
+      <find>data_handle</find>
+      <find>data_handle_last</find>
+      <find>未尽到管理义务</find>
+      <find>昵称</find>
+      <find>EDP</find>
+      <find>DEPTH_LIMIT</find>
+      <find>EXTENSIONS</find>
+      <find>MypcItem</find>
+      <find>Chouti</find>
+      <find>sun_web</find>
+      <find>jump</find>
+      <find>ChoutitiPipeline</find>
+      <find>request.session</find>
+      <find>返回</find>
+      <find>THIS_YEAR</find>
+      <find>left</find>
+      <find>salt</find>
+      <find>INSTALLED_APPS</find>
+      <find>CRONJOBS</find>
+      <find>ch</find>
+      <find>last_week</find>
+      <find>cal</find>
+      <find>get_uri</find>
+      <find>page_number</find>
+      <find>note_field</find>
+      <find>one_field</find>
+      <find>url</find>
+      <find>session</find>
+      <find>get_str</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../.." />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/../smcsystem_0.1.2/smcsystem/king_admin/urls.py" />
+        <option value="$PROJECT_DIR$/../smcsystem_0.1.2/smcsystem/templates/avail/gz_chart.html" />
+        <option value="$PROJECT_DIR$/../smcsystem_0.1.2/smcsystem/templates/avail/year_chart.html" />
+        <option value="$PROJECT_DIR$/../smcsystem_0.1.2/smcsystem/smcsystem/settings.py" />
+        <option value="$PROJECT_DIR$/../smcsystem_0.1.2/smcsystem/templates/command.html" />
+        <option value="$PROJECT_DIR$/../smcsystem_0.1.2/smcsystem/README" />
+        <option value="$PROJECT_DIR$/../smcsystem_0.1.2/smcsystem/filing/views.py" />
+        <option value="$PROJECT_DIR$/../smcsystem_0.1.2/smcsystem/filing/models.py" />
+        <option value="$PROJECT_DIR$/../smcsystem_0.1.2/smcsystem/king_admin/king_admin.py" />
+        <option value="$PROJECT_DIR$/../smcsystem_0.1.2/smcsystem/client/running.py" />
+        <option value="$PROJECT_DIR$/../smcsystem_0.1.2/smcsystem/client/settings.py" />
+        <option value="$PROJECT_DIR$/../web_api/pc.py" />
+        <option value="$PROJECT_DIR$/../web_api/reqst.py" />
+        <option value="$PROJECT_DIR$/../web_api/dload.py" />
+        <option value="$PROJECT_DIR$/../web_api/1.py" />
+        <option value="$PROJECT_DIR$/../web_api/pc/1.py" />
+        <option value="$PROJECT_DIR$/../web_api/pc/mypc/mypc/md.py" />
+        <option value="$PROJECT_DIR$/../web_api/pc/mypc/md.py" />
+        <option value="$PROJECT_DIR$/../web_api/pc/mypc/mypc/spiders/chouti.py" />
+        <option value="$PROJECT_DIR$/../web_api/pc/mypc/mypc/items.py" />
+        <option value="$PROJECT_DIR$/../web_api/pc/mypc/mypc/settings.py" />
+        <option value="$PROJECT_DIR$/../web_api/test_baidu.py" />
+        <option value="$PROJECT_DIR$/../web_api/pc/mypc/mypc/spiders/a1024.py" />
+        <option value="$PROJECT_DIR$/../web_api/pc/mypc/mypc/pipelines.py" />
+        <option value="$PROJECT_DIR$/../web_api/pc/mypc/mypc/spiders/a7788.py" />
+        <option value="$PROJECT_DIR$/../smcsystem_0.1.2/smcsystem/salt_need_file/command_salt.py" />
+        <option value="$PROJECT_DIR$/../web_api/e.py" />
+        <option value="$PROJECT_DIR$/../web_api/dict_test.py" />
+        <option value="$PROJECT_DIR$/../smcsystem_0.1.2/smcsystem/templates/avail/index.html" />
+        <option value="$PROJECT_DIR$/../web_api/ii.py" />
+        <option value="$PROJECT_DIR$/../web_api/sun.py" />
+        <option value="$PROJECT_DIR$/../smcsystem_0.1.2/smcsystem/king_admin/views.py" />
+        <option value="$PROJECT_DIR$/../smcsystem_0.1.2/smcsystem/templates/king/king_table_change.html" />
+        <option value="$PROJECT_DIR$/../smcsystem_0.1.2/smcsystem/avail/views.py" />
+        <option value="$PROJECT_DIR$/../smcsystem_0.1.2/smcsystem/templates/settings.html" />
+        <option value="$PROJECT_DIR$/../smcsystem_0.1.2/smcsystem/templates/index_base.html" />
+        <option value="$PROJECT_DIR$/../smcsystem_0.1.2/smcsystem/avail/urls.py" />
+        <option value="$PROJECT_DIR$/templates/king/king_table_change.html" />
+        <option value="$PROJECT_DIR$/king_admin/permission_list.py" />
+        <option value="$PROJECT_DIR$/king_admin/admin.py" />
+        <option value="$PROJECT_DIR$/king_admin/rbac_check.py" />
+        <option value="$PROJECT_DIR$/admin_web/settings.py" />
+        <option value="$PROJECT_DIR$/admin_a/urls.py" />
+        <option value="$PROJECT_DIR$/king_admin/permission.py" />
+        <option value="$PROJECT_DIR$/king_admin/models.py" />
+        <option value="$PROJECT_DIR$/admin_a/views.py" />
+        <option value="$PROJECT_DIR$/admin_web/urls.py" />
+        <option value="$PROJECT_DIR$/admin_a/models.py" />
+        <option value="$PROJECT_DIR$/king_admin/king_admin.py" />
+        <option value="$PROJECT_DIR$/admin_a/admin.py" />
+        <option value="$PROJECT_DIR$/king_admin/views.py" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths>
+      <path value="$PROJECT_DIR$/static/bootstrap/bootstrap-3.3.7/package.json" />
+    </packageJsonPaths>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="121" />
+    <option name="y" value="137" />
+    <option name="width" value="1460" />
+    <option name="height" value="790" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <showMembers ProjectPane="true" />
+      <autoscrollToSource ProjectPane="false" />
+      <autoscrollFromSource ProjectPane="true" />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="admin_web" type="b2602c69:ProjectViewProjectNode" />
+              <item name="admin_web" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="admin_web" type="b2602c69:ProjectViewProjectNode" />
+              <item name="admin_web" type="462c0819:PsiDirectoryNode" />
+              <item name="admin_a" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="admin_web" type="b2602c69:ProjectViewProjectNode" />
+              <item name="admin_web" type="462c0819:PsiDirectoryNode" />
+              <item name="admin_web" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="admin_web" type="b2602c69:ProjectViewProjectNode" />
+              <item name="admin_web" type="462c0819:PsiDirectoryNode" />
+              <item name="king_admin" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="admin_web" type="b2602c69:ProjectViewProjectNode" />
+              <item name="admin_web" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="admin_web" type="b2602c69:ProjectViewProjectNode" />
+              <item name="admin_web" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="king" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://C:/Users/李伟杰/PycharmProjects/smcsystem_0.1.2/smcsystem/avail/urls.py" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="database.console.LAST_STATE" value="false" />
+    <property name="last_opened_file_path" value="E:/Python全栈9期（第10部分）：CRM系统/day96上/crm_s9" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\李伟杰\PycharmProjects\smcsystem_0.1.2\smcsystem\filing\management\commands" />
+      <recent name="C:\Users\李伟杰\PycharmProjects\smcsystem_0.1.2\smcsystem\statics\charts\code" />
+      <recent name="C:\Users\李伟杰\PycharmProjects\admin_web\king_admin" />
+      <recent name="C:\Users\李伟杰\PycharmProjects\admin_web\templates\king" />
+      <recent name="C:\Users\李伟杰\PycharmProjects\admin_web" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\note\Django框架笔记\组件合集\django-admin-master\admin_web\templates" />
+      <recent name="C:\Users\李伟杰\PycharmProjects\smcsystem_0.1.2\smcsystem\templates" />
+      <recent name="C:\Users\李伟杰\PycharmProjects\smcsystem_0.1.2\smcsystem\statics\imgcode" />
+      <recent name="C:\Users\李伟杰\PycharmProjects\smcsystem_0.1.2\smcsystem\salt_need_file" />
+      <recent name="C:\Users\李伟杰\PycharmProjects\web_api\pc\mypc" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Django server.admin_web">
+    <configuration name="index_base.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/admin_web/templates/index_base.html">
+      <method v="2" />
+    </configuration>
+    <configuration name="king.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/admin_web/templates/king/king.html">
+      <method v="2" />
+    </configuration>
+    <configuration name="dict_test" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="web_api" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../web_api" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../web_api/dict_test.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="ii" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="web_api" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../web_api" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../web_api/ii.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="sun" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="web_api" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../web_api" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../web_api/sun.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="admin_web" type="Python.DjangoServer" factoryName="Django server">
+      <module name="admin_web" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="DJANGO_SETTINGS_MODULE" value="admin_web.settings" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8001" />
+      <option name="host" value="" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="http://127.0.0.1:8001/" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="smc" type="Python.DjangoServer" factoryName="Django server" activateToolWindowBeforeRun="false">
+      <module name="smcsystem" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="DJANGO_SETTINGS_MODULE" value="smcsystem.settings" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Python\python.exe" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="0.0.0.0" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="http://127.0.0.1:8000/" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Unittests">
+      <module name="admin_web" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;.&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Django server.smc" />
+      <item itemvalue="Django server.admin_web" />
+      <item itemvalue="JavaScript Debug.king.html" />
+      <item itemvalue="Python.dict_test" />
+      <item itemvalue="Python.ii" />
+      <item itemvalue="Python.sun" />
+      <item itemvalue="JavaScript Debug.index_base.html" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.index_base.html" />
+        <item itemvalue="JavaScript Debug.king.html" />
+        <item itemvalue="Python.sun" />
+        <item itemvalue="Python.ii" />
+        <item itemvalue="Python.dict_test" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e2093fd2-f7bb-4398-bb5c-c2913eceb7cc" name="Default" comment="" />
+      <created>1499150946030</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1499150946030</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="97" y="110" width="1168" height="632" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.3243243" />
+      <window_info id="Structure" order="1" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3289689" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.38655463" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39934534" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.3289689" />
+      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Python Console" order="9" weight="0.3289689" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.3548387" />
+      <window_info anchor="bottom" id="Database Console" order="11" weight="0.32991204" />
+      <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="13" weight="0.32991204" />
+      <window_info anchor="bottom" id="manage.py@admin_web" order="14" weight="0.32991204" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Database" order="3" visible="true" weight="0.26576576" />
+      <window_info anchor="right" id="Data View" order="4" weight="0.32980332" />
+      <window_info anchor="right" id="SciView" order="5" />
+    </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.29742032" />
+      <window_info id="Structure" order="1" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3289689" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.40589198" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39934534" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.3289689" />
+      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Python Console" order="9" weight="0.3289689" />
+      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.06710311" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Database" order="3" />
+      <window_info anchor="right" id="Data View" order="4" weight="0.32980332" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="das://4cadfc79-dab7-4c79-b316-a7427fdd089f/schema/main/table/auth_group">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://4cadfc79-dab7-4c79-b316-a7427fdd089f/schema/main/table/admin_a_direction">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/king_admin/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/king_admin/apps.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="3" column="26" lean-forward="true" selection-start-line="3" selection-start-column="26" selection-end-line="3" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin_web/wsgi.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/king/king.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="233">
+          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://4cadfc79-dab7-4c79-b316-a7427fdd089f/schema/main/table/king_admin_userinfo_to_group">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://4cadfc79-dab7-4c79-b316-a7427fdd089f/schema/main/table/king_admin_userinfo_to_control">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://4cadfc79-dab7-4c79-b316-a7427fdd089f/schema/main/table/king_admin_userinfo">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://4cadfc79-dab7-4c79-b316-a7427fdd089f/schema/main/table/king_admin_group_to_control">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://4cadfc79-dab7-4c79-b316-a7427fdd089f/schema/main/table/king_admin_group">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://4cadfc79-dab7-4c79-b316-a7427fdd089f/schema/main/table/king_admin_control">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://E:/python/Lib/site-packages/django/urls/resolvers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="357" column="16" lean-forward="true" selection-start-line="357" selection-start-column="16" selection-end-line="357" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://E:/python/Lib/site-packages/django/urls/base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="222">
+          <caret line="26" column="37" lean-forward="true" selection-start-line="26" selection-start-column="33" selection-end-line="26" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/king_admin/custom_perm_logic.py" />
+    <entry file="das://4cadfc79-dab7-4c79-b316-a7427fdd089f/schema/main/table/king_admin_role">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://4cadfc79-dab7-4c79-b316-a7427fdd089f/schema/main/table/king_admin_user">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/king/king_table_delete.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/test.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="8" column="35" lean-forward="true" selection-start-line="8" selection-start-column="35" selection-end-line="8" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/fixed_page.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="181">
+          <caret line="35" column="41" selection-start-line="35" selection-start-column="41" selection-end-line="35" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/rbac/test.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="20" column="7" lean-forward="true" selection-start-line="20" selection-start-column="7" selection-end-line="20" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/rbac/users.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="13" column="23" lean-forward="true" selection-start-line="13" selection-start-column="23" selection-end-line="13" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/rbac/roles.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/rbac/menu.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/rbac/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="8" column="11" lean-forward="true" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="16" column="23" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/king_admin/permission.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="49">
+          <caret line="7" column="24" lean-forward="true" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin_a/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="8" column="1" lean-forward="true" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/king_admin/form.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="10" column="23" selection-start-line="10" selection-start-column="15" selection-end-line="10" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#34#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="10" column="14" lean-forward="true" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/king_admin/tests.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin_a/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="313">
+          <caret line="72" lean-forward="true" selection-start-line="72" selection-end-line="72" />
+          <folding>
+            <element signature="e#0#49#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/king_admin/rbac_check.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="8" column="25" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin_a/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin_web/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="62" column="20" lean-forward="true" selection-start-line="62" selection-start-column="20" selection-end-line="62" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin_web/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/king_admin/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="946">
+          <caret line="43" lean-forward="true" selection-start-line="43" selection-end-line="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/king_admin/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="12" column="3" lean-forward="true" selection-start-line="12" selection-start-column="3" selection-end-line="12" selection-end-column="3" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/king_admin/king_admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="248">
+          <caret line="123" lean-forward="true" selection-start-line="123" selection-end-line="123" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+            <element signature="e#875#1927#0" />
+            <element signature="e#3408#3437#0" />
+            <element signature="e#3470#3523#0" />
+            <element signature="e#3651#3958#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/index_base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="277">
+          <caret line="48" column="14" lean-forward="true" selection-start-line="48" selection-start-column="14" selection-end-line="48" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/king/king_table_add.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="29" column="15" selection-start-line="29" selection-start-column="15" selection-end-line="29" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/king/king_table.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="11" column="34" selection-start-line="11" selection-start-column="34" selection-end-line="11" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/king/king_base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="3" column="14" lean-forward="true" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://4cadfc79-dab7-4c79-b316-a7427fdd089f/schema/main/table/admin_a_book_authors">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://4cadfc79-dab7-4c79-b316-a7427fdd089f/schema/main/table/admin_a_author">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://4cadfc79-dab7-4c79-b316-a7427fdd089f/schema/main/table/admin_a_book">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin_a/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="28" column="43" selection-start-line="28" selection-start-column="43" selection-end-line="28" selection-end-column="43" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://4cadfc79-dab7-4c79-b316-a7427fdd089f/schema/main/table/admin_a_publish">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/king_admin/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="5" column="30" selection-start-line="5" selection-start-column="30" selection-end-line="5" selection-end-column="30" />
+          <folding>
+            <element signature="e#1#42#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin_web/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="23" column="45" selection-start-line="23" selection-start-column="45" selection-end-line="23" selection-end-column="45" />
+          <folding>
+            <element signature="e#643#684#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/king_admin/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="79">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#59#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

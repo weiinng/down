@@ -1,0 +1,10 @@
+首先切换路径 到一个包里
+cd _scrapy
+创建一个工程
+scrapy startproject myspider (这是工程名)
+创建爬虫
+首先啊要切换到这个工程里
+cd myspider
+再在这里面创建爬虫
+scrapy genspider itcast itcast.cn
+启动命令：scrapy crawl itcast (itcast是爬虫的名字  自己起的)

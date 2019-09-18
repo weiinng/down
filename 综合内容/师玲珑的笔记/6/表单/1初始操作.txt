@@ -1,0 +1,54 @@
+在app目录下新建一个forms.py文件，在这个文件里编写django自带表单类的代码
+
+forms.py:
+
+from django import forms
+
+class TestForm(forms.Form):
+	name=forms.CharField(label='名字',max_length=100)
+
+在这个表单类中，设置了一个CharField字段，并且具有label标签值为name 
+
+
+views.py:
+from myapp import forms
+def index(request):
+	form=forms.TestForm()
+	return render(request,'index.html',locals())
+
+html:
+<form method='POST'>
+	{%csrf_form%}
+	{{form.name}}
+</form>
+
+页面展示效果相当于：
+<input type='text' name='name'>
+
+如果你html里写的是{{form}}
+页面展示效果相当于:
+姓名:<input type='text' name='name'>
+
+
+可以在views.py的视图函数里获取表单里的值
+def one(request):
+	form=forms.One()
+	if request.method=='POST':
+		name=request.POST.get('name')
+	return render(request,'one.html',locals())
+
+
+————————————————————————————————————————
+
+is_valid 和 clean
+
+def one(request):
+	form=forms.One()
+	if request.method=='POST':
+		user_input=forms.One(request.POST)   #获取表单提交的数据
+		if user_input.is_valid():		#验证全部数据是否符合要求
+			data=user_input.clean()		#如果符合 获取所有的值，结果是字典
+		else:
+			error_msg=user_input.errors #不符合获取错误
+	return render(request,'one.html',locals())
+

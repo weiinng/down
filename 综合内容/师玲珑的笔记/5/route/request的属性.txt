@@ -1,0 +1,23 @@
+request就是flask中代表当前请求的request对象，期中一个请求上下文变量（理解成全局变量，在视图函数中直接使用可以取到当前本次请求）
+属性		说明					类型
+data		记录请求的数据，并转换为字符串		*
+form		记录请求中的表单数据			MultiDict
+args		记录请求中的查询参数			MultiDict
+cookies		记录请求中的cookie信息			Dict
+headers		记录请求中的报文头			EnvironHeaders
+method		记录请求使用的HTTP方法			GET/POST
+url		记录请求的URL地址			string
+files		记录请求上传的文件			*
+
+Request.Form：获取以POST方式提交的数据（接收Form提交来的数据）；
+Request.QueryString：获取地址栏参数(以GET方式提交的数据)
+Request：包含以上两种方式(优先获取GET方式提交的数据)，它会在QueryString、Form、ServerVariable中都搜寻一遍。
+
+requests模块发送请求有data、params两种携带参数的方法。
+
+params在get请求中使用，data在post请求中使用。params是往url后面添加参数，data是指POST请求传入的字典或对象
+
+
+
+
+

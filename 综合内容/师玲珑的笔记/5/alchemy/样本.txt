@@ -1,0 +1,79 @@
+from flask_sqlalchemy import SQLAlchemy
+from flask import Flask
+
+app=Flask(__name__)
+
+app.config['SQLALCHEMY_DATABASE_URI']='mysql://root:qwq@localhost/buy'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
+db=SQLAlchemy(app)
+
+#数据库的模型，需要继承db.Model
+class Role(db.Model):
+    #定义数据库表名
+    __tablename__='roles'
+    #定义字段，db.Column表示是一个字段
+    id=db.Column(db.Integer,primary_key=True)
+    name=db.Column(db.String(16),unique=True)
+    #表示Role和User模型发生了关联，增加了一个users属性，User模型里增加了一个role属性，但都是隐藏的
+    #backref='role' 表示role是User要用的属性
+    users=db.relationship('User',backref='role')
+
+    # repr()方法=>当你查询隐藏字段的时候显示一个可读字符串,
+    def __repr__(self):
+        return '<Role:%s %s>'%(self.name,self.id)
+
+class User(db.Model):
+    #定义表名
+    __tablename__='users'
+    #定义一个字段，字段名为id,类型为int,为主键
+    id=db.Column(db.Integer,primary_key=True)
+    name=db.Column(db.String(16),unique=True)
+    email=db.Column(db.String(32),unique=True)
+    password=db.Column(db.String(32))
+    #db.ForeignKey('roles.id') 表示外键， 表名.id
+    role_id=db.Column(db.Integer,db.ForeignKey('roles.id'))
+    #User希望有role属性，但这个属性的定义，需要在另一个模型中定义
+
+    def __repr__(self):
+        return '<User:%s %s %s %s'%(self.name,self.id,self.email,self.password)
+
+@app.route('/')
+def a():
+    return 'a'
+
+if __name__ == '__main__':
+    #删除表
+    db.drop_all()
+    #创建表
+    db.create_all()
+
+    ro1=Role(name='admin')
+    ro2=Role(name='user')
+
+    u1=User(name='王',email='wang@',password='wang',role_id=1)
+    u2=User(name='张',email='zhang@',password='zhang',role_id=2)
+    u3=User(name='陈',email='chen@',password='chen',role_id=1)
+    u4=User(name='周',email='zhou@',password='zhou',role_id=2)
+    u5=User(name='唐',email='tang@',password='tang',role_id=1)
+    u6=User(name='吴',email='wu@',password='wu',role_id=2)
+    u7=User(name='钱',email='qian@',password='qian',role_id=1)
+    u8=User(name='刘',email='liu@',password='liu',role_id=2)
+    u9=User(name='关',email='guan@',password='guan',role_id=1)
+    u10=User(name='马',email='ma@',password='ma',role_id=2)
+
+    db.session.add_all([ro1,ro2,u1,u2,u3,u4,u5,u6,u7,u8,u9,u10])
+    db.session.commit()
+    # l=Role.query.get(1)    #获取roles表id为1的数据
+    # r=User.query.get(l.id)   #获取users表里id为roles表id为1的数据
+    # print(r)
+
+    l=User.query.filter(User.name=='钱').first()
+    r=Role.query.filter(Role.id==l.role_id).first()
+    print(r.name)
+
+
+    # list=User.query.filter(User.password.startswith('z')).all()
+    # for x in list:
+    #     print(x)
+
+    app.run(debug=True)

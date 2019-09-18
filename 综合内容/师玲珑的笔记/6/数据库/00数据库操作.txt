@@ -1,0 +1,169 @@
+在你的项目下的__init__里
+import pymysql
+pymysql.install_as_MySQLdb()
+
+settings:
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'sunday2',
+        'USER':'root',
+        'PASSWORD':'',
+        'HOST':'localhost',
+        'PORT':'3306',
+    }
+}
+
+
+查询
+
+1.get(**kwargs)
+
+　　解释：返回与筛选条件相匹配的Model对象，返回结果有且只有一个。
+
+　　说明：如果符合条件的对象多于一个抛出MultipleObjectsReturned异常，如果没有找到抛出DoesNotExist异常
+
+　　语法：ModelName.objects.get(itemName=itemNameValue)
+
+　　例子：Author.objects.get(id=1)
+
+2.all()
+
+　　解释：查询所有结果(懒加载)，当查询的时候并不真实发送sql语句，用的时候才会真的去查询
+
+　　语法：ModelName.objects.all()
+
+　　例子：Author.objects.all(id=1)[:5] 取前五条
+
+3.filter(**kwargs)
+
+　　解释：包含了与所给的筛选条件相匹配的QuerySet
+
+　　语法：ModelName.objects.filter(itemName=itemNameValue)
+
+　　例子：Author.objects.filter(id=1)
+	Author.objects.filter(id=1).filter(sex='男')
+
+4.exclude(**kwargs):
+
+　　解释：包含了与所给的筛选件不匹配的QuerySet，于filter正好相反
+
+　　语法：ModelName.objects.exclude(itemName=itemNameValue)
+
+　　例子：Author.objects.filter(id=1)
+
+5.order_by(*fields)
+
+　　解释：对查询结果进行排序
+
+　　语法：ModelName.objects.all().order_by("itemName")
+
+　　例子：Author.objects.all().order_by("id")
+升序前面不用加符号，降序前面要加一个下划线  order_by('-id')
+
+6.reverse()
+
+　　解释：对查询结果反向排序
+
+　　语法：ModelName.objects.all().order_by("itemName").reverse()
+
+　　例子：Author.objects.all().order_by("id")
+
+7.distinct()
+
+　　解释：对查询结果去重
+
+　　语法：ModelName.objects.all().distinct()
+
+　　例子：Author.objects.all().distinct()
+
+8.values(*fields)
+
+　　解释：返回一个ValuesQuerySet（一个特殊的QuerySet）
+
+　　说明：运行后得到的不是一系列model的实例对象，而是一个可迭代的字段序列
+
+　　语法：ModelName.objects.filter(name=value).values("name","name")
+
+　　例子：Author.objects.filter(id=1).values("name","id")
+
+9.values_list(*fields)
+
+　　解释：与values相似只是返回的是一个元组
+
+　　语法：ModelName.objects.filter(name=value).values_list("name","name")
+
+　　例子：Author.objects.filter(id=1).values_list("name","id")  取出id为1的数据 只取name和id两个字段的数据  
+
+	models.UserInfo.objects.all().values('user')    #只取user列
+models.UserInfo.objects.all().values_list('id','user')    #取出id和user列，并生成一个列表
+
+10.count()
+
+　　解释：返回数据库中匹配查询的对象数量
+
+　　语法：ModelName.objects.filter(itemName=itemNameValue).count()
+
+　　例子：Author.objects.filter(name="xiaol").count()
+
+11.first()/last()
+
+　　解释：第一条记录/最后一条记录
+
+　　语法：ModelName.objects.filter(itemName=itemNameValue).first()
+
+　　例子：Author.objects.filter(name="xiaol").last()
+
+ 
+
+关联查询：
+
+　　方法：使用两个下划线(__)可以进行关联查询
+
+　　查询所有父亲名字是Jack的孩子
+	>>> Son.objects.filter(father__name='Jack') 
+	[<Son: Json>, <Son: Json2>]
+
+	查询所有儿子名开头为 J 的父亲
+	>>> Father.objects.filter(son__name__startswith='J') 
+	[<Father: Jack>, <Father: Jack>, <Father: Bob>]
+
+	获取到某一个父亲的所有孩子，通过某一条数据的小写表名_set 反向查询
+
+	>>> f1.son_set.all() 
+	[<Son: Json>, <Son: Json2>]
+
+ 
+
+聚合查询：需要引入from django.db.models import *
+
+　　方法：使用aggreagte关键字
+
+　　用法：xxx.filter(查询条件).aggregate(别名=聚合函数('聚合字段'))
+
+　　语法：Author.objects.filter(name="xiaol").aggregate(myCount=Count('id'))
+
+ 
+
+分组查询：需要引入from django.db.models import *
+
+　　方法：使用aggreagte关键字
+
+　　用法：xxx.filter(分组字段).annotate(分组后操作)
+
+　　语法：Author.objects.filter(name="xiaol").annotate(myCount=Count('id'))
+
+————————————————————————————————————————————
+删除
+
+models.UserInfo.objects.filter(id=2).delete()
+
+————————————————————————————————————————————
+增加
+
+models.UserInfo.objects.create(username='andy',password='123456',age=33)
+
+————————————————————————————————————————————
+改：
+
+models.UserInfo.objects.filter(id=1).update(age=18) #找到id=1的数据，将age改为18

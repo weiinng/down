@@ -1,0 +1,24 @@
+权限控制组件
+
+第一步 ：注册 app
+INSTALLED_APPS = [
+    ...
+    "rbac.apps.RbacConfig",
+]
+
+第二步：在登陆的时候注册权限信息
+在视图函数的登陆方法下
+
+from rbac.service.perssions import initial_session
+
+initial_session(user_obj, request)
+
+权限url 的书写格式
+http://127.0.0.1:8000/stark/app01/book/
+
+/stark/app01/book/
+/stark/app01/book/add/
+/stark/app01/book/(\d+)/change/
+/stark/app01/book/(\d+)/delete/
+
+

@@ -1,0 +1,42 @@
+要在pro下的settings.py文件里INSTALLED_APPS里注册myapp
+
+在myapp下的models.py文件里写表的结构
+
+from django.db import models
+
+# Create your models here.
+class Class(models.Model):
+    id=models.IntegerField(verbose_name='班级id',primary_key=True)
+    name=models.CharField(max_length=20,verbose_name='班级名')
+    number=models.IntegerField(verbose_name='人数')
+    class Meta:
+        verbose_name_plural='班级表'
+    def __str__(self):
+        return self.name
+
+class Stu(models.Model):
+    stuid=models.IntegerField(verbose_name='学生id',primary_key=True)
+    name=models.CharField(max_length=20,verbose_name='姓名')
+    gender=models.CharField(max_length=20,verbose_name='性别')
+    age=models.IntegerField(verbose_name='年龄')
+    classid=models.ForeignKey(Class,on_delete=None)
+    class Meta:
+        verbose_name_plural='学生表'
+    def __str__(self):
+        return self.name
+
+在myapp下的admin.py文件里创建表
+from django.contrib import admin
+from myapp import models
+admin.site.register(models.Stu)
+admin.site.register(models.Class)
+
+然后在命令框中输入
+python manage.py makemigrations 
+python manage.py migrate
+创建表
+
+创建超级用户：
+python manage.py createsuperuser
+
+

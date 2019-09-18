@@ -1,0 +1,47 @@
+import Router from '@/router/index'
+
+
+Router.push({path: '/crawl'})
+
+
+
+
+´úÂë£º
+
+<script type="text/javascript">
+	import Qs from 'qs'
+	import Router from '@/router/index'
+	export default{
+		name:"#a",
+		data:function(){
+			return{
+				a:'',
+				b:''
+			}
+		},
+		methods:{
+			c:function(){
+				this.axios.get('/api/goods/').then((res)=>{
+					console.log(res)
+				}).catch(function(error){
+					console.log(error)
+				})
+			},
+			prevent:function(){
+				this.axios.post('/api/login/',
+					Qs.stringify({  
+               				name: this.a,
+               				password: this.b,
+            				}),
+					{headers:{'Content-Type':'application/x-www-form-urlencoded'}}).then((res)=>{
+					if(res.data.code==200){
+						console.log(res.data.code)
+						Router.push({path: '/crawl'})
+					}else{
+						alert('µÇÂ¼Ê§°Ü')
+					}
+				})
+			}
+		}
+	}
+</script>

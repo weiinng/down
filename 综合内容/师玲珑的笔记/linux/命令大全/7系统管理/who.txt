@@ -1,0 +1,30 @@
+
+root   pts/2    2014-05-14 19:48 (192.168.1.17)
+显示用户登录来源
+
+# who -l -H
+NAME   LINE     TIME       IDLE     PID COMMENT
+LOGIN  tty4     2014-05-13 12:11        852 id=4
+LOGIN  tty5     2014-05-13 12:11        855 id=5
+LOGIN  tty2     2014-05-13 12:11        862 id=2
+LOGIN  tty3     2014-05-13 12:11        864 id=3
+LOGIN  tty6     2014-05-13 12:11        867 id=6
+LOGIN  tty1     2014-05-13 12:11       1021 id=1
+显示终端属性
+
+# who -T -H
+NAME    LINE     TIME       COMMENT
+root   + tty7     2014-05-13 12:12 (:0)
+root   + pts/0    2014-05-14 17:09 (:0.0)
+root   - pts/1    2014-05-14 18:51 (192.168.1.17)
+root   - pts/2    2014-05-14 19:48 (192.168.1.17)
+只显示当前用户
+
+# who -m -H
+NAME   LINE     TIME       COMMENT
+root   pts/1    2014-05-14 18:51 (192.168.1.17)
+精简模式显示
+
+# who -q
+root root root root
+# users=4

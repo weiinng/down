@@ -1,0 +1,13 @@
+方法			说明
+count			非NA值的数量
+describe		针对Series或各DataFrame列计算汇总统计
+min、max		计算最小值和最大值
+argmin、argmax		计算能够获取到最小值和最大值的索引位置（整数）
+idmin、idmax		计算能够获取到最小值和最大值的索引值
+quantile		计算样本的分位数（0到1）
+sum			值的综合
+mean			值的平均数
+median			值的算术中位数（50%中位数）
+mad			根据平均值计算平均绝对离差
+var			样本值的方差
+std			样本值的标准差

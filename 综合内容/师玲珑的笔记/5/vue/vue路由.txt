@@ -1,0 +1,2 @@
+跳转到另外一个路由
+this.$router.puth({path:'/user'})

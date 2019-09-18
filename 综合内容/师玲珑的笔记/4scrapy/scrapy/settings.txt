@@ -1,0 +1,6 @@
+ITEM_PIPELINES = {
+    'four.pipelines.CrawlImg':1,
+   'four.pipelines.FourPipeline': 300,
+'four.pipelines.Write':200
+}
+IMAGES_STORE='./img/'

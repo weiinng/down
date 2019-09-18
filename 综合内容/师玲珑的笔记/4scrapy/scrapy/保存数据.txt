@@ -1,0 +1,13 @@
+scrapy保存信息的最简单的方法主要有四种，-o输出指定格式的文件
+
+#json格式，默认为unicode编码
+scrapy crawl itcast -o 文件名.json
+
+#json lines格式，默认为unicode编码
+scrapy crawl itcast -o 文件名.jsonl
+
+#csv逗号表达式，可用Excel打开
+scrapy crawl itcast -o 文件名.csv
+
+#xml格式
+scrapy crawl itcast -o 文件名.xml

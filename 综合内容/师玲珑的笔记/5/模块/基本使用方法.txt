@@ -1,0 +1,25 @@
+Flask提供的render_template函数封装了该模板引擎
+render_template函数的第一个参数是模板的文件名，后面的参数都是键值对，表示模板中变量对应的真实值
+
+使用
+{{}}来表示变量名，这种{{}}语法叫做变量代码块
+<h1>{{post.title}}</h1>
+Jinja2模板中的变量代码块可以是任意Python类型或者对象，只要他能够被Python的str()方法转换为一个字符串就可以，比如：可以通过下面的方式显示一个字典或者列表中的某个元素
+{{your_dict['key']}}
+{{your_list[0]}}
+
+用{% %}定义的控制代码块，可以实现一些语言层次的功能，比如循环或者if语句
+
+{% if user %}
+	{{user}}
+{% else %}
+	hello
+<url>
+	{% for index in indexs %}
+	<li>{{index}}</li>
+	<% endfor %}
+</url>
+
+注释：
+使用{# #}进行注释，注释的内容不会在html中被渲染出来
+{#{{name}}#}

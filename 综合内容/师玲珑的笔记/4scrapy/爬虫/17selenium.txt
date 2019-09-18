@@ -1,0 +1,9 @@
+选取属性  element.get_attribute('href')
+选取文本  element.text()
+
+
+from selenium import webdriver
+driver=webdriver.Chrome()
+driver.get(url='')
+driver.implicitly_wait(10)
+list

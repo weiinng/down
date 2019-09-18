@@ -1,0 +1,8 @@
+ctrl + shift + k  删除当前行
+alt + up 将当前行上移
+alt + down 将当前行下移
+ctrl + 回车  在当前行之后插入一行
+ctrl + shift + 回车  在当前行之前插入一行
+ctrl + up 将视图上移
+ctrl + down 将视图下移
+

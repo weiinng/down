@@ -1,0 +1,11 @@
+根据下标取字符串，列表的值
+str.index
+list.index
+
+根据键名取字典的键值
+dict.key
+
+在for循环里，要遍历取字典的键值
+{% for key,value in dict_.items %}
+	{{ value }}
+{% endfor %}

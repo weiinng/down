@@ -1,0 +1,79 @@
+数据提取之xpath
+为什么要学习xpath和lxml
+lxml是一款高性能的python HTML/XML 解析器，我们可以利用XPath,来快速定位特定元素以及获取节点信息
+
+什么是xpath
+xpath是一门在HTML/XML文档中查找信息的语言，可用来在HTML/XML文档中对元素和属性进行遍历
+
+认识xml
+知识点：
+html和xml的区别
+xml中各个元素的关系和属性
+html和xml的区别
+数据格式		描述		设计目标
+xml		可扩展标记语言		被设计为传输和存储数据，其焦点是数据的内容
+html		超文本标记语言		显示数据以及如何更好显示数据
+
+xml的树结构
+
+选取节点
+xpath使用路径表达式来选取xml文档中的节点或者节点集，这些路径表达式和我们在常规的电脑文件系统中看到的表达式非常相似，使用chrome插件选择标签时候，选中时，选中的标签会添加属性class='xh-highlight'
+
+下面列出了最有用的表达式：
+表达式				描述
+nodename			选中该元素
+/				从根节点选取、或者是元素和元素之间的过渡（相当于jsonpath里的.)
+//				从匹配选择的当前节点选择文档中的节点，而不考虑他们的位置(相当于jsonpath里的..)
+.				选取当前节点
+..				选取当前节点的父节点
+@				选取属性
+text()				选取文本
+
+实例：
+路径表达式					结果
+bookstore					选区bookstore元素
+/bookstore					选取根元素bookstore.注释：假如路径起始于正斜杠(/).则此路径始终代表到某元素的绝对路径
+bookstore/book					选取属于bookstore的子元素的所有Book元素
+//book						选区所有book子元素，不管他们在文档中的位置
+bookstore//book					选区属于bookstore元素的后代的所有book元素，而不管他们位于bookstore之下什么位置
+//books/title/@lang				选择所有book下面的title中的lang属性的值
+//book/title/text()				选择所有的book下面的title的文本
+
+
+选择所有的h1下的文本
+//h1/text()
+获取所有a标签的href
+//a/@href
+获取html下的head下的title的文本
+/html/head/title/text()
+获取html下的head下的link标签的href
+/html/head/link/@href
+查找特定的节点
+路径表达式				结果
+//title[@lang='eng']			选择lang属性为eng的所有title元素
+/bookstore/book[1]			选择属于bookstore子元素的第一个Book元素
+/bookstore/book[last()]			选取属于bookstore子元素的最后一个book元素
+/bookstore/book[last()-1]			选取属于bookstore子元素的倒数第二个book元素
+/bookstore/book[position()>1]		选取bookstore下面的book元素，从第二个开始选择
+//book/title[text()='Harry Potter']		选择所有book下的title元素，仅仅选择文本为Harry Potter的title元素
+/bookstore/book[pricce>35]/title		选择bookstore元素中的book元素的所有title元素，且期中的pirce元素的值必须大于35
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

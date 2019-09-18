@@ -1,0 +1,30 @@
+<template>
+	<div id="a">
+		<button @click='reloadmes'>╣Ц╩В╪сть</button>
+		<table>
+			<tr v-for="x in mes">
+				<td>{{x.id}}</td>
+				<td>{{x.age}}</td>
+			</tr>
+		</table>
+	</div>
+</template>
+<script type="text/javascript">
+	export default{
+		name:'#a',
+		data:function(){
+			return{
+				mes:[]
+			}
+		},
+		methods:{
+			reloadmes:function(){
+				this.axios.get('/api').then((response)=>{
+					this.mes=response.data.mes
+				}).catch(function(error){
+					console.log(error)
+				})
+			}
+		}
+	}
+</script>

@@ -1,0 +1,18 @@
+return 只能返回字符串  和render_template
+如果要返回字典之类的 要转成json类型  
+import json
+json.dumps()
+
+from flask import Flask,jsonify
+
+return {'a':'b'}  报错
+return str({'a':'b'})  纯文本形式，没有数据类型，即没有键值对
+return json.dumps({'a':'v'})  文本形式，但保留了键值对
+return jsonify({'a':'v'})  json类型  有键值对
+
+app.conifg['JSON_AS_ASCII']=False   #将返回的汉字不以ASCII形式返回
+
+app.config.from_pyfile('settings.ini')   可以新建settings.ini  在这里写配置 
+
+
+

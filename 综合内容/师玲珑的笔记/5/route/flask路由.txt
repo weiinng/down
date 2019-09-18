@@ -1,0 +1,35 @@
+指定路由地址
+#指定访问路径为demo1
+@app.route('/demo')
+def demo1():
+	return 'demo1'
+
+给路由传参 
+有时我们需要将同一类URL映射到同一个视图函数处理，比如：使用同一个视图函数来显示不同用户的个人信息
+
+#路由传递参数
+@app.route('/user/<user_id>')
+def user_info(user_id):
+	return 'hello %s'%user_id
+
+输入的网址后缀加的什么 在网页展示的就是什么,下面那个函数括号里必须是上面的参数
+路由传递的参数默认当作string处理，也可以指定参数的类型
+
+#路由传递参数
+@app.route('user/<int:user_id>')
+def user_info(user_id):
+	return 'hello %d'%user_id
+
+这里指定int,尖括号中的内容是动态的。在此暂时可以理解为接受int类型的值，实际上int代表使用IntergeConverter去处理url传入的参数
+
+指定请求方式
+在Flask中。定义一个路由，默认的请求方式为：
+GET
+OPTIONS(自带)
+HEAD （自带）
+
+如果像添加请求方式，
+@app.route('/demo2',methods=['GET','POST'])
+def demo2():
+	#直接从请求中取到请求方式并返回
+	return request.method

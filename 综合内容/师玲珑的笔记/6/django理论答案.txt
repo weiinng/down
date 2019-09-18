@@ -1,0 +1,568 @@
+
+1. 简述http 协议及常用请求头。
+
+
+HTTP:
+HTTP协议是Hyper Text Transfer Protocol（超文本传输协议）的缩写,是用于从万维网服务器传输超文本到本地浏览器的传送协议。HTTP 是基于 TCP/IP 协议通信协议来传递数据（HTML 文件、图片文件、查询结果等）。它不涉及数据包（packet）传输，主要规定了客户端和服务器之间的通信格式，默认使用80端口。
+
+常用请求头：
+accept：浏览器通过这个头告诉服务器，它所支持的数据类型。如：text/html, image/jpeg 
+
+
+accept-Charset：浏览器通过这个头告诉服务器，它支持哪种字符集。 
+
+
+accept-encoding：浏览器通过这个头告诉服务器，它支持哪种压缩格式。 
+
+
+accept-language：浏览器通过这个头告诉服务器，它的语言环境。 
+
+
+host：浏览器通过这个头告诉服务器，它想访问哪台主机。 
+
+
+if-modified-since：告诉服务器我这缓存中有这个文件,该文件的时间是… 
+
+
+referer：浏览器通过这个头告诉服务器，客户机是哪个页面来的(防盗链)。 
+
+
+User-Agent：告诉服务器我的浏览器内核 
+
+
+Connection：浏览器通过这个头告诉服务器，请求完后是断开链接还是维持链接。 
+
+
+Date：浏览器发送数据的请求时间
+
+
+———————————————————————————————————————————————
+
+2. 列举常见的请求方法。
+
+
+
+GET：请求指定的页面信息，并返回实体主体。
+
+HEAD：类似于get请求，只不过返回的响应中没有具体的内容，用于获取报头。
+
+POST：向指定资源提交数据进行处理请求（例如提交表单或者上传文件）。数据被包含在请求体中。
+
+PUT：从客户端向服务器传送的数据取代指定的文档的内容。
+
+DELETE：请求服务器删除指定的页面。
+
+
+——————————————————————————————————————————————
+
+3. 列举常见的状态码。
+
+
+
+状态代码有三位数字组成，第一个数字定义了响应的类别，共分五种类别：
+
+1xx：指示信息——表示请求已接收，继续处理。
+
+2xx：成功——表示请求已被成功接收、理解、接受。
+
+3xx：重定向——要完成请求必须进行更进一步的操作。
+
+4xx：客户端错误——请求有语法错误或请求无法实现。
+
+5xx：服务器端错误——服务器未能实现合法的请求。
+
+比如我们平时常见两种出错的状态码：
+
+403 Forbidden   //对被请求页面的访问被禁止
+404 Not  Found //请求资源不存在，比如：输入了错误的URL
+
+——————————————————————————————————————————————
+
+
+4. http和https的区别?
+
+
+HTTPS和HTTP的区别主要如下：
+
+工作层：在OSI网络模型中，HTTP工作于应用层，而HTTPS工作在传输层。
+
+连接端口：HTTP标准端口是80，而HTTPS的标准端口是443。
+
+传输方式：HTTP是超文本传输协议，信息是明文传输，而HTTPS是SSL加密传输协议。
+
+工作耗时：HTTP耗时=TCP握手，而HTTPS耗时=TCP握手+SSL握手。
+
+显示形式：HTTP的URL以http://开头，而HTTPS的URL以https://开头。
+
+费用：HTTP无需费用，而HTTPS需要到CA申请证书，一般免费证书较少，需要一定费用。
+
+安全性：HTTP的连接很简单，是无状态的；HTTPS协议是由SSL+HTTP协议构建的可进行加密传输、身份认证的网络协议，比HTTP协议安全。
+
+
+——————————————————————————————————————————————
+
+
+5. 简述websocket 协议及实现原理.
+
+
+websocket协议：
+
+WebSocket是一种协议，与HTTP协议一样位于应用层，都是TCP/IP协议的子集。HTTP协议是单向通信协议，只有客户端发起HTTP请求，服务端才会返回数据。而WebSocket协议是双向通信协议，在建立连接之后，客户端和服务器都可以主动向对方发送或接受数据。WebSocket协议建立的前提需要借助HTTP协议，建立连接之后，持久连接的双向通信就与HTTP协议无关了。
+
+WebSocket协议的目标是在一个独立的持久连接上提供全双工双向通信。客户端和服务器可以向对方主动发送和接受数据。在JS中创建WebSocket后，会有一个HTTP请求发向浏览器以发起请求。在取得服务器响应后，建立的连接会使用HTTP升级将HTTP协议转换为WebSocket协议。也就是说，使用标准的HTTP协议无法实现WebSocket，只有支持那些协议的专门浏览器才能正常工作。
+
+实现原理：
+它的工作原理是Pub-Sub（发布和订阅）。它适用于发送者将数据（发布者）发送给抽象数量的收件人（订阅者），而无需指定他们是谁。
+
+
+——————————————————————————————————————————————
+
+6.django中如何实现 websocket?
+
+
+
+一、简述：django实现websocket，之前django-websocket退出到3.0之后，被废弃。官方推荐大家使用channels。
+
+channels通过升级http协议 升级到websocket协议。保证实时通讯。也就是说，我们完全可以用channels实现我们的即时通讯。而不是使用长轮询和计时器方式来保证伪实时通讯。
+
+他通过改造django框架，使django既支持http协议又支持websocket协议。
+
+官方文档地址：https://channels.readthedocs.io/en/stable/
+
+二：安装
+
+python version：2.7 3.4 3.5
+
+安装channels：
+
+1 pip install -U channels
+在安装在windows机器的时候。需要自信的C++支持，报错的时候，报错有地址告诉你下载URL。
+
+配置：
+
+需要在seting.py里配置，将我们的channels加入INSTALLED_APP里。
+
+
+三、介绍下channels结构：
+首先需要建立一个django项目。其中在你自己的app下面 生成consumers.py和routing.py配置文件。
+
+consumers.py：相当于django的视图，也就是说所有的websocket路由过来的执行的函数都在consumers.py类似于django的视图views.py
+
+routing.py：是websocket中的url和执行函数的对应关系。相当于django的urls.py，根据映射关系，当websocket的请求进来的时候，根据用户的请求来触发我们的consumers.py里的方法。
+
+四、示例代码：
+consumer.py
+
+# In consumers.py
+
+def ws_message(message):
+    # ASGI WebSocket packet-received and send-packet message types
+   # both have a "text" key for their textual data.
+   message.reply_channel.send({
+        "text": message.content['text'],
+    })
+
+routing.py
+
+ # In routing.py
+ from channels.routing import route
+ from myapp.consumers import ws_message
+
+ channel_routing = [
+    route("websocket.receive", ws_message),
+ ]
+
+
+
+websocket.receive表示当用户请求的时候，自动触发后面的ws_message.
+
+html  code:html5支持websocket。
+
+
+ <!DOCTYPE HTML>
+ <html>
+     <head>
+     <meta charset="utf-8">
+     <title>测试websocket</title>
+  
+        <script type="text/javascript">
+           function WebSocketTest()
+           {
+             if ("WebSocket" in window)
+             {
+                alert("您的浏览器支持 WebSocket!");
+
+               // 打开一个 web socket
+                 ws = new WebSocket("ws://localhost:8000/path/");
+
+               ws.onopen = function()
+               {
+                   // Web Socket 已连接上，使用 send() 方法发送数据
+                   ws.send("发送数据");
+                   alert("数据发送中...");
+                };
+ 
+                ws.onmessage = function (evt)
+               {
+                  var received_msg = evt.data;
+                  alert("数据已接收...");
+                  alert("数据:"+received_msg)
+               };
+
+               ws.onclose = function()
+               {
+                  // 关闭 websocket
+                  alert("连接已关闭...");
+               };
+           }
+
+           else
+            {
+               // 浏览器不支持 WebSocket
+              alert("您的浏览器不支持 WebSocket!");
+            }
+         }
+      </script>
+
+   </head>
+   <body>
+
+      <div id="sse">
+         <a href="javascript:WebSocketTest()">运行 WebSocket</a>
+       </div>
+    </body>
+</html>
+
+
+
+——————————————————————————————————————————————
+
+
+7. Python web开发中,跨域问题的解决思路是?
+
+
+方案1.安装django-cors-headers
+
+pip install django-cors-header
+
+
+配置settings.py文件
+
+INSTALLED_APPS = [
+
+	...
+	'corsheaders'，
+	...
+]
+
+MIDDLEWARE_CLASSES = (
+	...
+	'corsheaders.middleware.CorsMiddleware',
+	'django.middleware.common.CommonMiddleware', # 注意顺序
+	...
+)
+
+#跨域增加忽略
+
+CORS_ALLOW_CREDENTIALS = True
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_WHITELIST = (
+
+    '*'
+)
+CORS_ALLOW_METHODS = (
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+    'VIEW',
+)
+CORS_ALLOW_HEADERS = (
+    'XMLHttpRequest',
+    'X_FILENAME',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+    'Pragma',
+)
+
+
+方案2.使用JSONP
+
+使用Ajax获取json数据时，存在跨域的限制。不过，在Web页面上调用js的script脚本文件时却不受跨域的影响，JSONP就是利用这个来实现跨域的传输。因此，我们需要将Ajax调用中的dataType从JSON改为JSONP（相应的API也需要支持JSONP）格式。
+JSONP只能用于GET请求。
+
+
+方案3.直接修改Django中的views.py文件
+
+修改views.py中对应API的实现函数，允许其他域通过Ajax请求数据：
+def myview(_request):
+	response = HttpResponse(json.dumps({“key”: “value”, “key2”: “value”}))
+	response[“Access-Control-Allow-Origin”] = “*”
+	response[“Access-Control-Allow-Methods”] = “POST, GET, OPTIONS”
+	response[“Access-Control-Max-Age”] = “1000”
+	response[“Access-Control-Allow-Headers”] = “*”
+	return response
+
+——————————————————————————————————————————————
+
+
+8. 请简述http缓存机制.
+
+
+对于强制缓存，服务器通知浏览器一个缓存时间，在缓存时间内，下次请求，直接用缓存，不在时间内，执行比较缓存策略。
+对于比较缓存，将缓存信息中的Etag和Last-Modified通过请求发送给服务器，由服务器校验，返回304状态码时，浏览器直接使用缓存。
+
+——————————————————————————————————————————————
+
+9. 谈谈你所知道的Python web 框架.
+
+
+1、django
+
+完美的文档，Django的成功，我觉得很大一部分原因要归功于Django近乎完美的官方文档
+
+全套的解决方案，Django象Rails一样，提供全套的解决方案（full-stack framework + batteries included），基本要什么有什么
+
+强大的URL路由配置，Django让你可以设计出非常优雅的URL，在Django里你基本可以跟丑陋的GET参数说拜拜。
+
+自助管理后台，admin interface是Django里比较吸引眼球的一项contrib，让你几乎不用写一行代码就拥有一个完整的后台管理界面。
+
+系统紧耦合，如果你觉得Django内置的某项功能不是很好，想用喜欢的第三方库来代替是很难的，比如下面将要说的ORM、Template。要在Django里用SQLAlchemy或Mako几乎是不可能，即使打了一些补丁用上了也会让你觉得非常非常别扭
+
+Template功能比较弱，不能插入Python代码，要写复杂一点的逻辑需要另外用Python实现Tag或Filter
+
+2、pylons
+
+Pylons和Django的设计理念完全不同，Pylons本身只有两千行左右的Python代码，不过它还附带有一些几乎就是Pylons御用 的第三方模块。Pylons只提供一个架子和可选方案，你可以根据自己的喜好自由的选择Template、ORM、form、auth等组件，系统高度可 定制。我们常说Python是一个胶水语言(glue language)，那么我们完全可以说Pylons就是一个用胶水语言设计的胶水框架。
+
+3、tornado
+
+ Tornado即是一个Web server（对此本文不作详述），同时又是一个类web.py的micro-framework，作为框架Tornado的思想主要来源于Web.py
+
+4、bottle和flask
+
+Bottle、Flask跟web.py一样，都非常精简，Bottle甚至所有的代码都在那一个两千来行的.py文件里。另外Flask和Pylons一样，可以跟Jinja2、SQLAlchemy之类结合的很好。
+
+
+——————————————————————————————————————————————
+
+11.django,flask,tornado 框架的比较?
+
+
+Django：Python 界最全能的 web 开发框架，battery-include 各种功能完备，可维护性和开发速度一级棒。常有人说 Django 慢，其实主要慢在 Django ORM 与数据库的交互上，所以是否选用 Django，取决于项目对数据库交互的要求以及各种优化。而对于 Django 的同步特性导致吞吐量小的问题，其实可以通过 Celery 等解决，倒不是一个根本问题。Django 的项目代表：Instagram，Guardian。
+
+ 
+
+Flask：微框架的典范，号称 Python 代码写得最好的项目之一。Flask 的灵活性，也是双刃剑：能用好 Flask 的，可以做成 Pinterest，用不好就是灾难（显然对任何框架都是这样）。Flask 虽然是微框架，但是也可以做成规模化的 Flask。加上 Flask 可以自由选择自己的数据库交互组件（通常是 Flask-SQLAlchemy），而且加上 celery +redis 等异步特性以后，Flask 的性能相对 Tornado 也不逞多让，也许Flask 的灵活性可能是某些团队更需要的。
+
+ 
+
+
+Tornado：天生异步，性能强悍是 Tornado 的名片，然而 Tornado 相比 Django 是较为原始的框架，诸多内容需要自己去处理。当然，随着项目越来越大，框架能够提供的功能占比越来越小，更多的内容需要团队自己去实现，而大项目往往需要性能的保证，这时候 Tornado 就是比较好的选择。
+
+
+———————————————————————————————————————————————
+
+
+12.什么是wsgi?
+
+
+它是用在 python web 框架编写的应用程序与后端服务器之间的规范（本例就是 Django 和 uWSGI 之间），让你写的应用程序可以与后端服务器顺利通信。在 WSGI 出现之前你不得不专门为某个后端服务器而写特定的 API，并且无法更换后端服务器，而 WSGI 就是一种统一规范， 所有使用 WSGI 的服务器都可以运行使用 WSGI 规范的 web 框架，反之亦然。
+
+
+
+———————————————————————————————————————————————
+
+13.列举 django 的内骂组件
+
+
+INSTALLED_APPS
+MIDDLEWARE
+ROOT_URLCONF
+TEMPLATES
+DATABASES
+AUTH_PASSWORD_VALIDATORS
+
+
+———————————————————————————————————————————————
+
+14.简述django 下的(内建的)缓存机制
+
+
+缓存是将一些常用的数据保存内存或者memcache中,在一定的时间内有人来访问这些数据时,则不再去执行数据库及渲染等操作,而是直接从内存或memcache的缓存中去取得数据,然后返回给用户.django提供了6中内存缓存机制，分别为：
+
+开发调试缓存（为开发调试使用，实际上不使用任何操作）；
+
+内存缓存（将缓存内容缓存到内存中）；
+
+文件缓存（将缓存内容写到文件 ）；
+
+数据库缓存（将缓存内容存到数据库）；
+
+memcache缓存（包含两种模块，python-memcached或pylibmc.）。
+
+以上缓存均提供了三种粒度的应用。
+
+——————————————————————————————————————————————
+
+15. django 中 model 的SlugField 类型字段有什么用途
+
+
+SlugField 本质上相当于存放字符串，但是在意义上，主要用于把某些字段形成语义化的，可以访问的短网址（slug）字符串。
+
+——————————————————————————————————————————————
+
+
+16.django 中想要验证表单提交是否格式正确需要用到form 中的那个方法  D
+A. form.save()
+
+B.form.save(commit=False)
+
+C.form.verify()
+
+D.form.is_valid()
+
+
+——————————————————————————————————————————————
+
+
+17.django常见的线上部署方式有哪几种?
+
+一、自带的部署功能：
+
+二、使用nginx+uwsgi部署
+
+
+——————————————————————————————————————————————
+
+18.django 对数据查询结果排序怎么做,降序怎么做?
+
+models.类名.objects.all().order_by('排序字段')  默认为升序  在排序字段前加一个'-' 就变为降序了
+
+
+——————————————————————————————————————————————
+
+19. 下面关于 http协议中的get和post方式的区别,那些是错误的?(多选)  AC
+
+
+A. 他们都可以被收藏, 以及缓存
+
+B. get 请求参数放在 url 中
+
+C. get 只用于查询请求, 不能用于数据请求
+
+D. get 不应该处理敏感数据的请求
+
+
+———————————————————————————————————————————————
+
+20. django 中使用 memcached 作为缓存的具体方法?优缺点说明?
+
+
+安装步骤：
+
+
+
+下载安装包：wget http://memcached.org/latest
+
+进入安装包所在的目录，然后解压：tar -zxvf memcached-1.x.x.tar.gz
+
+
+
+进入安装包：
+cd memcached-1.x.x
+
+输入命令：./configure && make && make test && sudo make install
+
+
+
+绑定Python：pip install python-memcached
+
+
+
+在项目中添加缓存后端：
+
+
+
+CACHES = {
+'default': {
+'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+'LOCATION': '127.0.0.1:11211',
+}
+}
+
+
+
+在views中使用缓存：
+
+
+
+from django.core.cache import cache //导入
+
+
+cache.set('name','Mike',20)
+
+
+cache.get('name')
+
+
+缓存是以键值对的形式储存的，使用set(key,value,timeout)来设置缓存，然后get(key)的方法得到缓存结果
+
+
+优点：
+a、数据仅存在于内存中，宕机或重启数据将全部失效
+
+b、内容数据达到启动时设定内存指定值后、基于LRU算法删除缓存，LAZY模式、可指定最大内存用量。
+c、实际瓶颈在于网络连接、占应较少的CPU资源
+
+d、服务器端无分布式功能(C开发)、取决于客户端的实现(php、C#、java)、可布署多台服务器，访问时做个均衡策略如根据IP分配连接负载。
+
+e、存储的节点数据键名250字节、键值限制在1MB、只适合普通字符串、作为小规模的数据分布式平台是十分有效果.
+
+f、32位机器单进程使用最大内存2G、可分多个端口开启多进程支持、64位机器可认为无上限
+
+
+
+缺点：
+a、不能进行分布式扩展
+b、缺乏一个有效的信息过期机制
+c、多个并发同时使用共享使用失效机制
+d、文件fd无法异步法、无法加入异步IO高速并发访问体系中
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

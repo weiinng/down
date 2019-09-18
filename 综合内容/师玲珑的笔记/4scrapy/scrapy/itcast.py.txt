@@ -1,0 +1,63 @@
+# -*- coding: utf-8 -*-
+import scrapy
+
+
+class ItcastSpider(scrapy.Spider):
+    name = 'itcast'  
+ #这是爬虫的识别名称，必须是唯一的，在不同的爬虫中必须定义不同的名字
+
+    allowed_domains = ['http://www.itcast.cn']   
+#这是搜索的域名范围，也就是爬虫的约束区域，规定爬虫只爬取这个域名下的网页，不存在的URL会被忽略
+    start_urls = ['http://www.itcast.cn']
+
+#爬取的URL列表，爬虫从这里面开始抓取数据，所以，第一次下载的数据将会从这些urls开始。其他子URL将会从这些起始URL中继承性生成
+
+    def parse(self, response):  
+ 
+#解析的方法，每个初始URL完成下载后将被调用，调用的时候传入从每一个URL传回的Response对象来作为唯一参数，主要作用如下：
+1、负责解析返回的网页数据，提取结构化数据
+2、生成需要下一页的URL请求
+        print(response)
+
+
+管道文件就是处理item字段的
+
+def __init__(self):  管道初始执行
+
+def close_spider(self,spider):  爬虫结束执行 
+
+
+# -*- coding: utf-8 -*-
+import scrapy
+from ..items import ItcomItem
+
+
+class ItcomSpider(scrapy.Spider):
+    name = 'ITcom'
+    allowed_domains = ['citreport.com/news/it/']
+    start_urls = ['http://www.citreport.com/news/it/']
+
+    def parse(self, response):
+        #标题
+        title = response.xpath('//*[@id="ct"]/div[1]/div[2]/div[2]/div/div/div/h2/a/text()').extract()
+        # print(title)
+        #文章链接
+        url = response.xpath('//*[@id="ct"]/div[1]/div[2]/div[2]/div/div/div/h2/a/@href').extract()
+        # print(url)
+        #图片链接
+        images = response.xpath('//*[@id="ct"]/div[1]/div[2]/div[2]/div/div/div[1]/a/img/@src').extract()
+        for index,values in enumerate(title):
+            item = ItcomItem()
+            item['title'] = title[index]   #标题
+            item['url'] = url[index]   #文章详情页地址
+            item['image_urls'] = [images[index]]  #图片链接
+            # meta是向下个方法里传递参数 以字典的形式  key:value 可以传递多个参数  dont_filter是url去重
+            yield scrapy.Request(url=url[index],callback=self.content_parse,method='GET',meta={'item':item},dont_filter=True)
+    #获取详情页
+    def content_parse(self,response):
+        item = response.meta['item']
+        item1 = response.xpath('//p/text()').extract()
+        item['content2'] = ''.join(item1)
+        print(item['content2'])
+        yield item
+

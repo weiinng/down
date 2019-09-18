@@ -1,0 +1,83 @@
+创建数组 
+复制代码 代码如下:
+
+var array = new Array(); 
+var array = new Array(size);//指定数组的长度 
+var array = new Array(item1,item2……itemN);//创建数组并赋值 
+
+
+
+取值、赋值 
+复制代码 代码如下:
+
+var item = array[index];//获取指定元素的值 
+array[index] = value;//为指定元素赋值 
+
+
+
+
+
+添加新元素 
+复制代码 代码如下:
+
+array.push(item1,item2……itemN);//将一个或多个元素加入数组，返回新数组的长度 
+array.unshift(item1,item2……itemN);//将一个或多个元素加入到数组的开始位置，原有元素位置自动后移，返回 新数组的长度 
+array.splice(start,delCount,item1,item2……itemN);//从start的位置开始向后删除delCount个元素，然后从start的位置开始插入一个或多个新元素 
+
+
+
+、删除元素 
+复制代码 代码如下:
+
+array.pop();//删除最后一个元素，并返回该元素 
+array.shift();//删除第一个元素，数组元素位置自动前移，返回被删除的元素 
+array.splice(start,delCount);//从start的位置开始向后删除delCount个元素 
+
+
+数组的合并、截取 
+复制代码 代码如下:
+
+array.slice(start,end);//以数组的形式返回数组的一部分，注意不包括 end 对应的元素，如果省略 end 将复制 start 之后的所有元素 
+array.concat(array1,array2);//将多个数组拼接成一个数组 
+
+
+数组的排序 
+复制代码 代码如下:
+
+array.reverse();//数组反转 
+array.sort();//数组排序，返回数组地址 
+
+
+数组转字符串 
+复制代码 代码如下:
+
+array.join(separator);//将数组原因用separator连接起来 
+
+
+
+
+
+列了这么都就是没有发现根据下标删除数组元素的方法！于是查了一些资料找到了解决方法。 
+删除数组元素需要扩展Array原型prototype. 
+一般的数组的下标都是数值型，但是也有字符型的下标 
+数值型的处理，首先的把下面的代码写出来，是对数组的扩展 
+复制代码 代码如下:
+
+Array.prototype.del = function(dx) 
+{ 
+if(isNaN(dx)||dx>this.length){return false;} 
+this.splice(dx,1); 
+} 
+
+其次，数值型的直接传递数值的参数即可。例如var arr = ["aa","bb"];arr.del(0); 
+下面说一下字符型的下标 
+复制代码 代码如下:
+
+var arr = []. 
+arr["aa"] = 1; 
+
+
+
+
+
+

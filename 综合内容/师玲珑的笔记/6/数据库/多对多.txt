@@ -1,0 +1,34 @@
+    movie=models.Movie.objects.all()
+    actor=models.Actor.objects.all()
+    list=[]
+    for x in actor:
+        dict={}
+        dict[x.name]=[]
+        for i in x.movie.all():
+            dict[x.name].append(i.name)
+        list.append(dict)
+    # print(list)      #演员对应的电影
+    list2=[]
+    for x in movie:
+        dict={}
+        dict[x.name]=[]
+        for i in list:
+            for key,value in i.items():
+                if x.name in value:
+                    dict[x.name].append(key)
+        list2.append(dict)
+    # print(list2)       #电影对应的演员
+
+演员表里的movie多对多关联电影表
+
+
+
+    {% for x in list2 %}
+        {% for key,value in x.items %}
+            电影：{{key}},演员有:
+            {% for i in value %}
+                {{i}},
+            {% endfor %}
+            <br><br>
+        {% endfor %}
+    {% endfor %}

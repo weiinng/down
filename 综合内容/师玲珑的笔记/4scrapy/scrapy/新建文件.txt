@@ -1,0 +1,1 @@
+self.file=codecs.open(filename='dd.json',mode='w',encoding='utf8')

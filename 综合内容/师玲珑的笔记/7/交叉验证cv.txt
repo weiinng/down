@@ -1,0 +1,36 @@
+cv=5表示cross_val_score采用的是k-fold cross validation的方法，重复5次交叉验证
+
+
+
+
+
+#cv=5表示cross_val_score采用的是k-fold cross validation的方法，重复5次交叉验证
+
+# 建立随机森林分类器 
+from sklearn.ensemble import RandomForestClassifier rf_classifier=RandomForestClassifier(n_estimators=200,max_depth=8,random_state=37) rf_classifier.fit(train_X,train_y) # 用训练集进行训练
+ 
+# 用测试集评估模型的准确率，精确率，召回率，F1值： 
+
+def print_model_evaluations(classifier,test_X, test_y,cv=5):    
+	from sklearn.model_selection import cross_val_score    
+
+	accuracy=cross_val_score(classifier,test_X,test_y,                             	scoring='accuracy',cv=cv)    
+
+	print('准确率：{:.2f}%'.format(accuracy.mean()*100))   
+
+	precision=cross_val_score(classifier,test_X,test_y,                             	scoring='precision_weighted',cv=cv)    
+
+	print('精确度：{:.2f}%'.format(precision.mean()*100))    
+
+	recall=cross_val_score(classifier,test_X,test_y,                             		scoring='recall_weighted',cv=cv)    
+
+	print('召回率：{:.2f}%'.format(recall.mean()*100))    
+
+	f1=cross_val_score(classifier,test_X,test_y,                             	scoring='f1_weighted',cv=cv)    
+	print('F1  值：{:.2f}%'.format(f1.mean()*100))
+ 
+print_model_evaluations(rf_classifier,test_X,test_y)
+
+结果为：
+
+准确率：89.19% 精确度：88.49% 召回率：89.19% F1 值：88.32%

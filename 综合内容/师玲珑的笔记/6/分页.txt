@@ -1,0 +1,102 @@
+def fil(li,number):
+    new, list1, list2 = list(li), [], []
+    length = len(new)
+    for x in range(1, length + 1):
+        list1.append(new[x - 1])
+        if x % number == 0 and x != 1 and x != length:
+            list2.append(list1)
+            list1 = []
+        if x == length and x % number != 0:
+            list2.append(list1)
+        if x == length and x % number == 0:
+            list2.append(list1)
+    return list2
+
+！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！
+
+<form method="POST" action="{% url 'user:limit' 1 'manage' %}" class="pull-right">
+                                        {% csrf_token %}
+                                        {% if num|limit > 1 %}
+                                            <a class="btn btn-sm" href="{% url 'user:limit' num|limit|reduce 'manage' %}">貧匯匈</a>
+                                        {% endif %}&nbsp;
+                                        {% for x in manage_msg %}
+                                            {% if forloop.counter >= num|limit and forloop.counter <= num|limit|add:2 %}
+                                                <a class="btn btn-sm" href="{% url 'user:limit' forloop.counter 'manage' %}">{{forloop.counter}}</a>&nbsp;
+                                            {% endif %}
+                                        {% endfor %}
+                                        {% if num|total < manage_msg|length|total %}
+                                            <a class="btn btn-sm" href="{% url 'user:limit' num|limit|add:3 'manage' %}">和匯匈</a>&nbsp;
+                                        {% endif %}
+                                        <a class="btn btn-sm" href="#">慌{{manage_msg|length|total}}匈</a>&nbsp;    
+                                        <a class="btn btn-sm" href="#">及</a>
+                                        <input type="text" name="num" style="width:40px;height:20px;"><a class="btn btn-sm" href="#">匈</a>
+                                        <button type="submit" class="btn btn-sm" style="background:whitesmoke;">泣似序秘</button>
+                                    </form>
+
+！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！
+
+from django import template
+
+register=template.Library()
+
+@register.filter('reduce')
+def reduce(value):
+    return value-3
+
+@register.filter('limit')
+def reduce(value):
+    if value%3!=0:
+        num=value//3*3+1
+    else:
+        num=value-2
+    return num
+
+@register.filter('total')
+def reduce(value):
+    if value%3==0:
+        return value//3
+    else:
+        return value//3+1
+
+！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！
+
+def limit(request,num,power):
+    try:
+        account=request.session['account']
+    except:
+        return redirect(reverse('login'))
+    num=int(num)
+    account=request.session['account']
+    m=models.User.objects.filter(account=account).first()
+    if power=='manage':
+        manage_msg=models.User.objects.filter(power='2').all()
+        manage_msg=fil(manage_msg,3)
+        if request.method=='POST':
+            num=int(request.POST.get('num'))
+            length=len(manage_msg)
+            if length%3==0:
+                l=length//3
+            else:
+                l=length//3+1
+            if num>l:
+                num=1
+            else:
+                num=num*3-2
+    else:
+        comment_msg=models.User.objects.filter(power='3').all()
+        comment_msg=fil(comment_msg,3)
+        if request.method=='POST':
+            num=int(request.POST.get('num'))
+            length=len(comment_msg)
+            if length%3==0:
+                l=length//3
+            else:
+                l=length//3+1
+            if num>l:
+                num=1
+            else:
+                num=num*3-2
+    if m.power=='1':
+        return render(request,'user/index.html',locals())
+    else:
+        return render(request,'user/index2.html',locals()) if m.power=='2' else render(request,'user/index3.html')

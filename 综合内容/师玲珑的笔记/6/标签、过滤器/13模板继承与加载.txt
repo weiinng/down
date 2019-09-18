@@ -1,0 +1,136 @@
+### 模板继承
+WAIT:
+用了后  子页面只能展示 父模板的内容
+
+WAIT:
+写其他的页面都不展示
+
+
+
+> 关于模板，经常重复的编写页面是一个非常痛苦的事情；
+>
+> 那么在`django`中也提供了一种非常舒服方便的方法，可以使新的模板页面来继承自一个已编写好的`html`页面实现复用，免去重复工作；这就是模板继承
+
+#### block
+
+> 页面的继承不能说全部都拿过来，有时候只需要已经编写好的页面某些部分
+>
+> 其他部分提前挖好一些坑，去填充不同内容
+>
+> 挖坑可以通过模板中的`{% block %}`标签
+
+
+子html页面要在最上面加上{% extends "base.html" %}  放其他位置就会报错
+
+base.html:
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    {% block title %}
+        父模板标题
+    {% endblock title %}
+</head>
+<body>
+    {% block top %}
+        <h3>父模板</h3>
+    {% endblock top %}
+
+    {% block content %}
+        <h4>这里是父模板页面内容</h4>
+    {% endblock content %}
+</body>
+</html>
+
+
+index.html:
+{% block content2 %}
+            子模版
+    {% endblock content2 %}
+
+
+结果为：
+父模板标题  父模板 这里是父模板页面内容
+
+
+——————————————————————————————————————————
+当index.html内容为：
+
+{% block content %}
+            子模版
+    {% endblock content %}
+
+结果为：
+父模板标题 父模板  子模版
+
+——————————————————————————————————————————
+当index.html内容为：
+{% block title %}
+            子模版
+    {% endblock title %}
+
+结果为：
+子模版 父模板 这里是父模板页面内容
+
+```
+
+> 除了对应`block`标签内容被子模板修改，其余内容均默认使用父模板中的
+
+- 注意：
+  - 如果父模板内有模板变量或者其他上下文数据，不会被子模板继承，但是子模板可以为父模板内的模板数据赋值
+  - 如果需模板中具有模板变量等上下文数据，只有放到`block`标签块内数据才会显示
+  - 子模板中修改父模板中并不存在的block块，子模板不会显示
+
+
+————————————————————————+———————————————————————————————
+
+
+### 模板加载
+
+> 除了`{% extends %}`与`{% block %}`结合的方式可以继承一个父模板
+>
+> 我们还可以使用`{% include %}`一个新的标签进行模板加载，`include`标签使用语法与`extends`类似
+
+#### include
+
+> 现在新建一个html文件，名为`li.html`，用来写一个简单的列表
+
+```jinja2
+<ul>
+    <li>吃饭</li>
+    <li>睡觉</li>
+    <li>玩耍</li>
+    <li>{{ var }}</li>
+</ul>
+```
+
+> 在需要导入的页面中使用`{% include "li.html" %}`进行引入\
+
+```jinja2
+{% extends "base.html" %}
+
+{% block title %}
+    子模版
+{% endblock title %}
+
+{% block top %}
+    <h3>子模板</h3>
+{% endblock top %}
+
+{% block content %}
+    <p>我是子模版</p>
+    {% include "li.html" %}
+{% endblock content %} </body>
+```
+
+> 被`include`引入的新模板，会在渲染完成之后添加到父模板所给定的对应`block`块中
+
+> 与`extends`不同，`extends`常用来控制整个模板的样式和效果；
+>
+> 而`include`更加细化，可以在一个模板内包含其他多个模板
+>
+> **如果`include`所包含的模板页面中有模板变量需要被填充，会在包含`include`的页面下进行渲染**
+>
+> 这种行为也好像是，把一个新的渲染好的`html`页面嵌入了进来一样

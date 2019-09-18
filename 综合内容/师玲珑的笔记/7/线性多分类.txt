@@ -1,0 +1,53 @@
+import numpy as np
+import pandas as pd
+from matplotlib import pyplot as plt
+
+#准备数据集
+#特征向量
+x=np.array([[4, 7], [3.5, 8], [3.1, 6.2], [0.5, 1], [1, 2],
+            [1.2, 1.9], [6, 2], [5.7, 1.5], [5.4, 2.2]]) # 自定义的数据集 
+#标记
+y=np.array([0, 0, 0, 1, 1, 1, 2, 2, 2]) # 三个类别
+
+#按照类别将数据点画到散点图中
+class_0=np.array([i for i,j in zip(x,y) if j==0])
+class_1=np.array([i for i,j in zip(x,y) if j==1])
+class_2=np.array([i for i,j in zip(x,y) if j==2])
+
+#绘图
+plt.scatter(class_0[:,0],class_0[:,1],marker='*',label='class_0',c='red')
+plt.scatter(class_1[:,0],class_1[:,1],marker='^',label='class_1',c='yellow')
+plt.scatter(class_2[:,0],class_2[:,1],label='class_2',c='black')
+plt.legend()
+
+#构建逻辑回归分类器
+
+from sklearn.linear_model import LogisticRegression
+classifier = LogisticRegression(random_state=37)  #先用默认的参数
+classifier.fit(x,y)  #对国际回归分类器进行训练
+
+#将分类器绘制到图中
+def plot_classifier(classifier,x,y):
+    x_min,x_max = min(x[:,0])-1.0,max(x[:,0])+0.1  #计算坐标的范围
+    y_min,y_max = min(x[:,1])-0.1,max(x[:,1])+0.1 
+    step_size = 0.01  #设置step_size
+    x_values,y_values = np.meshgrid(np.arange(x_min,x_max,step_size),np.arange(y_min,y_max,step_size))
+    #构建网络数据
+    mesh_output = classifier.predict(np.c_[x_values.ravel(),y_values.ravel()])
+    mesh_output = mesh_output.reshape(x_values.shape) 
+    plt.figure()
+    plt.pcolormesh(x_values, y_values, mesh_output, cmap=plt.cm.gray)
+    plt.scatter(x[:, 0], x[:, 1], c=y, s=80, edgecolors='black', linewidth=1, cmap=plt.cm.Paired)    
+    
+plot_classifier(classifier,x,y)
+
+
+#逻辑回归分类器有两个最重要的参数：solver和C，其中参数solver用于设置求解系统方程的算法类型，参数C表示 对分类错误的惩罚值，故而C越大，表明该模型对分类错误的惩罚越大，即越不能接受分类发生错误。
+#此处，作为抛砖引玉，可以优化C值对分类效果的影响，如下，我们随机选择几种C值，然后将分类结果图画出来， 凭借直观感受来判断哪一个比较好。当然，更科学的做法是，使用测试集结合各种评估指标来综合评价那个参数组 合下的模型最好。
+ 
+#优化模型中的参数c
+
+for c in [1,5,20,50,100,200,500]:    
+    classifier = LogisticRegression(C=c,random_state=37)    
+    classifier.fit(x, y)    
+    plot_classifier(classifier, x, y) 

@@ -1,0 +1,108 @@
+restful_api
+	视图函数就返回了html页面 前后端分离
+	前后端分离
+		前端页面  纯 HTML CSS JS -> AJAX
+		后端的数据不再直接渲染到页面，而是只返回到ajax里面
+			json打包了的数据
+
+	{
+		'id':1,
+		'name':'苹果',
+		'price':'10'
+	}
+
+#restful 规定了我们当前服务端的资源进行获取的时候严格按照请求方式来做不同的事情
+restful返回的是数据！！！！！！！！！！！！1
+
+
+用户用了get的方式  你应该返回数据来展示
+post 返回成功或者失败的消息
+
+{'code':False,}
+
+它首先是将链接作为资源的地址！！！！！！！
+
+#用户访问：
+	#DNS解析：将ip和域名绑定起来
+ajax --> 127.0.0.1/v1/shop  get方式  返回的是所有的商品结果数据
+  你ajax访问127.0.0.1/v1/shop就可以拿到这些数据  这个网址是我们定义的链接
+
+
+restful规范：
+1、api连接尽量避免繁复，通过连接的访问方式代表不同的工作要求
+get:获取
+post：创建
+put:全部更新一条数据中的所有字段 
+patch：局部更新一条数据中的部分字段
+delete:删除
+
+
+2、建议api使用HTTPS协议
+
+3、域名分离，将api接口与用户访问的域名进行分离
+用户访问连接为：www.abc.com
+后端接口服务器为:api.abc.com/www.abc.com/api/json
+当域名不同时，可能会存在跨域请求问题，但是当子path作为接口路由时和页面的请求不会存在请求跨域的问题（浏览器有同源策略阻止访问非相同域名下的资源）
+
+4、api连接中尽量添加版本号
+www.abc.com/api/v1
+
+
+5、在api连接中尽量对资源进行标识，可将资源名词添入连接path中
+
+www.abc.com/api/v1/goods/
+
+6、可在连接参数部分进行过滤，在增删改查时，提供筛选条件
+
+www.abc.com/api/v1/goods/?id=1
+
+7、通过对应HTTP协议中的状态码给客户端进行返回，表示相应的错误
+
+
+如果你是restful使用者
+
+接口地址  请求方式  请求参数
+
+开发者：
+用户给你的参数  你还要判断访问的方式 
+
+
+
+
+
+
+————————————————————————————————————————
+
+class Show(View):
+	def get(self,request):
+		id_=request.GET.get('id')
+		res={'id':id_}
+		return HttpResponse(json.dumps(res,ensure_ascii=False))
+
+	def post(self,request):
+		data=request.POST
+		print(data)
+		return HttpResponse('123')
+
+#127.0.0.1/8000/shop/
+#get方式：
+	返回商品信息
+	参数：id : Y 确定需要商品的ID值  Y表示必须参数  N表示不必须
+
+#POST方式：
+ 	添加商品信息
+	参数： id: Y 确定需要商品的ID值 name: Y 确定需要商品名
+
+
+import requests,json
+
+url='http://127.0.0.1:8000/get/?id=1'
+url2='http://127.0.0.1:8000/get/'
+data={'id':1,'name':'张三'}
+# response=requests.get(url=url)
+response=requests.post(url=url2,data=data)
+print(response.text)
+
+
+
+

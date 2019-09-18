@@ -1,0 +1,23 @@
+在pro模块下新建一个converter.py文件  是转换器的意思
+
+class ThreeChar:
+	regex="[a-zA-Z]{3}"  #匹配规则为只能匹配三个字符
+	def to_python(self,value):
+		return str(value)
+
+	def to_url(self,value):
+		return str(value)
+
+
+注册转换器在myapp模块下的urls.py里
+from pro.converter import ThreeChar
+from django.urls import register_converter
+
+register_converter(ThreeChar,'tc')   #tc是你自定义转换器的别名
+
+
+使用转换器：
+
+urlpatterns=[
+	path('<tc:x>/',views.index),
+]

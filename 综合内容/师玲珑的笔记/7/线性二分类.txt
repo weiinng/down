@@ -1,0 +1,57 @@
+#机器学习008-简单线性分类解决二分类问题
+#最简单的分类问题是二元分类，将整个样本划分为两个类别
+
+
+#1、准备数据集
+
+import numpy as np
+import pandas as pd
+from matplotlib import pyplot as plt
+
+#特征向量
+x=np.array([[3,1], [2,5], [1,8], [6,4], [5,2], [3,5], [4,7], [4,-1]]) #自定义数据集
+#自定义标签
+y=[0,1,1,0,0,1,1,0]  
+
+#由于标记中只含有两类，故而将特征向量按照标记分割成两部分
+class_0 = np.array([feature for (feature,label) in zip(x,y) if label==0])
+class_0
+class_1=np.array([feature for (feature,label) in zip(x,y) if label==1])
+class_1
+
+#为了更直观的认识，画散点图
+# plt.figure()
+# plt.scatter(class_0[:,0],class_0[:,1],marker='s',label='class_0')
+# plt.scatter(class_1[:,0],class_1[:,1],marker='x',label='class_1')
+# plt.legend()
+
+#构建 简单的线性分类器
+#所谓线性可分问题，是指在平面上可以通过一条直线（或更高维度上，一个平面） 来将所有数据点
+#划分开来的问题
+'''
+那么，这么多直线都可以解决简单分类问题，肯定会有一条最佳直线，能够达到最佳的分类效果。下面，使用 sklearn模块中的SGD分类器构建最佳直线分类器。
+SGD分类器可以轻松地解决这样的问题：超过10^5的训练样本、超过10^5的features SGD的优点是：
+高效 容易实现（有许多机会进行代码调优）
+SGD的缺点是： SGD需要许多超参数：比如正则项参数、迭代数。 SGD对于特征归一化（feature scaling）是敏感的。
+'''
+
+#构建一个SGD分类器，他使用随机梯度下降法来训练
+from sklearn.preprocessing import StandardScaler
+
+ss=StandardScaler()  #对数据进行标准化，保证每个维度的特征数据方差为1，均值为0，避免某个特征值过大而称为影响分类的主因
+
+dataset_X=ss.fit_transform(x)
+
+from sklearn.model_selection import train_test_split
+train_X,test_X,train_Y,test_Y=train_test_split(dataset_X,y,test_size=0.2,random_state=37)
+
+# print(test_X,test_Y)
+
+#构建SGD分类器进行训练（只能解决线性模型）
+from sklearn.linear_model import SGDClassifier
+sgdClassifier=SGDClassifier(random_state=42)
+sgdClassifier.fit(train_X,train_Y)
+
+#使用训练好的SGD分类器对陌生数据进行分类
+pre_y=sgdClassifier.predict(test_X)
+pre_y

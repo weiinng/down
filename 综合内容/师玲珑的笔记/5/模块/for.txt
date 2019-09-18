@@ -1,0 +1,29 @@
+在一个for循环中你可以访问这些特殊的变量：
+变量		描述
+loop.index	当前循环迭代的次数（从1开始）
+loop.index()	当前循环迭代的次数（从0开始）
+loop.revindex	到循环结束需要迭代的次数（从1开始）
+loop.revindex()	到循环结束需要迭代的次数（从0开始）
+loop.first	如果是第一次迭代，为True
+loop.last		如果是最后一次迭代，为True
+loop.length	序列中的项目数
+loop.cycle	在一串序列间期取值的辅助函数，见下面示例程序
+
+再循环内部，你可以使用一个叫做loop的特殊变量来获得关于for循环的一些信息
+比如：要是我们想知道当前被迭代的元素序号，并模拟Python中的enumerate函数做的事情，则可以使用loop变量的index属性，例如：
+{%for post in posts%}
+	{{loop.index}},{{post.title}}
+{%endfor%}
+会输出这样的结果：
+1,post title
+2,second post
+
+cycle函数会在每次循环的时候，返回其参数中的下一个元素，可以那上面的例子来说明：
+{% for post in posts%}
+	{{loop.cycle('odd','even')}} {{post.title}}
+{% endfor %}
+
+会输出这样的结果：
+odd post title
+even second post
+

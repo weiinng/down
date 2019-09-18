@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script type="text/javascript">
+        //定义函数
+        function sum(n)
+        {
+            var m=0;
+            for(var i=1;i<n;i+=2)
+            {
+                m+=i;
+            }
+            document.write(n+"以内所有奇数和为："+m+"<br/>");
+        }
+        //调用函数，计算50以内所有奇数的和
+        sum(50);
+        //调用函数，计算100以内所有奇数的和
+        sum(100);
+        //调用函数，计算150以内所有奇数的和
+        sum(150);
+        //调用函数，计算200以内所有奇数的和
+        sum(200);
+        //调用函数，计算250以内所有奇数的和
+        sum(250);
+    </script>
+</head>
+<body>
+</body>
+</html>

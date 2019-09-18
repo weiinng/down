@@ -1,0 +1,39 @@
+jsonpath.jsonpath(content,'筛选条件')    content 是json类型
+
+
+
+jsonpath用来解析多层嵌套的json数据；JsonPath是一种信息抽取类库，是从JSON文档中抽取制定信息的工具，提供多种语言实现版本
+Jsonpath对于json来说，相当于xpath对于xml
+
+jsonpath语法：
+
+jsonpath                              描述
+$			根节点
+@			现行节点
+. or []			取子节点
+..			就是不管位置，选择所有符合条件的条件
+*			匹配所有的元素节点
+[]			迭代器标示（可以在里面做简单的迭代操作，如数组下标，根据内容选值等）
+
+实例：
+$.store.book[*].author		store中的所有book作者
+$..author			所有的作者
+$.store.*			store下的所有的元素
+$.store..price			store中所有的内容的价格
+$..book[2]			第三本书
+$..book[(@length-1)] | $..book[-1:]   最后一本书
+$..book[0,1] | $..book[:2]		前两本书
+$..book[?(@.isbn)]		获取有isbn的所有数
+$..book[?(@.price<10)]		获取价格小于10的所有的书
+$..*				获取所有的数据
+
+
+
+
+
+
+
+
+
+
+

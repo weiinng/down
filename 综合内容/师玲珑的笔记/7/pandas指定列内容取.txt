@@ -1,0 +1,25 @@
+从记录中选出所有fault_code列的值在fault_list= [487, 479, 500, 505]这个范围内的记录
+
+record2=record[record['FAULT_CODE'].isin(fault_list)]
+
+
+
+找出列['WTGS_CODE']==set并且['FAULT_CODE'].isin(fault_list)的所有行
+record_this_month=record[(record['WTGS_CODE']==set)&(record['FAULT_CODE'].isin(fault_list))]
+
+（1）多个条件筛选的时候每个条件都必须加括号。
+
+（2）判断值是否在某一个范围内进行筛选的时候需要使用DataFrame.isin()的isin()函数，而不能使用in。
+
+
+选取'BADTHING'列为元素空的行，既badthing这列有内容的行全部去掉，组成一个新的dataframe
+　　df = df[df['BADTHING'].isnull()]
+　（空值搜索）
+
+
+
+选取GOODREASON列元素为列表['quality', 'cheap']内元素的行
+　　df = df[df['GOODREASON'].isin(['quality', 'cheap'])]
+
+
+

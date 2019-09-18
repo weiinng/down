@@ -1,0 +1,89 @@
+常用的函数调用方式有4种：
+
+（1）简单调用；
+（2）在表达式中调用；
+（3）在事件响应中调用；
+（4）通过链接调用；
+
+——————————————————————————
+1、简单调用
+<script type="text/javascript">
+        //定义函数
+        function alertSum()
+        {
+            //计算1+2+3+…+10的和
+            var sum=0;
+            for(var i=1;i<=10;i++)
+            {
+                sum=sum+i;
+            }
+        alert(sum);
+        }
+        //调用函数
+        alertSum();
+    </script>
+
+————————————————————————————————
+2、在表达式中调用
+<script type="text/javascript">
+        //定义函数
+        function isLeapYear(year)
+        {
+            //判断闰年的条件
+            if((year%4==0)&&(year%100!=0)||(year%400==0))
+            {
+                return year+"年是闰年";
+            }
+            else
+            {
+                return year+"年不是闰年";
+            }
+        }
+        //调用函数
+        document.write(isLeapYear(2015));
+    </script>
+————————————————————————————
+三、在事件响应中调用
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script type="text/javascript">
+        function alertMes()
+        {
+            alert("绿叶学习网JavaScript入门教程");
+        }
+    </script>
+</head>
+<body>
+    <input type="button" onclick="alertMes()" value="提交"/>
+</body>
+</html>
+——————————————————————————————
+四、通过链接调用
+函数除了可以在事件响应中调用外，还可以通过超链接来调用函数。
+
+语法：
+
+1
+<a href="javascript:函数名"></a>
+说明：
+
+在超链接中调用函数，指的就是在a标签的href属性中使用“javascript:函数名”来调用函数。当用户点击该超链接时，就会执行调用的相应函数。
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script type="text/javascript">
+        function mes()
+        {
+            alert("她：我爱helicopter。\n我：oh~my，= =?!");
+        }
+    </script>
+</head>
+<body>
+    <a href="javascript:mes()">表白对话</a>
+</body>
+</html>
+

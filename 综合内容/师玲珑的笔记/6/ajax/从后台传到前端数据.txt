@@ -1,0 +1,27 @@
+如果不转为json  传到前台  就算数据类型是列表 或者字典，他都默认是字符串
+
+你需要在后台将要传的数据用json.dumps() 转为json数据（如果你穿的数据是字典，直接转化就行了，如果是列表，你需要将其变为字典)
+如：
+return HttpResponse(json.dumps({'data':[1,2,3]}))
+
+前台用JSON.parse()  将数据解析
+
+ success:function(result){
+                        var result=JSON.parse(result)
+                        for(var i=0;i<result.data.length;i++){
+                            var tr
+                            tr='<td>'+result.data[i]+'</td>'
+                            console.log(tr)
+                            $('#tabletest').append('<tr>'+tr+'</tr>')
+                        }
+                    }
+
+
+<table class="table table-bordered table-hover text-center" id='tabletest'>
+        <tr>
+            <td>内容</td>
+        </tr>
+    </table>
+
+
+将其数据以表格数据展示  需要这样写 

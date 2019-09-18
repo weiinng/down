@@ -1,0 +1,5 @@
+db.stu.getIndexes()   查看索引
+db.stu.createIndex({'rank':-1})  创建索引
+db.stu.dropIndex({'rank':-1}) 删除索引
+db.stu.createIndex({'title':1},{unique:true})  创建唯一索引  title里的数据不重复
+db.stu.find({name:'test10000'}).explain('executionStats')  打印出执行状态  里面有时间

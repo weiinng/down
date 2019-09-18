@@ -1,0 +1,140 @@
+from selenium import webdriver
+
+#初始化驱动
+driver=webdriver.Chrome()
+#请求页面
+driver.get(url='https://www.baidu.com')
+#找到对应标签，发送文本
+driver.find_element_by_xpath("//*[@id='kw']").send_keys('2019')
+
+#找到按钮，点击click
+driver.find_element_by_xpath("//*[@id='su']").click()
+#获取页面内容
+content=driver.page_source
+print(content)
+# #解析页面
+
+
+# from selenium import webdriver
+# driver=webdriver.Chrome()
+# driver.get(url='https://www.baidu.com')
+# driver.find_element_by_xpath("//*[@id='kw']").send_keys('2019')
+# driver.find_element_by_xpath("//*[@id='su']").click()
+# driver.implicitly_wait(10)
+# driver.find_element_by_xpath('//*[@class="t c-gap-bottom-small"]/a').click()
+# content=driver.page_source
+# print(content)
+
+
+# from selenium import webdriver
+# driver=webdriver.Chrome()
+# driver.get(url='https://www.baidu.com')
+# driver.find_element_by_xpath('//*[@id="kw"]').send_keys('2019')
+# driver.find_element_by_xpath('//*[@id="su"]').click()
+# driver.implicitly_wait(10)
+# listContent=[]
+# for x in range(1,10):
+#     content=driver.find_element_by_xpath("//*[@id=%d]/h3/a"%x).text
+      content=driver.find_element_by_xpath("//*[@id=%d]/h3/a"%x).get_attribute('href')  #获取链接
+#     listContent.append(content)
+# print(listContent)
+
+# from selenium import webdriver
+#
+# driver=webdriver.Chrome()
+# driver.get(url='https://movie.douban.com/')
+# # listTitle=driver.find_elements_by_xpath("//div[@class='slide-page']/a/p")
+# listTitle=driver.find_elements_by_xpath('//*[@id="content"]/div/div[2]/div[4]/div[3]/div/div[1]/div/div[2]/a/p')
+# # listTitle2=[]
+# # for x in listTitle:
+# #     listTitle2.append(x.text)
+# # print(''.join(listTitle2))
+# for x in listTitle:
+#     print(x.text)
+
+
+# from selenium import webdriver
+# driver=webdriver.Chrome()
+# driver.get(url='http://www.ruanyifeng.com/survivor/collapse/index.html')
+# listTitle=driver.find_elements_by_xpath('/html/body/section/div/div[1]/div[2]/nav/div/aside/ul/li/ul/li/a/span[2]')
+# for x in listTitle:
+#     print(x.text)
+
+# from selenium import webdriver
+# driver=webdriver.Chrome()
+# driver.get(url='https://www.baidu.com')
+
+
+
+
+# from selenium import webdriver
+# driver=webdriver.Chrome()
+# driver.get(url='http://www.ruanyifeng.com/survivor/collapse/index.html')
+# #隐士等待
+# driver.implicitly_wait(10)
+# #点击事件
+# driver.find_element_by_xpath('/html/body/section/div/div[1]/div[1]/article/ul/li[1]/a').click()
+# #切换窗口
+# windows=driver.window_handles
+# driver.switch_to.window(windows[1])
+# #获取详细页面里面的内容
+# content=driver.find_element_by_xpath('/html/body/section/div/div[1]/div[1]/article/p[16]')
+# print(content.text)
+# #关闭当前窗口
+# driver.close()
+
+
+
+# from selenium import webdriver
+# driver=webdriver.Chrome()
+# driver.get(url='http://www.ruanyifeng.com/survivor/collapse/index.html')
+# driver.implicitly_wait(10)
+# driver.find_element_by_xpath('/html/body/section/div/div[1]/div[1]/article/ul/li[1]/a').click()
+# windows=driver.window_handles
+# driver.switch_to.window(windows[1])
+# content=driver.find_element_by_xpath('/html/body/section/div/div[1]/div[1]/article/p[14]')
+# print(content.text)
+# driver.close()
+
+
+
+
+# from selenium import webdriver
+# driver=webdriver.Chrome()
+# driver.get(url='http://www.ruanyifeng.com/survivor/collapse/index.html')
+# driver.implicitly_wait(10)
+# listTitle=driver.find_elements_by_xpath('/html/body/section/div/div[1]/div[1]/article//ul/li/a')
+# # print(len(listTitle))
+# for x in range(len(listTitle)):
+#     driver.find_element_by_xpath('/html/body/section/div/div[1]/div[1]/article//ul/li[%d]/a'%(x+1)).click()
+#     windows=driver.window_handles
+#     driver.switch_to.window(windows[1])
+#     content=driver.find_element_by_xpath('/html/body/section/div/div[1]/div[1]/article/p[3]')
+#     print(content.text)
+#     driver.close()
+#     driver.switch_to.window(windows[0])
+#
+# #退出
+# driver.quit()
+
+
+
+
+import re
+from selenium import webdriver
+driver=webdriver.Chrome()
+driver.get(url='http://www.ruanyifeng.com/survivor/collapse/index.html')
+driver.implicitly_wait(10)
+listTitle=driver.find_elements_by_xpath('/html/body/section/div/div[1]/div[1]/article//ul/li/a')
+def removeTags(content):
+    content=re.findall("(?<=[(])[^()]+\.[^()]+(?=[)])",content)
+    return content
+
+for x in range(len(listTitle)):
+    driver.find_element_by_xpath('/html/body/section/div/div[1]/div[1]/article//ul/li[%d]/a'%(x+1)).click()
+    windows=driver.window_handles
+    driver.switch_to.window(windows[1])
+    content=re.findall('<article class="content is-size-4-desktop">(.*)</article>',driver.page_source,re.S)
+    print(removeTags(''.join(content)))
+    driver.close()
+    driver.switch_to.window(windows[0])

@@ -1,0 +1,44 @@
+templates/my_page：
+
+from django import template
+from django.utils.safestring import mark_safe
+
+register=template.Library()
+
+@register.simple_tag(name='my_page')
+def my_page(*arg):
+    return mark_safe('<br>'.join(arg))         #自动转义  使标签生效
+
+
+@register.simple_tag(takes_context=True)
+def get_context(context):
+    value=context.get("value")
+    return "获取到的模板变量：%s"%value
+
+
+views:
+
+def index2(request):
+    value='哈哈哈'
+    return render(request,'index2.html',locals())
+
+
+index2.html:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    {% load my_page %}
+</head>
+<body>
+    <!-- {% autoescape off %}
+        {% my_page 'arg1' 'arg2' 'arg3'  %}
+    {% endautoescape %} -->
+    {% my_page 'arg1' 'arg2' 'arg3'  %}        #结果为arg1\narg2\narg3
+    {% get_context %}    #结果为哈哈哈
+</body>
+</html>
+
+
+

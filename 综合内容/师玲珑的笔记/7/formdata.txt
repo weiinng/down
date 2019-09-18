@@ -1,0 +1,20 @@
+formdata:
+https://developer.mozilla.org/zh-CN/docs/Web/API/FormData
+
+
+jquery,orm:
+https://www.cnblogs.com/caihongmei/p/5109475.html
+
+
+
+$('#upfile')[0].files[0]里的内容为：   第一个[0]是将jquery对象转换为orm对象，files[0]是取里面的值  
+FileList {0: File, length: 1}
+0: File
+lastModified: 1553756444863
+lastModifiedDate: Thu Mar 28 2019 15:00:44 GMT+0800 (中国标准时间) {}
+name: "4.jpg"
+size: 349117
+type: "image/jpeg"
+webkitRelativePath: ""
+__proto__: File
+length: 1

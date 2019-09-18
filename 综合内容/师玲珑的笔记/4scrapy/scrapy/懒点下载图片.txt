@@ -1,0 +1,7 @@
+item['image_urls']=x.xpath(".//div[@class='img']/a/img/@src").extract()[0]
+
+你的item字段名必须是image_urls
+
+
+xpath返回的永远是个列表  所以你要取[0]
+.extract()是将xpath对象转换为unicode对象

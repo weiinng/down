@@ -1,0 +1,30 @@
+from django.shortcuts import render,redirect,reverse,HttpResponse
+import json
+from .crawl import *
+from .models import *
+from django.views import View
+# 0Create your views here.
+
+class login(View):   
+    def post(self,request):
+        name=request.POST.get('name')
+        password=request.POST.get('password')
+        mes={}
+        mes['code']=200 if name=='1' and password=='2'else 1
+        return HttpResponse(json.dumps(mes,ensure_ascii=False))
+
+def zhilian(request):
+    name=Zhi()
+    data=pd.read_csv(name,header=None)
+    data=np.array(data).ravel().tolist()
+    for x in data:
+        Zl.objects.create(name=x)
+    return HttpResponse(json.dumps(data,ensure_ascii=False))
+
+class search(View):
+    def post(self,request):
+        title=request.POST.get('title')
+        z=Zl.objects.filter(name=title).first()
+        mes={}
+        mes['title']=z.name if z else 'нч╫А╧Ш'
+        return HttpResponse(json.dumps(mes,ensure_ascii=False))

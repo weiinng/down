@@ -1,0 +1,17 @@
+from django.core import serializers
+
+def show(request):
+    if request.method=='POST':
+        name=request.POST.get('name')
+        name=models.Classify.objects.filter(name=name).first()
+        computer=models.Computer.objects.filter(classify=name).all()
+        computer=serializers.serialize('json',computer,ensure_ascii=False)
+        return HttpResponse(computer)
+    else:
+        raise Http404
+
+def show2(request,name):
+    name=models.Classify.objects.filter(name=name).first()
+    computer=models.Computer.objects.filter(classify=name).all()
+    computer=serializers.serialize('json',computer,ensure_ascii=False)
+    return HttpResponse(computer)

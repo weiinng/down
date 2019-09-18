@@ -1,0 +1,41 @@
+哪些地方我们会用到POST请求？
+登录注册（POST比GET更安全）
+需要传输大文本内容的时候（POST请求对数据长度没有要求）
+所以同样的，我们的爬虫也需要在这两个地方回去模拟浏览器发送post请求
+
+requests发送post请求语法：
+用法：
+response=requests.post('http://www.baidu.com/',\data=data,headers=headers)
+
+data的形式：字典
+
+POST请求练习
+下面我们通过金山翻译的例子看看post请求如何使用
+地址;http://fy.iciba.com/
+
+1、思路分析
+抓包确定请求的url地址
+
+2、确定请求的参数
+
+3、确定返回数据的位置
+
+4、模拟浏览器获取数据
+
+json
+JSON函数
+使用JSON函数需要导入json库：import json
+
+json.dumps 将python对象编码成JSON字符串
+json.loads 将已编码的JSON字符串解码为python对象
+
+金山词霸例子：
+import requests
+url='http://fy.iciba.com/ajax.php?a=fy'
+response=requests.post(url=url,data={'w':'good'})
+if response.status_code==200:
+	print(response.json())
+
+小结：
+在模拟登录等场景，经常需要发送post请求，直接使用requests.post(url,data)即可
+

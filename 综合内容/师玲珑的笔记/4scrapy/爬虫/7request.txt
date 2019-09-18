@@ -1,0 +1,170 @@
+
+内容：
+requests模块的认识
+requests发送get请求
+requests获取响应数据
+requests发送带headers的请求
+requests发送带参数的请求
+requests发送POST请求
+requests使用代理
+requests处理cookie
+js的逆向解析
+urllib基本介绍
+
+
+为什么要重点学习requests模块，而不是urllib
+企业中用的最多的就是requests
+requests的底层实现就是urlllib
+requests在python2和python3中通用。方法完全一样
+requests简单易用
+requests能够自动帮助我们解压（gzip压缩的等）响应内容
+
+requests作用：
+作用：发送网络请求，返回响应数据
+
+requests模块发送简单的get请求、获取响应
+import requests
+#目标url
+url='https://www.baidu.com'
+#向目标url发送get请求
+response=requests.get(url)
+#打印响应内容
+print(response.text)
+
+response的常用属性：
+response.text  响应体  str类型
+response.content  响应体bytes类型
+response.status_code 响应状态码
+response.request.headers 响应对应的请求头
+response.request.cookies 响应对应请求的cookie
+response.cookies 响应的cookie (经历了set-cookie动作）
+思考  ： text是re9osponse的属性还是方法呢？
+
+一般来说名词，往往都是对象的属性，对应的动词是对象的方法
+
+response.text和response.content的区别
+response.text
+类型：str
+解码类型:requests模块自动根据HTTP头部对响应的编码做出有根据的推测，推测的文本编码。
+如何修改编码方式：requests.encoding='gbk'
+
+response.content
+类型：bytes
+解码类型：没有指定
+如何修改编码方式：requests.content.decode('utf8')
+获取网页源码的通用方式：
+response.content.decode()
+response.conten.decode("GBK")
+response.text
+以上三种方法从前往后尝试，能够100%解决所有网页编码的问题
+
+更推荐使用response.content.decode()的方式获取响应的html页面
+
+
+
+练习：把网络上的图片保存到本地
+图片的url:https://www.baidu.com/img/bd_logo1.png
+利用requests模块发送请求获取响应
+以2进制写入的方式打开文件，并将response响应的二进制内容写入
+import requests
+response=requests.get(url='https://www.baidu.com/img/bd_logo1.png')
+#响应本身就是一个图片，并且是二进制类型
+#以二进制+写入的方式打开文件
+with open('baidu.png','wb') as f:
+	#写入response.content bytes二进制类型
+	f.write(response.content)
+
+import request
+response=requests.get(url='https://www.baidu.com')
+print(response.requests.headers)   #打印响应对应请求的请求头信息
+header的形式：字典
+
+为什么请求需要带上header ?
+模拟浏览器，欺骗服务器，获取和浏览器一致的内容
+
+用法：
+requests.get(url,headers=headers)
+
+完整的代码
+import requests
+url='https://www.baidu.com'
+headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36"}
+#在请求头中带上User-Agent，模拟浏览器来发送请求
+response=requests.get(url,headers=headers)
+#打印请求头信息
+print(response.request.headers)
+
+发送带参数的请求
+我们在使用百度搜索的时候经常发现url地址中会有一个？，那么该问号后边的就是请求参数，又叫做查询字符串
+
+什么叫做请求参数
+例1：http://www.webkaka.com/tutorial/server
+例2：https://www.baidu.com/s?wd=python&a=c
+
+请求参数的形式：字典
+kw:{'wd':'长城'}
+
+请求参数的用法：
+requests.get(url,params=kw)
+
+关于参数的注意点：
+在url地址中，很多参数是没有用的，比如百度搜索的url地址，期中参数只有一个字段有用，其他的都可以删除，如何确定哪些请求参数有用或者没用：挨个尝试！对应的，在后续的爬虫中，越到很多参数的url地址，都可以尝试删除参数
+
+两种方式：发送带参数的请求
+对https://www.baidu.com/s?wd=python发起请求可以使用requests.get(url,params=kw)的方式
+#方式一：利用params参数发送带参数的请求
+import requests
+url='https://www.baidu.com/s?'
+kw={'wd':'python'}
+response=requests.get(url,headers=headers,params=kw)
+
+#当有多个请求参数时，requests接收的params参数为多个键值对的字典，比如"?wd=python&a=c"  相当于{'wd':'python','a':'c'}
+
+也可以直接对https://www.baidu.com完整的url直接发送请求，不适用params参数
+import requests
+url='https://www.baidu.com/s?wd=python'
+response=requests.get(url,headers=headers)
+
+
+小结：
+requests模块的介绍：能够帮助我们发起请求获取响应
+requests的基本使用：requests.get(url)
+以及response常见的属性：
+response.text  响应体 str类型
+response.content  响应体 bytes类型
+response.status_code 响应状态码
+response.request.headers 响应对应的请求头
+response.headers 响应头
+response.request._cookies 响应对应请求的cookie
+response.cookies 响应的cookie(经历了set-cookie动作）
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

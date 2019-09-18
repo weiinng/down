@@ -1,0 +1,59 @@
+#导入cv2模块
+import cv2
+import sys
+import importlib
+importlib.reload(sys)
+#cv2 支持 bmp jpg jpeg png tiff gif
+
+#声明一个图像类
+class TestCv2(object):
+    #初始化方法
+    def __init__(self,cv2):
+        self.cv2=cv2
+
+    #入门图片操作方法
+    def test_base(self):
+        cv2=self.cv2
+        #读图
+        img = cv2.imread("1.bmp")
+        #创建窗口并且展示图片
+        # cv2.namedWindow("Image")
+        #显示图片
+        cv2.imshow('Image',img)
+        #延迟窗口
+        cv2.waitKey(0)   #0是无效参数
+        #释放窗口
+        cv2.destroyAllWindows()
+    
+    #图片操作方法
+    def test_do_img(self):
+        cv2=self.cv2
+        #读取原图
+        img=cv2.imread('1.bmp')
+        #改变图片尺寸 
+        img_copy=cv2.resize(img,(200,150))
+
+        #降噪操作，将图片变为灰白
+        gray = cv2.cvtColor(img_copy,cv2.COLOR_BGR2GRAY)
+
+        #写入新图
+        cv2.imwrite('new.jpg',gray)
+
+        #压缩图片  将图片分辨率降低 阈值范围是 0-100
+        cv2.imwrite('new2.jpg',img_copy,[int(cv2.IMWRITE_JPEG_QUALITY),20])
+
+        #显示图片
+        cv2.imshow('Image',img_copy)
+        #延迟窗口
+        cv2.waitKey(0)
+        #释放窗口
+        cv2.destroyAllWindows
+
+if __name__ == "__main__":
+    #实例化对象
+    testcv2=TestCv2(cv2)
+    #调用方法
+    # testcv2.test_base()
+    # testcv2.test_do_img()
+    testcv2.face_reg()
+

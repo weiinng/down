@@ -1,0 +1,19 @@
+json四个函数
+json.loads()  把jsonstr转为python类型（dict)
+json.load()  把文件转为python类型(dict)
+json.dumps()  把python类型(dict)转成jsonstr类型
+json.dump() 把python类型（dict)转为文件
+
+将python类型写入文件
+jsonA={'name':'张三','age':25}
+import json
+with open('student.json',mode='w',encoding='utf8') as f:
+	json.dump(jsonA,f,ensure_ascii=False)  #ensure_ascii=False不让汉字转为ASCII
+	#f.write(jsonA)  #不允许用普通文件的方式写入  因为后缀是json
+
+将json文件转为python类型
+with open('student.json',mode='r') as f:
+	contentJson=json.load(f)
+	print(contentJson)
+
+

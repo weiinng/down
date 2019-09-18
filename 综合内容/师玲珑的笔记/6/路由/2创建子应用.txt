@@ -1,0 +1,64 @@
+来搞个Hello world
+django创建子应用
+项目和应用有啥区别？
+应用是一个专门做某件事的网络应用程序——比如博客系统，或者公共记录的数据库，或者简单的投票程序。
+项目则是一个网站使用的配置和应用的集合。项目可以包含很多个应用。应用可以被多个项目使用
+
+python manage.py startapp myapp
+
+app目录
+-admin.py :app在admin注册展示时需要的文件
+-views.py :app的功能视图函数文件
+-model.py:app需要使用数据库时的文件
+-urls.py :当使用include路由分发时，每个app应该有他自己的子路由文件，这个是默认没有创建好的
+
+视图函数
+打开app下的views.py文件
+Web访问起始就是通过一个url链接地址访问到服务器上的一个函数
+在views.py中我们通过编写函数的形式，接收用户请求的request并返回一个response
+
+#每一个视图函数都需要有一个必须参数request，用来接收用户访问时的请求内容
+from django.http import HttpResponse
+def index(request):
+	return HttpResponse("<h1>Hello world</h1>")
+
+HttpResponse函数用来像用户返回一个字符串
+
+路由配置
+创建好了一个可以在请求时返回H1标签的视图函数，但是现在通过浏览器还是访问不到需要我们为这个app下的函数进行路由配置
+
+第一种简单的路由配置，直接在主控路由文件下，找到这个视图函数
+#myproject/urls.py
+from django.contrib import admin
+from django.urls import path
+from myapp import views
+urlpatterns=[
+	path('admin/',admin.site.urls),  #admin控制界面路由
+	path('',views.index)
+	#path函数第一个参数为访问地址，空字符串代表：当用户直接访问首页时
+	#第二个参数代表访问该地址时对应的视图函数，我们引入了app下的views中的index视图函数
+]
+
+以上将视图函数的查找直接写到主控路由并不是最好的办法，我们的项目通常会有非常多的路由配置项，如果都堆到这个文件中肯定是非常乱的，难以维护；
+
+我们可以在对应app下创建一个子路由控制文件，并在其中设置视图的路由配置
+
+#myapp/urls.py
+from diango.urls import path
+from . import views
+urlpatterns=[
+	path('',views.index)
+]
+
+现在虽然配置了app下的路由文件，但是访问时，是看不到对应试图的结果
+这是因为默认的url查找动作将会从主控路由文件开始，我们还需要在主控路由文件下进行路由分发设置，让主控路由可以找到子app下的路由
+#myproject/urls.py
+from django.contrib import admin
+from django.urls import path,include
+from myapp import views
+urlpatterns=[
+	path('admin/',admin.site.urls),
+	path('',include("myapp.urls")),   #里面必须是双引号
+	#函数include()，允许引用其他URLconfs
+]
+

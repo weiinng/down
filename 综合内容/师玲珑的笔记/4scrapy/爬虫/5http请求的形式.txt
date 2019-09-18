@@ -1,0 +1,51 @@
+请求方法 空格 URL 空格 协议版本 回车符 换行符      #这是请求行
+头部字段名 ： 值 回车符 换行符         
+	...			          #这三个是请求头部
+头部字段名 ： 值 回车符 换行符   
+回车符 换行符
+                                            #这一行是请求数据
+
+
+http常见请求头
+Host(主机和端口号）
+Connection(链接类型）
+Upgrade-Insecure-Requests(升级为HTTPS请求）
+User-Agent(浏览器名称）
+Accept-Encoding(文件编解码格式）
+Cookie(Cookie)
+x-requested-with:XMLHttpRequest(表示该请求是Ajax异步请求）
+      
+http重要的响应头
+Set-Cookie (对方服务器设置cookie到用户浏览器的缓存）
+Last-Modified (对方静态页面最后更新时间）
+
+响应状态吗（sataus_code)
+常见的状态码：
+200成功
+302、307：临时转移至新的url
+404：找不到该页面
+500：服务器内部错误
+503：服务器不可用
+所有的状态码都不可信，一切以是否获取到数据为准
+
+小结：
+记忆http、https的概念和区别：
+http:超文本传输协议
+https:http+ssl,即带有安全套接字层的超文本传输协议
+记忆浏览器发送httpp请求的过程：
+浏览器先向地址栏中的url发起请求，并获取相应在返回的响应内容（html）中，会带有css,js,图片等url地址，以及ajax代码，浏览器按照响应内容中的顺序依次发送其他的请求，并获取相应的响应，浏览器每获取一个响应就对展示出的结果进行添加（加载），js,css等内容会修改页面的内容，js也可以重新发送请求，获取响应，从获取第一个响应并在浏览器中展示，直到最终获取全部响应，并在展示的结果中添加内容或修改
+
+记忆http请求头的形式：
+GET/item/503/1227315?fr=aladdin HTTP/1.1
+Host:www.baidu.com
+....
+
+记忆http响应头的形式
+keepalive在很多情况下能够重用连接，减少资源消耗，缩短响应时间
+HTTP/1.1 200 OK
+Connection:keep-alive
+...
+
+
+
+

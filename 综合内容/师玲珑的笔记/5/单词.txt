@@ -1,0 +1,33 @@
+application 适用，应用，请求
+deactivate 解除动员 使无效
+freeze 使结冰，凝固
+wrapper 包装纸，封皮
+builder建设者
+upgrading 浓缩，提升
+available 可获得的
+via 提升
+alchemy 神秘变化
+script 脚本
+migrate 迁移
+session 开会，学期，一段时间
+login 登录、注册
+restful 平静的
+bootstrap 引导程序
+callable 可随时支取的
+moment 瞬间，片刻
+sources 原因
+custom 习惯，定做的
+refactor 重构
+redirect 更改
+label 标签
+converter  变换器、
+template 模块
+render 使成为，递交
+option 选择
+permanent 永久性
+variable 变化的
+strip 剥光
+instances  例子
+ignore  忽视
+validators  验证
+role 作用，地位

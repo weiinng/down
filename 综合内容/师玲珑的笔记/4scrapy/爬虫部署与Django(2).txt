@@ -1,0 +1,107 @@
+1.Django项目根目录下创建Scrapy项目
+配置Django嵌入，在Scrapy的settings.py中加入以下代码：
+import os
+import sys
+sys.path.append(os.path.dirname(os.path.abspath('.')))
+os.environ['DJANGO_SETTINGS_MODULE'] = 'django项目名.settings'
+import django
+django.setup()
+
+2.编写爬虫
+3.部署环境
+pip install scrapyd	
+pip install scrapyd-client 
+启动scrapyd的服务：cmd:>scrapyd
+在爬虫根目录执行：scrapyd-deploy,如果提示不是内部命令，
+
+4.在Terminal里输入命令：scrapyd
+修改scrapy.cfg，去掉url前的#
+在新建一个Terminal:
+进入到scrapy项目根目录，执行：
+scrapyd-deploy
+在执行
+scrapyd-deploy <target> -p <projectname>（target:spider.cfg中
+
+[deploy：NAME]）（projectname：spider.cfg中project = XXX）
+
+例如：
+[deploy:target]
+url = http://localhost:6800/
+project = one
+
+scrapyd-deploy target -p one
+
+
+然后进入localhost:6800
+
+复制curl http://localhost:6800/schedule.json -d project=default -d spider=somespider
+
+然后再小黑框里执行  把project=one spider=itcast
+
+5.启动爬虫
+第一种方法：Django中view.py
+class StartSpider(View):
+    def get(self,request):
+        url = 'http://localhost:6800/schedule.json'
+        data = {'project': 'ScrapyAbckg', 'spider': 'abckg'}
+        print(requests.post(url=url, data=data))
+        return JsonResponse({'result':'OK'})
+第二种方法：（命令式启动爬虫：curl http://localhost:6800/schedule.json -d project=default -d spider=somespider）
+
+6.启动django
+cmd：python manage.py runserver
+
+
+----使用django中的model-----
+pip install scrapy-djangoitem
+import scrapy
+from scrapy_djangoitem import DjangoItem
+from ""Django的项目名"".models import ""模型名""
+class KuwoItem(DjangoItem):
+    django_model = ""创建的模型名""
+
+----------------scrapyd  管理----------------------
+1、获取状态
+
+http://127.0.0.1:6800/daemonstatus.json
+
+
+2、获取项目列表
+
+http://127.0.0.1:6800/listprojects.json
+
+
+3、获取项目下已发布的爬虫列表
+
+http://127.0.0.1:6800/listspiders.json?project=myproject
+
+
+4、获取项目下已发布的爬虫版本列表
+http://127.0.0.1:6800/listversions.json?project=myproject
+
+
+5、获取爬虫运行状态
+
+http://127.0.0.1:6800/listjobs.json?project=myproject
+
+
+6、启动服务器上某一爬虫（必须是已发布到服务器的爬虫)
+http://localhost:6800/schedule.json
+data={"project":myproject,"spider":myspider}
+requests.post(url=url,data=data
+
+7、删除某一版本爬虫
+
+url=http://127.0.0.1:6800/delversion.json
+data={"project":myproject,"version":myversion}
+
+requests.post(url=url,data=data)
+
+8、删除某一工程，包括该工程下的各版本爬虫
+
+http://127.0.0.1:6800/delproject.json
+data={"project":myproject}
+requests.post(url=url,data=data)
+
+
+

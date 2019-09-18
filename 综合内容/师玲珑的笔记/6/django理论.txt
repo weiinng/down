@@ -1,0 +1,210 @@
+1. 简述http 协议及常用请求头。
+
+
+2. 列举常见的请求方法。
+
+
+3. 列举常见的状态码。
+
+
+4. http和https的区别?
+
+
+5. 简述websocket 协议及实现原理.
+
+
+6.django中如何实现 websocket?
+
+
+7. Python web开发中,跨域问题的解决思路是?
+
+
+8. 请简述http缓存机制.
+
+
+9. 谈谈你所知道的Python web 框架.
+
+
+
+10.Http和Https的区别?
+
+
+11.django,flask,tornado 框架的比较?
+
+
+12.什么是wsgi?
+
+
+13.列举 django 的内骂组件
+
+
+14.简述django 下的(内建的)缓存机制
+
+
+15. django 中 model 的SlugField 类型字段有什么用途
+
+
+16.django 中想要验证表单提交是否格式正确需要用到form 中的那个方法
+A. form.save()
+B.form.save(commit=False)
+C.form.verify()
+D.form.is_valid()
+
+
+17.django常见的线上部署方式有哪几种?
+
+
+18.django 对数据查询结果排序怎么做,降序怎么做?
+
+
+19. 下面关于 http协议中的get和post方式的区别,那些是错误的?(多选)
+
+
+A. 他们都可以被收藏, 以及缓存
+
+B. get 请求参数放在 url 中
+
+C. get 只用于查询请求, 不能用于数据请求
+
+D. get 不应该处理敏感数据的请求
+
+
+20. django 中使用 memcached 作为缓存的具体方法?优缺点说明?
+
+
+21.django 的 orm 中如何查询id 不等于5 的元素?
+
+
+22.使用Django中model filter 条件过滤方法,把下边 sql语句转化成python代码
+select*from company where title like"%abc%" or mecount>999
+order by createtime desc;
+
+
+23.从输入http://www.baidu.com/到页面返回,中间都是发生了什么?
+
+
+24.django 请求的生命周期?
+
+
+25. django 中如何在model 保存前做一定的固定操作,比如写一句日志?
+
+
+26.简述django中间件及其应用场景?
+
+
+27. 简述 django FBV 和 CBV?
+
+
+28. 如何给django CBV 的函数设置添加装饰器?
+
+
+29. django 如何连接多个数据库并实现读写分离?
+
+
+30.列举django orm 中你了解的所有方法?
+
+
+31.django中的F的作用?
+
+
+32.django中的Q的作用?
+
+
+33.django 中如何执行原生 SQL?
+
+
+34. only 和 defer 的区别?
+
+
+35. selectrelated 和 prefetchrelated 的区别?
+
+
+36.django中filter 和exclude 的区别
+
+
+37.django values 和values_list的区别?
+
+
+38.如何使用django orm 批量创建数据?
+
+
+39.django 的 Form 和 ModeForm 的作用?
+
+
+40.django的Form组件中,如果字段中包含 choices 参数,请使用两种方式实现数据源实时更新。
+
+
+41.django 的 Model 中的 ForeignKey字段中的on_delete 参数有什么作用?
+
+
+42.django 中csrf的实现机制?
+
+
+43.django 如何实现 websocket?
+
+
+44. 基于 django 使用ajax发送 post请求时, 有哪种方法携带csrf token?
+
+
+45. django 缓存如何设置?
+
+
+46. django 的缓存能使用 redis吗? 如果可以的话, 如何配置?
+
+
+47. django 路由系统中 name 的作用?
+
+
+48.django 的模板中 filter, simpletag,inclusiontag 的区别?
+
+
+49. django-debug-toolbar 的作用?
+
+
+50.django中如何实现单元测试?
+
+
+51.解释 orm 中db first 和code first 的含义?
+
+
+52. django 中如何根据数据库表生成 model 类?
+
+
+53. 使用 orm 和原生sql 的优缺点?
+
+
+54.简述MVC和MTV
+
+
+55.django 的 contenttype 组件的作用?
+
+
+56.使用 Django 中 model filter 条件过滤方法,把下边 sql语句转化成python代码
+select * from company where title like "%abc%" ar mecount>999
+order by createtime desc;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

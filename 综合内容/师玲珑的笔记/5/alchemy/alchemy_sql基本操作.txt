@@ -1,0 +1,11 @@
+在Flask_SQLAlchemy中，插入、修改、删除操作，均由数据库会话管理
+会话用db.session表示，在准备把数据写入数据库前，要先将数据添加到会话中，然后调用commit()方法提交会话
+
+在Flask-SQLAlchemy中、查询操作是通过query对象操作数据
+最基本的查询是返回表中所有数据，可以通过过滤器进行更精确的数据查询
+
+db.session.add(role) 添加到数据库的session中
+db.session.add_all([user1,user2])  添加多个信息到session中
+db.session.commit()  提交数据库的修改（包括增、删、改）
+db.session.rollback()  数据库的回滚操作
+db.session.delete(user)  删除数据库（需要跟上commit)

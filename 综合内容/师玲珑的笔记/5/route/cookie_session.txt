@@ -1,0 +1,57 @@
+获取cookie  request.get.cookie('')
+获取session  session.get('')
+
+cookie:指某些网站为了辨别用户身份、进行会话跟踪而储存在用户本地的数据（通常经过加密）
+复数形式Cookies
+cookie是由服务器生成，发送给客户端浏览器，浏览器会将Cookie的Key/value保存，下次请求同一网站时就发送该cookie给服务器（前提是浏览器设置为启用cookie)
+cookie的Key/value可以由服务器端自己定义
+
+Cookie是存储在浏览器中的一段纯文本信息，建议不要存储敏感信息如密码，因为电脑上的浏览器可能被其它人使用
+Cookie基于域名安全，不同域名的Cookie是不能互相访问的
+如访问itcast.cn时向浏览器中写了Cookie信息，使用同一浏览器访问baidu.com时，无法访问到itcast.cn写的Cookie信息
+浏览器的同源策略
+当浏览器请求某网站时，会将本网站下所有Cookie信息提交给服务器，所以在request中可以读取Cookie信息
+
+设置cookie
+from flask import Flask,Response
+@app.route('/cookie')
+	def set_cookie():
+		resp=Response("this is to set cookie")
+		resp.set_cookie('username','itcast')
+		return resp
+
+设置过期时间
+@app.route('/cookie')
+def set_cookie():
+	response=Response('hello world')
+	response.set_cookie('username','itheima',3600)    #单位是秒
+	return response
+
+获取cookie
+from flask import Flask,request
+#获取cookie
+@app.route('/request')
+def resp_cookie():
+	resp=request.cookies.get('username')
+	return resp
+
+Session
+对于敏感重要的信息，建议储存在服务器端，在服务器端进行状态保持的方案就是session
+session依赖于cookie
+session数据的获取
+session:请求上下文对象，用于处理http请求中的一些数据内容
+@app.route('/index1')
+def index1():
+	session['username']='itcast'
+	return reddirect(url_for('index'))
+@app.route('/')
+def index():
+	return session.get('username')
+记得设置secretz-key='itcast'  这个里面的值自己可以随意设置
+
+删除session
+session.pop('')
+
+app.config['PERMANENT_SESSION_LIFETIME']=20  #设置session的时效
+
+

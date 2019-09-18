@@ -1,0 +1,29 @@
+import re
+s='abcasdc'
+r=re.findall('ab.*?c',s)
+r
+
+结果为：abc
+
+不加问号结果为
+abcasdc
+
+加了问好是非贪婪匹配
+
+
+import re
+s='abcasdc'
+r=re.findall('ab(.*)c',s)
+r
+
+结果为casd
+
+加了括号只匹配出括号内的内容
+如果有多个括号  结果是以元祖的形式，外面套个[]
+
+
+用了findall,结果都是一个列表
+
+re.sub()  替换
+
+re.sub('\d','_','chuan1zhi2')   结果为['chuan_zhi_']

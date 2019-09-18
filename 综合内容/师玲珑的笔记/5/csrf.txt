@@ -1,0 +1,18 @@
+为了能够让所有的视图函数受到 CSRF 保护，你需要开启 CsrfProtect 模块:
+
+from flask_wtf.csrf import CsrfProtect
+
+CsrfProtect(app)
+
+你需要为 CSRF 保护设置一个秘钥。通常下，同 Flask 应用的 SECRET_KEY 是一样的。
+
+如果模板中存在表单，你不需要做任何事情。与之前一样:
+
+<form method="post" action="/">
+    {{ form.csrf_token }}
+</form>
+但是如果模板中没有表单，你仍然需要一个 CSRF 令牌:
+
+<form method="post" action="/">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+</form>

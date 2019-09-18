@@ -1,0 +1,10 @@
+Jinja2模板中，除了宏和继承，还支持一种代码重用的功能，叫包含(Include)。它的功能是将另一个模板整个加载到当前模板中，并直接渲染。
+
+include的使用
+
+{% include 'hello.html' %}
+
+包含在使用时，如果包含的模板文件不存在时，程序会抛出TemplateNotFound异常，可以加上 ignore missing 关键字。如果包含的模板文件不存在，会忽略这条include语句。
+
+include 的使用加上关键字ignore missing
+{% include 'hello.html' ignore missing %}

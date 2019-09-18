@@ -1,0 +1,55 @@
+为了在代码中能够正常的请求，我们修改添加一个参数
+import requests
+url='https://www.12306.cn/mormhweb/'
+response=requests.get(url,verify=Fasle)
+
+超时参数的使用
+超时参数使用方法如下：
+response=requests.get(url,timeout=3)
+通过添加timeout参数，能够保证在3秒钟内返回响应，否则会报错
+注意：
+这个方法还能够拿来检测代理ip的质量，如果一个代理ip在很长时间没有响应，那么添加超时之后也会报错，对应的这个ip就可以从代理ip池中删除
+
+使用超时参数能够加快我们整体的请求速度，但是在正常的网页浏览过成功，如果发生速度很慢的情况，我们会做的选择是刷新页面，那么在代码中，我们是否也可以刷新请求呢？
+对应的，retrying模块就可以帮助我们解决
+
+使用retrying模块提供的retry模块
+通过装饰器的方式使用，让被装饰的函数反复执行
+retry中可以传入参数stop_max_attemp_number,让函数报错后继续重新执行，达到最大执行次数的上限，如果每次都报错，整个函数报错，如果中间有一个成功，程序继续往后执行
+retrying和requests的简单封装
+实现一个发送请求的函数，每次爬虫中直接调用该函数即可实现发送请求，在其中
+
+使用timeout实现超时报错
+使用retrying模块实现重试
+代码参考：
+
+import requests
+from retrying import retry
+#最大重试3次，3次全部报错，才会报错
+@retry(stop_max_attempt_number=3)
+def _parse_url(url):
+	#超时的时候会报错并重试
+	response=requests.get(url,headers=headers,timeout=3)
+	#状态码不是200，也会报错并重试
+	assert response.status_code==200
+	return response
+
+def parse_url(url):
+	try:#进行异常捕获
+		response=_parse_url(url)
+	except Exception as e:
+		print(e)
+		#报错返回None
+		response=None
+	return response
+
+小结
+requests.utils.dict_from_cookiejar能够实现cookiejar转化为字典
+请求方法中添加verify=False能够实现请求过程中不验证证书
+请求方法中添加timeout能够实现强制程序返回结果，否则会报错
+retrying模块能够实现捕获函数的异常，反复执行函数的效果，和timeout配合使用，能够解决网络波动带来的请求不成功的问题
+
+@retry(stop_max_attempt_number=3)
+def getHTML(url):
+
+在函数内出错误后才执行第二次、第三次  如果函数内没有错误  就只执行一次   报错后后面的代码不执行

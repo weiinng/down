@@ -1,0 +1,30 @@
+因为vue是没有axis的  导入axios插件 就可以用axis了
+
+
+cnpm install --save axios
+
+
+然后在vue文件夹（myproject）里的config里的index.js里改
+
+proxyTable: {
+        '/api':{
+        target:'http://127.0.0.1:8000/',  #这里是你要跨域的网址 django是8000，flask是5000
+        changeOrigin:true,
+        pathRewrite:{
+            '^/api':''
+            }
+        }
+    },
+
+
+然后在src里的main.js里加这两行代码：
+import axios from 'axios'
+Vue.prototype.axios=axios
+
+导入axios使vue可以用axis
+
+
+
+
+
+ 

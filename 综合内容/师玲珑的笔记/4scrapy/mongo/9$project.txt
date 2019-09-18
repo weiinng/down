@@ -1,0 +1,52 @@
+管道命令之$project
+$project用于修改文档的输入输出结构，例如重命名，增加，删除字段
+使用示例如下：
+查询学生的年龄、姓名。仅输出姓名年龄，修改age字段名为age1
+db.stu.aggregate({$project:{_id:0,name:1,age:1，age1:'$age'}})
+
+查询男女生人数，输出人数
+db.stu.aggregate([{$group:{_id:'$gender',counter:{$sum:1}}{$project:{_id:0,counter:1}}}])
+
+6 管道命令之$sort
+
+$sort用于将输入的文档排序后输出
+
+使用示例如下：
+
+查询学生信息，按照年龄升序
+
+ db.stu.aggregate({$sort:{age:1}})
+查询男女人数，按照人数降序
+
+ db.stu.aggregate([
+     {$group:{_id:"$gender",counter:{$sum:1}}},
+     {$sort:{counter:-1}}]
+ )
+
+7 管道命令之$skip 和 $limit
+
+$limit限制返回数据的条数
+$skip 跳过指定的文档数，并返回剩下的文档数
+同时使用时先使用skip在使用limit
+使用示例如下：
+
+查询2条学生信息
+
+ db.stu.aggregate(
+     {$limit:2}
+ )
+
+查询从第三条开始的学生信息
+
+ db.stu.aggregate(
+     {$skip:3}
+ )
+
+统计男女生人数，按照人数升序，返回第二条数据
+
+ db.stu.aggregate([
+     {$group:{_id:"$gender",counter:{$sum:1}}},
+     {$sort:{counter:-1}},
+     {$skip:1},
+     {$limit:1}]
+ )

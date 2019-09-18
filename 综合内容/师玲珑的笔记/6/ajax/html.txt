@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    {% load staticfiles %}
+    <script src="../static/jquery.min.js"></script>
+</head>
+<body>
+    {% for x in all_classify %}
+        <button name="{{x.name}}">{{x.name}}</button>&nbsp;
+    {% endfor %}
+    <p id="con">
+
+    </p>
+</body>
+<script>
+    $(document).ready(function(){
+        $('button').click(function(){
+            var name=this.name
+            $.ajax({
+                url:'/show2/'+name+'/',
+                type:'get',
+                success:function(result){
+                    console.log(result)
+                }
+            })
+        })
+    })
+
+
+    // $(document).ready(function(){
+    //     $('button').click(function(){
+    //         var name=this.name
+    //         $.ajax({
+    //             url:'/show/',
+    //             type:'post',
+    //             data:{
+    //                 'name':name
+    //             },
+    //             success:function(result){
+    //                 var result=JSON.parse(result)
+    //                 // console.log(result)
+    //                 // var content=result[0]['']
+    //                 var i=0
+    //                 var k=''
+    //                 for(i;i<result.length;i++){
+    //                     k+=result[i]['fields']['name']
+    //                 }
+    //                 // console.log(k)
+    //                 $('#con').html(k)
+    //             }
+    //         })
+    //     })
+    // })
+</script>
+</html>

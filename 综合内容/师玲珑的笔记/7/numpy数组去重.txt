@@ -1,0 +1,30 @@
+data = np.array([[1,8,3,3,4],
+[1,8,9,9,4],
+[1,8,3,3,4]])
+
+
+ #删除整个数组的重复元素      
+
+
+uniques = np.unique(data)
+
+
+print( uniques)
+
+结果为：
+array([1, 3, 4, 8, 9])
+ 
+
+#删除重复行      
+uniques = np.unique(data，axis=0)
+
+
+print( uniques)
+
+结果为：
+array([[1,8,3,3,4],
+	 [1,8,9,9,4]])
+
+
+ #删除重复列
+uniques = np.unique(data，axis=1)

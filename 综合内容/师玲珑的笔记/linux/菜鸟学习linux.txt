@@ -1,0 +1,7 @@
+ 初学者完成 Linux 系统分区及安装之后，需熟练掌握 Linux 系统管理必备命令，
+命令包括：cd、 ls、pwd、clear、chmod、chown、chattr、useradd、userdel、groupadd、
+vi、vim、cat、more、less、mv、cp、rm、rmdir、touch、ifconfig、ip addr、ping、
+route、echo、wc、expr、bc、ln、head、tail、who、hostname、top、df、du、netstat、
+ss、kill、alias、man、tar、zip、unzip、jar、fdisk、free、uptime、lsof、lsmod、
+lsattr、dd、date、crontab、ps、find、awk、sed、grep、sort、uniq 等，每个命令
+至少练习 30 遍，逐步掌握每个命令的用法及应用场景

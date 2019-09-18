@@ -1,0 +1,42 @@
+mongodb的权限管理方案
+MongoDB是没有默认管理员账号，所以要先添加管理员账号，并且mongodb服务器需要在运行的时候开启验证模式，用户只能在用户所在数据库登录（创建用户的数据库），包括管理员账号。
+管理员可以管理所有的数据库，但是不能直接管理其他数据库，要先认证后才可以
+
+mongodb超级管理员账号的创建
+创建超级用户 使用admin数据库（超级管理员账号必须创建在该数据库上）
+use admin
+创建超级用户
+db.createUser({'user':'python','pwd':'python','roles':['root']})
+创建成功会显示如下信息
+Successfully added user:{'user':'python','roles':['root']}
+
+退出客户端再次登陆验证 此时在使用数据库各命令的时候会报权限错误，需要认证才能执行相应操作
+
+use admin
+db.auth('python','python')
+python用户是创建在admin数据库上的，所以必须来到admin数据库上进行认证，认证成功会返回1，失败返回0
+
+创建普通用户
+1、选择需要创建用户的数据库
+use test1
+2、在使用的数据库上创建普通用户
+db.createUser('user':'user1','pwd':'pwd1','roles':['read'])
+创建普通用户user1，该用户在test1上的权限是只读
+db.createUser('user':'user1','pwd':'pwd1',roles:['readWrite'])
+创建普通用户user1,该用户在test1上的权限是读写
+
+在其他数据库上创建普通用户
+db.createUser({'user':'python1','pwd':'python1',roles:[{'role':'read','db':'dbname1'},{'role':'readWrite','db':'dbname2'}]})
+在admin上创建python1用户，python1用户权限有两个，一个在dbname1上的只读，另一个是在dbname2上的读写
+
+查看创建的用户
+show users
+
+删除用户
+db.dropUser('python')
+
+
+
+
+
+

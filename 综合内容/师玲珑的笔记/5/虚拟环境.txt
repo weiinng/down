@@ -1,0 +1,8 @@
+pip install pipenv  安装pipenv
+pipenv install 创建虚拟环境
+pip list 查看安装的包
+pipenv shell 进入虚拟环境
+pipenv install flask  虚拟环境安装flask
+pipenv unstall flask 删除flask包
+exit 退出虚拟环境
+pipenv graph 查看版本

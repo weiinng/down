@@ -1,0 +1,6 @@
+在网页的<head></head>标签对中使用<link>标记来引入外部样式表文件，使用html规则引入外部css。
+
+
+<link href="./mystyle.css" rel="stylesheet" type="text/css"/>
+
+说明：html引入css文件的这种方法就不需要style标签，而是直接通过link一个样式来引用外部样式，推荐使用link来引用外部的css样式方法。

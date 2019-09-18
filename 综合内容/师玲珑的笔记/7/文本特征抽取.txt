@@ -1,0 +1,29 @@
+import jieba
+from sklearn.feature_extraction.text import CountVectorizer #处理文本特征
+#分词处理
+def cutword():
+    content1 = jieba.lcut('我们学会了python,java和php')
+    content2 = jieba.lcut('python包括flask,django和数据库')
+    content3 = jieba.lcut('java和php要求掌握数据库')
+#     print(content1)
+#     print(content2)
+#     print(content3)
+    c1 = ' '.join(content1)
+    c2 = ' '.join(content2)
+    c3 = ' '.join(content3)
+    return c1,c2,c3
+
+#特征处理
+def getFeature():
+    #初始化countvectorize
+    cv = CountVectorizer(stop_words=['包括','学会','掌握','要求'])  #处理得到的数据这些词去除掉
+    c1,c2,c3=cutword()
+    
+    data=cv.fit_transform([c1,c2,c3]) #处理数据来自jieba分词后的内容
+    #打印特征类别
+    print(cv.get_feature_names())
+    #查看抽取结果
+    print(data.toarray())
+    #打印解码内容
+    print(cv.inverse_transform([0,0,1,1,1,0]))
+getFeature()

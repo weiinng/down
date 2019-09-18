@@ -1,0 +1,93 @@
+跨域
+由于开发模式为前后端分离式开发，故而通常情况下，前端和后端可能运行不同的ip或者port下，导致出现跨域问题，故而单独说明
+什么是跨域
+跨域是指一个域下的文档或脚本试图去请求另一个域下的资源，这里跨域是广义的。
+其实我们通常所说的跨域是狭义的，是由浏览器同源策略限制的一类请求场景。
+
+什么是同源策略？
+
+同源策略/SOP（Same origin policy）是一种约定，由Netscape公司1995年引入浏览器，它是浏览器最核心也最基本的安全功能，如果缺少了同源策略，浏览器很容易受到XSS、CSFR等攻击。所谓同源是指"协议+域名+端口"三者相同，即便两个不同的域名指向同一个ip地址，也非同源。
+
+同源策略限制以下几种行为：
+
+Cookie、LocalStorage 和 IndexDB 无法读取
+DOM 和 Js对象无法获得
+AJAX 请求不能发送
+跨域错误浏览器会在控制台中出现如下错误：
+报错信息如下：
+
+Access to XMLHttpRequest at 'http://127.0.0.1:8000/api/test/' from origin 'http://127.0.0.1:3000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+翻译过来即是：从源地址 http://127.0.0.1:3000 发起的到http://127.0.0.1:8000/api/test/ 的XMLHttpRequest访问违反了同源策略：因为在请求头中没有Access-Control-Allow-Origin的值
+
+前端解决跨域
+参考博客
+
+既然跨域是因为不同源，那我同源不就完事儿了，但是后端请求地址不可能改变，所以可以在前端和后端的中间加一层代理，前端通过代理访问后端。
+在Vue-cli工具中已经提供了代理的功能，只需要配置即可。
+在根目录下的config/index.js文件中有如下配置项：
+
+proxyTable: {
+      '/': { 
+        target: 'http://127.0.0.1:8000/',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/api': ''
+        }
+      }
+    },
+'/'表示以'/'(即所有的路径)开头的路径均需要代理，
+target:代理的目标服务器地址（即后端服务器地址）为 'http://127.0.0.1:8000/',
+changeOrigin，为修改源：修改请求中的源地址
+pathReWrite：URL路径重写，对于以'/api'开头的路径将'/api'替换为''
+后端解决跨域
+参考博客
+
+后端出于安全考虑，也会对于跨域有限制，解决方法如下：
+
+安装django-cors-headers
+
+$ pip install django-cors-headers
+配置settings.py文件
+
+INSTALLED_APPS = [
+    ...
+    'corsheaders'，
+    ...
+ ] 
+
+MIDDLEWARE_CLASSES = (
+    ...
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware', # 注意顺序
+    ...
+)
+#跨域增加忽略
+CORS_ALLOW_CREDENTIALS = True
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_WHITELIST = (
+    'http://127.0.0.1:8000'
+)
+
+CORS_ALLOW_METHODS = (
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+    'VIEW',
+)
+
+CORS_ALLOW_HEADERS = (
+    'XMLHttpRequest',
+    'X_FILENAME',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+    'Pragma',
+)

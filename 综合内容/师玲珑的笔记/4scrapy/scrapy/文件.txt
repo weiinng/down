@@ -1,0 +1,6 @@
+scrapy.cfg :项目的配置文件
+mySpider/: 项目的python模块，将会从这里引用代码
+mySpider/items.py :项目的目标文件
+mySpider/pipelines.py ：项目的管道文件
+mySpider/settings.py:项目的设置文件
+

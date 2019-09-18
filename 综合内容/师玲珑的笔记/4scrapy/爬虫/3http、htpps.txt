@@ -1,0 +1,32 @@
+在发送请求，获取响应的过程中就是发送http或https的请求，获取http或https的响应
+url list	————	
+  |		 |
+http,https	 |
+  |		 |
+响应内容   ——提取url
+   |
+提交数据
+   |
+入库
+
+http
+超文本传输协议
+
+应用（http)
+   TCP
+    Ip
+默认端口80
+
+https
+HTTP+SSL(安全套接字层），即带有安全套接字层的超文本传输协议
+默认端口号：443
+https比http更安全，但是性能更低
+
+应用(http)
+ SSL
+ TCP
+ Ip
+
+
+
+

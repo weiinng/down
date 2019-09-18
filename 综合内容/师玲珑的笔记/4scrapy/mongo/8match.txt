@@ -1,0 +1,14 @@
+管道命令之$match
+$match用于进行数据的过滤，是在能够在聚合操作中使用的命令，和find区别在于$match操作可以把结果交给下一个管道处理，而findb学
+使用示例如下：
+
+查询年龄大于20的学生
+db.stu.aggregate({$match:{age:{$gt:20}}})
+
+查询年龄大于20的男女生的人数
+db.stu.aggregate([{$match:{}}age:{$get:20},{$group:{_id:'$gender',counter:{$sum:1}}}])
+
+
+
+
+

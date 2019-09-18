@@ -1,0 +1,2 @@
+金山词霸   爬下来的内容是json类型
+response.json()  将响应内容由json类型转为python类型
