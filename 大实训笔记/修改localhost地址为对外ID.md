@@ -9,4 +9,3 @@ host: '0.0.0.0', // can be overwritten by process.env.HOST
 
 ```
 
-**搞定下班！**

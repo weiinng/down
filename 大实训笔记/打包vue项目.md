@@ -4,7 +4,7 @@
 
 2.在index.js下找到第39行 将原来的 “../dist/index.html”     改成下方代码所示  需两处修改。
 
-```
+```javascript
 build: {
 	// Template for index.html
 	index: path.resolve(__dirname, './dist/index.html'),  #此处需要修改
