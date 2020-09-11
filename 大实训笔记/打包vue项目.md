@@ -12,7 +12,7 @@ build: {
 	// Paths
         assetsRoot: path.resolve(__dirname, './dist'),   #此处需要修改
         assetsSubDirectory: 'static',
-        assetsPublicPath: '/',
+        assetsPublicPath: './',
 
         /**
          * Source Maps

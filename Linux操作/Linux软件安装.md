@@ -110,7 +110,7 @@ cat /var/log/mysqld.log |grep "password"
 > 修改mysql数据库密码
 
 ```
-cat /var/log/mysqld.log |grep "password"      //首先查看mysql数据库密码并赋值
+cat /var/log/mysqld.log |grep "password"      //首先查看mysql数据库密码并复制
 mysql -u root -p              //进入数据库
 password                         //输入密码
 set password = password("123456");          //修改密码为123456

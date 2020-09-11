@@ -21,7 +21,6 @@ class Itchat():
             print(user['NickName']+'发送成功！')
 
 
-
     @itchat.msg_register(itchat.content.TEXT)
     def text_reply(msg):
         print(msg)
